@@ -1,0 +1,229 @@
+@import 'tailwindcss';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — identiques à ConfluenceTerminal
+   Palette : #09090B · #131315 · #FFFFFF · #B1B1B1 · #00B67A · #08AA58 ·
+             #0781FE · #C97316 — glassmorphism + gradient signature vert → bleu.
+   Toutes les couleurs passent par ces tokens : jamais de hex en dur dans les
+   composants.
+   ═══════════════════════════════════════════════════════════════════════════ */
+@theme {
+  --color-background: #09090b;
+  --color-surface: #131315;
+  --color-card: #18181b;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-foreground: #ffffff;
+  --color-body: #d4d4d8;
+  --color-secondary: #b1b1b1;
+  --color-accent: #00b67a;
+  --color-accent-hover: #08aa58;
+  --color-accent-soft: #00b67a; /* le vert terminal passe le contraste AA partout */
+  --color-success: #00b67a;
+  --color-danger: #ef4444;
+  --color-warning: #c97316;
+  --color-info: #0781fe;
+
+  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Azeret Mono', 'Fira Code', monospace;
+
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px rgba(0, 182, 122, 0.15);
+}
+
+/* Tokens verre (hors @theme : pas besoin d'utilitaires Tailwind dérivés) */
+:root {
+  --glass-bg: rgba(24, 24, 27, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(0, 182, 122, 0.35);
+  --glass-edge: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+  --accent-soft-bg: rgba(0, 182, 122, 0.1);
+  --accent-border: rgba(0, 182, 122, 0.25);
+  --grad-accent: linear-gradient(to right, #00b67a, #0781fe);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-background font-sans text-body antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+
+/* Orbes de couleur floutés en fond fixe (signature ConfluenceTerminal) :
+   couche GPU composée une seule fois — pas de repaint au scroll. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(680px 680px at 10% 4%, rgba(0, 182, 122, 0.13), transparent 60%),
+    radial-gradient(760px 760px at 92% 96%, rgba(7, 129, 254, 0.1), transparent 60%),
+    radial-gradient(560px 560px at 68% 30%, rgba(185, 99, 9, 0.05), transparent 62%),
+    radial-gradient(120% 85% at 50% 0%, #141417 0%, #0b0b0d 55%, #060607 100%);
+}
+
+/* Rognage horizontal global (orbes décoratifs qui dépassent des sections) */
+html,
+body {
+  overflow-x: clip;
+}
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+/* Scrollbar ConfluenceTerminal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+@layer components {
+  /* Card verre du design system ConfluenceTerminal : fond translucide,
+     flou 12px, liseré lumineux supérieur, hover vert terminal + lift. */
+  .card {
+    @apply rounded-2xl border;
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    box-shadow:
+      var(--shadow-card),
+      inset 0 1px 0 var(--glass-edge);
+    transition:
+      border-color 250ms ease,
+      transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 250ms ease;
+  }
+  /* Fallback sans backdrop-filter : fond opaque */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .card {
+      background: #18181b;
+    }
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    border-color: var(--glass-border-hover);
+    box-shadow:
+      0 14px 44px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 var(--glass-edge);
+  }
+
+  /* Bouton primaire — vert terminal, texte blanc, lueur au survol */
+  .btn-primary {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:bg-accent-hover;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 4px 20px rgba(0, 182, 122, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Bouton secondaire — style o9-btn : transparent, devient vert au survol */
+  .btn-secondary {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-border bg-transparent px-6 py-3 text-sm font-bold text-foreground transition-all duration-300;
+  }
+  .btn-secondary:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 20px rgba(0, 182, 122, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Badge technologie — teinte accent ConfluenceTerminal */
+  .badge-tech {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-center text-xs font-bold text-accent;
+    background: var(--accent-soft-bg);
+    border: 1px solid var(--accent-border);
+    letter-spacing: 0.02em;
+  }
+
+  /* Chiffres — Azeret Mono tabulaire (value-num ConfluenceTerminal) */
+  .stat-number {
+    @apply font-bold;
+    font-family: var(--font-mono);
+    font-feature-settings: 'tnum' 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Texte gradient signature vert → bleu */
+  .grad-text {
+    background: linear-gradient(135deg, #00b67a, #0781fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Grille technique en fond de héro (fondu radial) */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--glass-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(60% 55% at 50% 38%, #000 30%, transparent 100%);
+    mask-image: radial-gradient(60% 55% at 50% 38%, #000 30%, transparent 100%);
+  }
+}
+
+/* Focus visible accessible sur tout élément interactif */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Lien d'évitement (accessibilité clavier) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 0 0 8px 0;
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Réduction des animations (parité ConfluenceTerminal) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
