@@ -173,8 +173,8 @@ export const projects: Project[] = [
     description:
       'Verdicts de trading actionnables, backtest macro sur données réelles, contexte géopolitique en temps réel et IA conversationnelle — le tout dans une interface de niveau terminal professionnel.',
     tech: ['React 19', 'Vite', 'TypeScript', 'Tailwind', 'Cloudflare Workers', 'D1', 'Recharts / D3'],
-    demoUrl: '', // TODO : URL de démo
-    image: '', // TODO : capture d’écran → public/projects/confluenceterminal.png
+    demoUrl: '',
+    image: `${BASE}projects/confluenceterminal.jpg`,
     accentColor: 'success',
     privateSource: true,
   },
@@ -184,8 +184,8 @@ export const projects: Project[] = [
     description:
       'Backtesting intégré via widget TradingView, coach IA qui analyse vos trades, import CSV MT4/MT5, statistiques détaillées et courbes d’équité pour progresser en trading.',
     tech: ['React', 'Supabase', 'Groq', 'Recharts'],
-    demoUrl: '', // TODO : URL de démo
-    image: '',
+    demoUrl: 'https://journal.hopetraders.fr',
+    image: `${BASE}projects/hopejournal.jpg`,
     accentColor: 'accent',
     privateSource: true,
   },
@@ -195,8 +195,8 @@ export const projects: Project[] = [
     description:
       'Espace membres complet : signaux avec notifications, parcours de formation sur 9 mois, espace admin et certificat de fin de formation.', // TODO : détails à confirmer
     tech: ['React', 'Cloudflare Pages', 'Workers', 'D1', 'Stripe'],
-    demoUrl: 'https://vip.hopetraders.fr', // TODO : confirmer l’URL publique
-    image: '',
+    demoUrl: 'https://vip.hopetraders.fr',
+    image: `${BASE}projects/hopetraders.jpg`,
     accentColor: 'warning',
     privateSource: true,
   },
@@ -206,8 +206,8 @@ export const projects: Project[] = [
     description:
       'Page de vente du terminal : présentation des fonctionnalités, pricing, preuve sociale et parcours d’inscription optimisé pour la conversion.',
     tech: ['React', 'Vite', 'TypeScript', 'Tailwind'],
-    demoUrl: '', // TODO : URL de démo
-    image: '',
+    demoUrl: '',
+    image: `${BASE}projects/confluenceterminal-site.jpg`,
     accentColor: 'info',
     privateSource: true,
   },
@@ -217,19 +217,19 @@ export const projects: Project[] = [
     description:
       'Landing page produit au design glassmorphism : mise en avant du coach IA, des statistiques et du backtesting pour convertir les traders en utilisateurs.',
     tech: ['React', 'Vite', 'Tailwind', 'Framer Motion'],
-    demoUrl: '', // TODO : URL de démo
-    image: '',
+    demoUrl: '',
+    image: `${BASE}projects/hopejournal-site.jpg`,
     accentColor: 'accent',
     privateSource: true,
   },
   {
     name: 'MBO Services',
-    tagline: 'Site corporate — consulting IT',
+    tagline: 'Site corporate — ESN / conseil IT',
     description:
-      'Site vitrine WordPress sur-mesure pour un cabinet de consulting IT : thème personnalisé, pages construites avec Elementor, optimisation SEO et performance.',
-    tech: ['WordPress', 'Elementor', 'PHP', 'SEO'],
-    demoUrl: '', // TODO : URL du site (ex: https://www.mboservices.ma)
-    image: '',
+      'Site vitrine haut de gamme pour une ESN (Cloud, Cybersécurité, Data & IA) : Next.js en export statique, animations Motion, design soigné et accessibilité.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Motion'],
+    demoUrl: '',
+    image: `${BASE}projects/mbo-services.jpg`,
     accentColor: 'info',
     privateSource: true,
   },
