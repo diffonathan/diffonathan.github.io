@@ -23,14 +23,15 @@ export default function Hero() {
       id="accueil"
       className="relative flex min-h-dvh items-center overflow-hidden"
     >
-      {/* Fond ConfluenceTerminal : grille technique + orbes vert/bleu + réseau Three.js */}
+      {/* Fond charte Hope Traders : grille technique + orbes (bleu en haut,
+          or en bas) + réseau Three.js */}
       <div className="bg-grid" aria-hidden="true" />
       <div
         className="absolute -left-24 top-16 h-[420px] w-[420px] rounded-full bg-accent/10 blur-[90px]"
         aria-hidden="true"
       />
       <div
-        className="absolute -right-24 bottom-10 h-[460px] w-[460px] rounded-full bg-info/10 blur-[100px]"
+        className="absolute -right-24 bottom-10 h-[460px] w-[460px] rounded-full bg-gold/10 blur-[100px]"
         aria-hidden="true"
       />
       <Suspense fallback={null}>

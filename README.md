@@ -1,7 +1,7 @@
 # Portfolio — Nathan Princer Diffo
 
 Portfolio personnel one-page : **React + Vite + TypeScript + Tailwind CSS v4 + Framer Motion + Three.js**.
-Design system **ConfluenceTerminal** (zinc profond, glassmorphism, vert terminal, gradient vert → bleu),
+Design system **charte Hope Traders** (zinc profond, glassmorphism, bleu marque `#0781FE`, or accent `#F9A825`),
 animations au scroll, fond "réseau de neurones" en Three.js, 100 % responsive, SEO complet.
 
 ## Démarrage rapide
@@ -87,11 +87,12 @@ src/
 └── index.css              Tokens du design system (couleurs, ombres, boutons)
 ```
 
-## Design system (identique à ConfluenceTerminal)
+## Design system (charte Hope Traders)
 
 Tokens définis dans [`src/index.css`](src/index.css) (`@theme` + variables verre) :
 `background #09090B`, surfaces translucides glassmorphism (blur 12px, liseré lumineux),
-accent **vert terminal #00B67A** (hover `#08AA58`), bleu `#0781FE`, gradient signature
-vert → bleu, textes `#FFFFFF` / `#D4D4D8` / `#B1B1B1`, orbes de couleur flottants en fond fixe.
+accent **bleu marque #0781FE** (hover `#0565C6`), or accent `#F9A825`, mots mis en
+valeur en dégradé or/feu (`#FBCD25 → #F36E23`), textes `#FFFFFF` / `#D4D4D8` / `#B1B1B1`,
+fond de charte fixe (halo bleu en haut à gauche, halo or en bas à droite).
 Typographies : **DM Sans** (corps) + **Azeret Mono** (chiffres, tabular-nums).
 Aucune couleur en dur dans les composants.

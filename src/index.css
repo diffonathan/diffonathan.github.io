@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DESIGN TOKENS — identiques à ConfluenceTerminal
-   Palette : #09090B · #131315 · #FFFFFF · #B1B1B1 · #00B67A · #08AA58 ·
-             #0781FE · #C97316 — glassmorphism + gradient signature vert → bleu.
-   Toutes les couleurs passent par ces tokens : jamais de hex en dur dans les
-   composants.
+   DESIGN TOKENS — charte Hope Traders
+   Palette : #09090B · #131315 · #FFFFFF · #B1B1B1 · #0781FE (bleu marque) ·
+             #F9A825 (or accent) · #C97316 — glassmorphism, le bleu porte
+   l'action, l'or porte la valeur. Toutes les couleurs passent par ces tokens :
+   jamais de hex en dur dans les composants.
    ═══════════════════════════════════════════════════════════════════════════ */
 @theme {
   --color-background: #09090b;
@@ -15,31 +15,35 @@
   --color-foreground: #ffffff;
   --color-body: #d4d4d8;
   --color-secondary: #b1b1b1;
-  --color-accent: #00b67a;
-  --color-accent-hover: #08aa58;
-  --color-accent-soft: #00b67a; /* le vert terminal passe le contraste AA partout */
-  --color-success: #00b67a;
+  --color-accent: #0781fe;
+  --color-accent-hover: #0565c6;
+  --color-accent-soft: #0781fe; /* le bleu marque passe le contraste AA partout */
+  --color-success: #0781fe; /* ex-vert de marque : aucun gain/perte ici, il suit le bleu */
   --color-danger: #ef4444;
   --color-warning: #c97316;
   --color-info: #0781fe;
+  /* Or : accent secondaire de la charte — badges, mots mis en valeur, orbe bas */
+  --color-gold: #f9a825;
+  --color-gold-soft: rgba(249, 168, 37, 0.15);
 
   --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Azeret Mono', 'Fira Code', monospace;
 
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 40px rgba(0, 182, 122, 0.15);
+  --shadow-glow: 0 0 40px rgba(7, 129, 254, 0.15);
 }
 
 /* Tokens verre (hors @theme : pas besoin d'utilitaires Tailwind dérivés) */
 :root {
   --glass-bg: rgba(24, 24, 27, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(0, 182, 122, 0.35);
+  --glass-border-hover: rgba(7, 129, 254, 0.35);
   --glass-edge: rgba(255, 255, 255, 0.1);
   --glass-blur: 12px;
-  --accent-soft-bg: rgba(0, 182, 122, 0.1);
-  --accent-border: rgba(0, 182, 122, 0.25);
-  --grad-accent: linear-gradient(to right, #00b67a, #0781fe);
+  --accent-soft-bg: rgba(7, 129, 254, 0.1);
+  --accent-border: rgba(7, 129, 254, 0.25);
+  /* Or/feu : barres d'accent et mots mis en valeur (charte Hope Traders) */
+  --grad-accent: linear-gradient(to right, #fbcd25, #f36e23);
 }
 
 html {
@@ -59,8 +63,9 @@ body {
   line-height: 1.6;
 }
 
-/* Orbes de couleur floutés en fond fixe (signature ConfluenceTerminal) :
-   couche GPU composée une seule fois — pas de repaint au scroll. */
+/* Charte de fond Hope Traders en fond fixe : halo bleu en haut à gauche,
+   halo or en bas à droite, base sombre en diagonale. Couche GPU composée une
+   seule fois — pas de repaint au scroll (jamais background-attachment: fixed). */
 body::before {
   content: '';
   position: fixed;
@@ -68,10 +73,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(680px 680px at 10% 4%, rgba(0, 182, 122, 0.13), transparent 60%),
-    radial-gradient(760px 760px at 92% 96%, rgba(7, 129, 254, 0.1), transparent 60%),
-    radial-gradient(560px 560px at 68% 30%, rgba(185, 99, 9, 0.05), transparent 62%),
-    radial-gradient(120% 85% at 50% 0%, #141417 0%, #0b0b0d 55%, #060607 100%);
+    radial-gradient(88% 62% at 12% 0%, rgba(7, 129, 254, 0.14), transparent 62%),
+    radial-gradient(76% 56% at 88% 100%, rgba(249, 168, 37, 0.11), transparent 62%),
+    linear-gradient(160deg, #101014 0%, #0a0a0c 60%, #08080a 100%);
 }
 
 /* Rognage horizontal global (orbes décoratifs qui dépassent des sections) */
@@ -107,8 +111,8 @@ body {
 }
 
 @layer components {
-  /* Card verre du design system ConfluenceTerminal : fond translucide,
-     flou 12px, liseré lumineux supérieur, hover vert terminal + lift. */
+  /* Card verre du design system : fond translucide, flou 12px, liseré
+     lumineux supérieur, hover bleu marque + lift. */
   .card {
     @apply rounded-2xl border;
     background: var(--glass-bg);
@@ -137,31 +141,33 @@ body {
       inset 0 1px 0 var(--glass-edge);
   }
 
-  /* Bouton primaire — vert terminal, texte blanc, lueur au survol */
+  /* Bouton primaire — bleu marque, texte blanc, lueur au survol */
   .btn-primary {
     @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:bg-accent-hover;
   }
   .btn-primary:hover {
-    box-shadow: 0 4px 20px rgba(0, 182, 122, 0.3);
+    box-shadow: 0 4px 20px rgba(7, 129, 254, 0.3);
     transform: translateY(-1px);
   }
 
-  /* Bouton secondaire — style o9-btn : transparent, devient vert au survol */
+  /* Bouton secondaire — style o9-btn : transparent, devient bleu au survol */
   .btn-secondary {
     @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-border bg-transparent px-6 py-3 text-sm font-bold text-foreground transition-all duration-300;
   }
   .btn-secondary:hover {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    box-shadow: 0 4px 20px rgba(0, 182, 122, 0.3);
+    box-shadow: 0 4px 20px rgba(7, 129, 254, 0.3);
     transform: translateY(-1px);
   }
 
-  /* Badge technologie — teinte accent ConfluenceTerminal */
+  /* Badge technologie — pastille informative de la charte : fond or doux,
+     bordure sombre, texte principal. Un badge n'est jamais bleu : le bleu
+     porte l'action, l'or porte la valeur. */
   .badge-tech {
-    @apply inline-flex items-center rounded-full px-3 py-1 text-center text-xs font-bold text-accent;
-    background: var(--accent-soft-bg);
-    border: 1px solid var(--accent-border);
+    @apply inline-flex items-center rounded-full px-3 py-1 text-center text-xs font-bold text-foreground;
+    background: var(--color-gold-soft);
+    border: 1px solid #26262a;
     letter-spacing: 0.02em;
   }
 
@@ -173,9 +179,9 @@ body {
     font-variant-numeric: tabular-nums;
   }
 
-  /* Texte gradient signature vert → bleu */
+  /* Mots mis en valeur — dégradé or/feu de la charte Hope Traders */
   .grad-text {
-    background: linear-gradient(135deg, #00b67a, #0781fe);
+    background: linear-gradient(-15deg, #fbcd25 0%, #f36e23 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
