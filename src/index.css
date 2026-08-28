@@ -8,7 +8,7 @@
    jamais de hex en dur dans les composants.
    ═══════════════════════════════════════════════════════════════════════════ */
 @theme {
-  --color-background: #09090b;
+  --color-background: #0a0a0c; /* valeur exacte de la charte (etait #09090b, zinc-950) */
   --color-surface: #131315;
   --color-card: #18181b;
   --color-border: rgba(255, 255, 255, 0.1);
@@ -20,7 +20,7 @@
   --color-accent-soft: #0781fe; /* le bleu marque passe le contraste AA partout */
   --color-success: #0781fe; /* ex-vert de marque : aucun gain/perte ici, il suit le bleu */
   --color-danger: #ef4444;
-  --color-warning: #c97316;
+  --color-warning: #f9a825; /* l'or de la charte ; #c97316 etait un orange hors charte */
   --color-info: #0781fe;
   /* Or : accent secondaire de la charte — badges, mots mis en valeur, orbe bas */
   --color-gold: #f9a825;

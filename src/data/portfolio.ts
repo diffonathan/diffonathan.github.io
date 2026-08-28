@@ -41,6 +41,18 @@ export interface StackCategory {
   items: string[]
 }
 
+/** Une étape de démo guidée : une capture + ce qu'elle montre. */
+export interface DemoEtape {
+  image: string
+  titre: string
+  texte: string
+}
+
+/** Visite guidée d'un outil non publié, présentée en modale. */
+export interface DemoGuidee {
+  etapes: DemoEtape[]
+}
+
 export interface Project {
   name: string
   tagline: string
@@ -54,6 +66,9 @@ export interface Project {
   /** Couleur d’accent du placeholder (token CSS). */
   accentColor: 'accent' | 'success' | 'info' | 'warning' | 'danger'
   privateSource: boolean
+  /** Visite guidée — pour les outils métier qui ne peuvent pas être ouverts
+      au public (ils traitent des candidats et des appels d'offres réels). */
+  demo?: DemoGuidee
 }
 
 export interface Service {
@@ -214,9 +229,31 @@ export const projects: Project[] = [
       'Application métier qui industrialise la réponse aux appels d’offres : extraction automatique des dates et du périmètre depuis les documents, workflow en 9 étapes verrouillées, revue technique produite par un LLM en tâche de fond, génération documentaire et détection des doublons.',
     tech: ['FastAPI', 'Python', 'JavaScript', 'Docker', 'Caddy', 'Groq'],
     demoUrl: 'https://tracker.mboservices.tech',
-    image: '',
+    image: `${BASE}demo/tracker-tableau-de-bord.jpg`,
     accentColor: 'success',
     privateSource: true,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}demo/tracker-tableau-de-bord.jpg`,
+          titre: 'Pilotage : où en est chaque dossier',
+          texte:
+            'Le tableau de bord agrège les appels d’offres en cours : volume traité, taux de transformation, montants engagés et répartition par statut. Les filtres par année et par mois permettent de comparer deux périodes sans quitter la page.',
+        },
+        {
+          image: `${BASE}demo/tracker-projets.jpg`,
+          titre: 'Un workflow en 9 étapes, verrouillé',
+          texte:
+            'Chaque dossier suit un parcours imposé, du NDA à la facturation. Une étape ne s’ouvre que si la précédente est close : c’est ce qui empêche un dossier de partir sans revue technique ou sans pièce obligatoire.',
+        },
+        {
+          image: `${BASE}demo/tracker-documentation.jpg`,
+          titre: 'La documentation vit dans l’outil',
+          texte:
+            'Chaque écran embarque son mode d’emploi et une visite de première connexion. L’outil est utilisé par des profils non techniques : la prise en main devait tenir sans formation.',
+        },
+      ],
+    },
   },
   {
     name: 'Application de recrutement',
@@ -224,10 +261,32 @@ export const projects: Project[] = [
     description:
       'Outil de recrutement autonome : suivi des candidats, génération de huit documents contractuels par gabarits, trigramme RH, conformité RGPD et intégration SharePoint / Microsoft 365. Déployée sur VPS en conteneurs.',
     tech: ['FastAPI', 'Python', 'Docker', 'Caddy', 'Microsoft Graph', 'Groq'],
-    demoUrl: '',
-    image: '',
+    demoUrl: 'https://rh.mboservices.tech',
+    image: `${BASE}demo/rh-suivi.jpg`,
     accentColor: 'accent',
     privateSource: true,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}demo/rh-tableau-de-bord.jpg`,
+          titre: 'Du besoin au poste, en une saisie',
+          texte:
+            'L’outil lit l’e-mail d’expression du besoin (ou un texte collé), pré-remplit la fiche de poste, puis numérote le dossier, crée son arborescence d’étapes et génère le formulaire de besoin et l’annonce en Word et PDF.',
+        },
+        {
+          image: `${BASE}demo/rh-recrutement.jpg`,
+          titre: 'Le parcours candidat, étape par étape',
+          texte:
+            'Chaque candidat avance dans un pipeline dont l’étape courante range physiquement son CV dans le bon sous-dossier. Le trigramme RH est dérivé du nom et sert d’identifiant tout au long du processus.',
+        },
+        {
+          image: `${BASE}demo/rh-suivi.jpg`,
+          titre: 'Un suivi qui remplace le fichier Excel',
+          texte:
+            'La table de suivi reprend exactement les colonnes du tableau Excel qu’elle remplace — et s’exporte au même format. La reprise a été pensée pour ne rien imposer de nouveau à l’équipe RH. Une purge RGPD est intégrée.',
+        },
+      ],
+    },
   },
   {
     name: 'MBO Services',

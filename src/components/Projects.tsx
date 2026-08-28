@@ -1,9 +1,11 @@
-import { ExternalLink, Lock } from 'lucide-react'
+import { useState } from 'react'
+import { ExternalLink, Lock, PlayCircle } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import Badge from './ui/Badge'
 import SectionHeading from './ui/SectionHeading'
 import { projects, projectsSection } from '../data/portfolio'
 import type { Project } from '../data/portfolio'
+import DemoWalkthrough from './DemoWalkthrough'
 
 /* Classes complètes par couleur (Tailwind ne compile pas les classes dynamiques) */
 const placeholderStyles: Record<Project['accentColor'], string> = {
@@ -58,6 +60,9 @@ function ProjectVisual({ project }: { project: Project }) {
 }
 
 export default function Projects() {
+  // Projet dont la visite guidee est ouverte (null = aucune).
+  const [visite, setVisite] = useState<Project | null>(null)
+
   return (
     <section id="projets" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -85,16 +90,30 @@ export default function Projects() {
                   </ul>
 
                   <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-border pt-5">
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {/* Un outil metier a une visite guidee plutot qu'un lien :
+                        son URL mene a un ecran de connexion, pas a une demo.
+                        L'etiqueter « Demo live » induirait en erreur. */}
+                    {project.demo ? (
+                      <button
+                        type="button"
+                        onClick={() => setVisite(project)}
                         className="btn-primary px-4 py-2 text-sm"
                       >
-                        {projectsSection.demoLabel}
-                        <ExternalLink size={15} aria-hidden="true" />
-                      </a>
+                        Voir la démo guidée
+                        <PlayCircle size={15} aria-hidden="true" />
+                      </button>
+                    ) : (
+                      project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary px-4 py-2 text-sm"
+                        >
+                          {projectsSection.demoLabel}
+                          <ExternalLink size={15} aria-hidden="true" />
+                        </a>
+                      )
                     )}
                     {project.privateSource && (
                       <span className="inline-flex items-center gap-1.5 text-xs text-secondary">
@@ -109,6 +128,14 @@ export default function Projects() {
           ))}
         </div>
       </div>
+
+      {visite?.demo && (
+        <DemoWalkthrough
+          demo={visite.demo}
+          projet={visite.name}
+          onClose={() => setVisite(null)}
+        />
+      )}
     </section>
   )
 }
