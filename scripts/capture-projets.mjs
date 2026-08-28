@@ -9,6 +9,12 @@
  * un compte, et on ne met pas de données de membres dans un portfolio.
  *
  * Usage : node scripts/capture-projets.mjs [nom]
+ *
+ * Dépendance : puppeteer-core, volontairement PAS dans package.json — c'est un
+ * script de maintenance occasionnel, pas une dépendance du site, et il pèse
+ * lourd. S'il manque :
+ *   npm i -D puppeteer-core
+ * Chrome est piloté depuis l'installation système (chemin ci-dessous).
  */
 import puppeteer from 'puppeteer-core';
 import { mkdirSync } from 'node:fs';
