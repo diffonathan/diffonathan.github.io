@@ -78,11 +78,12 @@ export interface SocialLink {
 /* --------------------------- Identité ---------------------------------- */
 
 export const identity = {
-  name: 'Nathan Princer Diffo', // TODO : confirmer l’orthographe exacte affichée
+  name: 'Nathan Princer Diffo',
   initials: 'NPD',
   baseline: 'Développeur FullStack · Concepteur d’agents IA · Créateur de SaaS',
-  location: 'Casablanca, Maroc · Remote', // TODO : ajuster si besoin
-  email: 'nathan.diffo@mboservices.ma', // TODO : confirmer l’email public
+  location: 'Casablanca, Maroc · Remote',
+  email: 'diffoprincer@gmail.com', // adresse PERSONNELLE — le portfolio ne
+  // relève pas de MBO Services, l'adresse professionnelle n'y a pas sa place.
   availabilityBadge: 'Disponible pour missions & collaborations',
   cvUrl: `${BASE}cv.pdf`, // Remplacez public/cv.pdf par votre vrai CV
 }
@@ -90,7 +91,6 @@ export const identity = {
 /* ----------------------------- Hero ------------------------------------ */
 
 export const hero = {
-  // TODO : ajustez ces deux phrases si vous voulez un autre ton
   subtitle:
     'De l’idée au produit en production : j’architecture des applications web performantes, ' +
     'des agents IA et des plateformes SaaS complètes — front, back, paiement et déploiement inclus.',
@@ -145,7 +145,7 @@ export const stackCategories: StackCategory[] = [
   {
     title: 'Backend',
     icon: Server,
-    items: ['Node.js', 'Cloudflare Workers', 'Supabase', 'D1', 'REST API', 'Stripe'],
+    items: ['Node.js', 'Cloudflare Workers', 'D1 / KV', 'Supabase', 'FastAPI', 'Stripe'],
   },
   {
     title: 'Intelligence Artificielle',
@@ -160,7 +160,14 @@ export const stackCategories: StackCategory[] = [
   {
     title: 'Outils',
     icon: Wrench,
-    items: ['Git / GitHub', 'Netlify', 'Vercel', 'WordPress / Elementor', 'Figma'],
+    items: [
+      'Git / GitHub',
+      'Cloudflare Pages',
+      'GitHub Actions',
+      'Docker / Caddy',
+      'WordPress / Elementor',
+      'Figma',
+    ],
   },
 ]
 
@@ -171,54 +178,54 @@ export const projects: Project[] = [
     name: 'ConfluenceTerminal',
     tagline: 'Terminal d’analyse fondamentale de niveau institutionnel',
     description:
-      'Verdicts de trading actionnables, backtest macro sur données réelles, contexte géopolitique en temps réel et IA conversationnelle — le tout dans une interface de niveau terminal professionnel.',
-    tech: ['React 19', 'Vite', 'TypeScript', 'Tailwind', 'Cloudflare Workers', 'D1', 'Recharts / D3'],
-    demoUrl: '',
+      'Verdict directionnel sur 150+ actifs et 3 horizons, croisant macro (FRED), positionnement institutionnel (COT/CFTC), énergie (EIA), géopolitique (GDELT) et backtest historique. Comptes, essai de 30 jours et abonnement Stripe ; alertes Telegram avant les publications à fort impact.',
+    tech: ['React', 'TypeScript', 'Tailwind', 'Cloudflare Workers', 'D1', 'Stripe', 'Groq', 'TradingView'],
+    demoUrl: 'https://confluenceterminal.hopetraders.fr',
     image: `${BASE}projects/confluenceterminal.jpg`,
-    accentColor: 'success',
-    privateSource: true,
-  },
-  {
-    name: 'HopeJournal',
-    tagline: 'Journal de trading avancé avec coach IA',
-    description:
-      'Backtesting intégré via widget TradingView, coach IA qui analyse vos trades, import CSV MT4/MT5, statistiques détaillées et courbes d’équité pour progresser en trading.',
-    tech: ['React', 'Supabase', 'Groq', 'Recharts'],
-    demoUrl: 'https://journal.hopetraders.fr',
-    image: `${BASE}projects/hopejournal.jpg`,
-    accentColor: 'accent',
+    accentColor: 'info',
     privateSource: true,
   },
   {
     name: 'Hope Traders Academy',
-    tagline: 'Plateforme de formation au trading',
+    tagline: 'Plateforme de formation et de signaux de trading',
     description:
-      'Espace membres complet : signaux avec notifications, parcours de formation sur 9 mois, espace admin et certificat de fin de formation.', // TODO : détails à confirmer
-    tech: ['React', 'Cloudflare Pages', 'Workers', 'D1', 'Stripe'],
+      'Espace membres complet : signaux en direct avec notifications push, formation de 72 vidéos débloquées par paliers, webinaire hebdomadaire, messagerie avec l’équipe, réservation d’appels, espace admin et certificat. Trois formules de paiement Stripe, application installable (PWA).',
+    tech: ['React', 'TypeScript', 'Cloudflare Pages', 'Workers', 'D1 / KV', 'Stripe', 'PWA'],
     demoUrl: 'https://vip.hopetraders.fr',
     image: `${BASE}projects/hopetraders.jpg`,
     accentColor: 'warning',
     privateSource: true,
   },
   {
-    name: 'Site vitrine ConfluenceTerminal',
-    tagline: 'Landing page produit orientée conversion',
+    name: 'HopeJournal',
+    tagline: 'Journal de trading avec coach IA',
     description:
-      'Page de vente du terminal : présentation des fonctionnalités, pricing, preuve sociale et parcours d’inscription optimisé pour la conversion.',
-    tech: ['React', 'Vite', 'TypeScript', 'Tailwind'],
-    demoUrl: '',
-    image: `${BASE}projects/confluenceterminal-site.jpg`,
-    accentColor: 'info',
+      'Journal complet pour traders : import CSV MT4/MT5, statistiques et courbes d’équité, backtesting via widget TradingView, et un coach IA qui analyse les trades pour identifier les schémas récurrents.',
+    tech: ['React', 'TypeScript', 'Supabase', 'Groq', 'Recharts'],
+    demoUrl: 'https://hopejournal.hopetraders.fr',
+    image: `${BASE}projects/hopejournal-site.jpg`,
+    accentColor: 'accent',
     privateSource: true,
   },
   {
-    name: 'Site vitrine HopeJournal',
-    tagline: 'Landing page glassmorphism du journal de trading',
+    name: 'Project Tracker',
+    tagline: 'Pipeline de réponse aux appels d’offres, assisté par IA',
     description:
-      'Landing page produit au design glassmorphism : mise en avant du coach IA, des statistiques et du backtesting pour convertir les traders en utilisateurs.',
-    tech: ['React', 'Vite', 'Tailwind', 'Framer Motion'],
+      'Application métier qui industrialise la réponse aux appels d’offres : extraction automatique des dates et du périmètre depuis les documents, workflow en 9 étapes verrouillées, revue technique produite par un LLM en tâche de fond, génération documentaire et détection des doublons.',
+    tech: ['FastAPI', 'Python', 'JavaScript', 'Docker', 'Caddy', 'Groq'],
+    demoUrl: 'https://tracker.mboservices.tech',
+    image: '',
+    accentColor: 'success',
+    privateSource: true,
+  },
+  {
+    name: 'Application de recrutement',
+    tagline: 'Gestion RH connectée à Microsoft 365',
+    description:
+      'Outil de recrutement autonome : suivi des candidats, génération de huit documents contractuels par gabarits, trigramme RH, conformité RGPD et intégration SharePoint / Microsoft 365. Déployée sur VPS en conteneurs.',
+    tech: ['FastAPI', 'Python', 'Docker', 'Caddy', 'Microsoft Graph', 'Groq'],
     demoUrl: '',
-    image: `${BASE}projects/hopejournal-site.jpg`,
+    image: '',
     accentColor: 'accent',
     privateSource: true,
   },
@@ -286,9 +293,9 @@ export const experience: ExperienceItem[] = [
     company: 'Indépendant',
     period: '2024 — Aujourd’hui',
     missions: [
-      'Conception et lancement de ConfluenceTerminal, terminal d’analyse fondamentale (données FRED, EIA, CFTC).',
-      'Développement de HopeJournal, journal de trading avec coach IA et backtesting intégré.',
-      'Mise en production de plateformes complètes : paiement Stripe, espaces membres, infrastructure Cloudflare.',
+      'Conception et mise en production de ConfluenceTerminal : données FRED, EIA, CFTC et GDELT, verdict sur 150+ actifs, abonnement Stripe.',
+      'Développement de HopeJournal, journal de trading avec coach IA, import MT4/MT5 et backtesting intégré.',
+      'Plateformes complètes de bout en bout : authentification, paiement Stripe, espaces membres, PWA et infrastructure serverless Cloudflare.',
     ],
   },
   {
@@ -302,12 +309,13 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    role: 'Fondateur & développeur',
-    company: 'Hope Traders',
+    role: 'Co-fondateur & développeur',
+    company: 'Hope Traders Academy',
     period: '2023 — Aujourd’hui',
     missions: [
-      'Création de la plateforme de formation vip.hopetraders.fr : signaux, parcours de formation, certification.',
+      'Conception et développement de vip.hopetraders.fr : signaux en direct, formation, paiements Stripe, espace admin et application installable.',
       'Développement d’un indicateur TradingView (Pine Script v6) utilisé par la communauté.',
+      'Conception de HopeJournal et de ConfluenceTerminal, les deux outils de l’écosystème.',
     ],
   },
 ]
@@ -351,7 +359,7 @@ export const socials: SocialLink[] = [
   },
   {
     label: 'GitHub',
-    url: 'https://github.com/VOTRE_USERNAME', // TODO : remplacer par votre profil GitHub
+    url: 'https://github.com/diffonathan',
     icon: GithubIcon,
   },
 ]
