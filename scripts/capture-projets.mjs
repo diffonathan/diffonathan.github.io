@@ -61,6 +61,36 @@ try {
     // bandeau TradingView de ConfluenceTerminal se peuple bien après
     // networkidle2, et sortait en barres grises de chargement.
     await new Promise((r) => setTimeout(r, c.attente ?? 2500));
+
+    // Les sites de production ouvrent des surcouches à l'arrivée — modale
+    // d'offre, bannière d'installation PWA, bandeau de consentement. Elles
+    // masquent justement ce qu'on vient photographier. On les retire du DOM
+    // plutôt que de deviner leurs clés de stockage, qui changent avec le code.
+    await page.keyboard.press('Escape');
+    await page.evaluate(() => {
+      for (const d of document.querySelectorAll('[role="dialog"], [aria-modal="true"]')) {
+        // Remonter jusqu'au voile plein écran, sinon il reste un fond assombri.
+        let cible = d;
+        for (let i = 0; i < 3 && cible.parentElement; i++) {
+          const p = cible.parentElement;
+          const s = getComputedStyle(p);
+          if (s.position === 'fixed' && parseInt(s.zIndex || '0', 10) > 10) cible = p;
+          else break;
+        }
+        cible.remove();
+      }
+      // Bannières collées en bas ou en haut (installation PWA, cookies).
+      for (const el of document.querySelectorAll('body *')) {
+        const s = getComputedStyle(el);
+        if (s.position !== 'fixed') continue;
+        const r = el.getBoundingClientRect();
+        const colleEnBas = r.bottom > innerHeight - 24 && r.height < innerHeight * 0.4;
+        if (colleEnBas && parseInt(s.zIndex || '0', 10) > 10) el.remove();
+      }
+      document.body.style.overflow = ''; // la modale verrouillait le défilement
+    });
+    await new Promise((r) => setTimeout(r, 600));
+
     await page.screenshot({
       path: join(DEST, `${c.nom}.jpg`),
       type: 'jpeg',
