@@ -97,7 +97,7 @@ export const identity = {
   name: 'Nathan Princer Diffo',
   initials: 'NPD',
   baseline: 'Développeur FullStack · Concepteur d’agents IA · Créateur de SaaS',
-  location: 'Casablanca, Maroc · Remote',
+  location: 'Marrakech, Maroc',
   /** Format E.164 pour le lien `tel:` ; l'affichage est espacé pour la lecture. */
   telephone: '+212660179871',
   telephoneAffiche: '+212 660 179 871',
