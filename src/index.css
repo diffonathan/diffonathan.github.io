@@ -187,17 +187,20 @@ body {
     background-clip: text;
   }
 
-  /* Grille technique en fond de héro (fondu radial) */
+  /* Fond de héro — nappes lumineuses.
+     Remplace un quadrillage 44 px : le motif repetitif donnait un air de
+     gabarit plutot que de produit fini, et il entrait en concurrence avec
+     la constellation animee de ThreeBackground, deja presente derriere. Ici
+     deux nappes diffuses (bleu en haut a gauche, or en bas a droite) et une
+     vignette : de la profondeur, aucun motif. */
   .bg-grid {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(var(--glass-border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-    background-size: 44px 44px;
-    -webkit-mask-image: radial-gradient(60% 55% at 50% 38%, #000 30%, transparent 100%);
-    mask-image: radial-gradient(60% 55% at 50% 38%, #000 30%, transparent 100%);
+      radial-gradient(58% 46% at 12% 8%, rgba(7, 129, 254, 0.13), transparent 62%),
+      radial-gradient(52% 44% at 88% 92%, rgba(249, 168, 37, 0.09), transparent 62%),
+      radial-gradient(120% 100% at 50% 40%, transparent 52%, rgba(0, 0, 0, 0.5) 100%);
   }
 }
 

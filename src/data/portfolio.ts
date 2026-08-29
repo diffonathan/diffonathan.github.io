@@ -13,6 +13,7 @@ import {
   Globe,
   Layers,
   Mail,
+  Phone,
   Rocket,
   Server,
   Sparkles,
@@ -97,6 +98,9 @@ export const identity = {
   initials: 'NPD',
   baseline: 'Développeur FullStack · Concepteur d’agents IA · Créateur de SaaS',
   location: 'Casablanca, Maroc · Remote',
+  /** Format E.164 pour le lien `tel:` ; l'affichage est espacé pour la lecture. */
+  telephone: '+212660179871',
+  telephoneAffiche: '+212 660 179 871',
   email: 'diffoprincer@gmail.com', // adresse PERSONNELLE — le portfolio ne
   // relève pas de MBO Services, l'adresse professionnelle n'y a pas sa place.
   availabilityBadge: 'Disponible pour missions & collaborations',
@@ -410,6 +414,11 @@ export const socials: SocialLink[] = [
     label: 'Email',
     url: `mailto:${identity.email}`,
     icon: Mail,
+  },
+  {
+    label: 'Téléphone',
+    url: `tel:${identity.telephone}`,
+    icon: Phone,
   },
   {
     label: 'LinkedIn',
