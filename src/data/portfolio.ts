@@ -385,16 +385,6 @@ export const experience: ExperienceItem[] = [
       'Automatisation de processus documentaires (génération de documents, notifications, relances).',
     ],
   },
-  {
-    role: 'Co-fondateur & développeur',
-    company: 'Hope Traders Academy',
-    period: '2023 — Aujourd’hui',
-    missions: [
-      'Conception et développement de vip.hopetraders.fr : signaux en direct, formation, paiements Stripe, espace admin et application installable.',
-      'Développement d’un indicateur TradingView (Pine Script v6) utilisé par la communauté.',
-      'Conception de HopeJournal et de ConfluenceTerminal, les deux outils de l’écosystème.',
-    ],
-  },
 ]
 
 export const experienceSection = {
