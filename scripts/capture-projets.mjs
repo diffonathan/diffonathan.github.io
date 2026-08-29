@@ -38,6 +38,10 @@ const CIBLES = [
   },
   { nom: 'hopetraders', url: 'https://vip.hopetraders.fr/' },
   { nom: 'hopejournal-site', url: 'https://hopejournal.hopetraders.fr/' },
+  // Sites WordPress / Elementor. Le second vit encore sur l'URL temporaire
+  // Hostinger : a mettre a jour quand m2cg-ing.com sera branche.
+  { nom: 'mbo-services', url: 'https://mboservices.tech/', attente: 6000, anime: true },
+  { nom: 'm2cg', url: 'https://lightgreen-sandpiper-369560.hostingersite.com/', attente: 7000, anime: true },
 ];
 
 const filtre = process.argv[2];
@@ -57,7 +61,12 @@ try {
     await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 2 });
     // Les fonds animés tournent en boucle : on les fige pour que deux
     // exécutions donnent la même image.
-    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    // Figer les animations rend les captures reproductibles — sauf sur les
+    // themes qui masquent leur prechargeur PAR une transition : « reduce » la
+    // desactive, et on photographie le loader. Ces cibles passent `anime: true`.
+    if (!c.anime) {
+      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    }
     if (c.avant) await c.avant(page);
 
     process.stdout.write(`· ${c.nom} … `);
@@ -93,7 +102,17 @@ try {
         const colleEnBas = r.bottom > innerHeight - 24 && r.height < innerHeight * 0.4;
         if (colleEnBas && parseInt(s.zIndex || '0', 10) > 10) el.remove();
       }
+      // Prechargeurs de themes WordPress : ils couvrent toute la page et
+      // survivent parfois a la capture. On les retire par motif de classe.
+      for (const el of document.querySelectorAll(
+        '[class*="preload"], [id*="preload"], [class*="loader"], [id*="loader"],'
+        + ' [id*="loadding"], [id*="loading"], [class*="loading"]'
+      )) {
+        const r = el.getBoundingClientRect();
+        if (r.width > innerWidth * 0.7 && r.height > innerHeight * 0.7) el.remove();
+      }
       document.body.style.overflow = ''; // la modale verrouillait le défilement
+      document.documentElement.style.overflow = '';
     });
     await new Promise((r) => setTimeout(r, 600));
 

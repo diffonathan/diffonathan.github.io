@@ -133,7 +133,7 @@ const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http
 
   <!-- Sur-titre -->
   <text xml:space="preserve" x="${X}" y="112" font-family="${POLICE}" font-size="13"
-        font-weight="700" letter-spacing="2.6" fill="${OR}">CASABLANCA · REMOTE · DISPONIBLE</text>
+        font-weight="700" letter-spacing="2.6" fill="${OR}">DISPONIBLE POUR MISSIONS &amp; COLLABORATIONS</text>
 
   <!-- Nom : l'ancre visuelle -->
   <text x="${X}" y="176" font-family="${POLICE}" font-size="56" font-weight="800"

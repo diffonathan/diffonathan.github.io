@@ -294,13 +294,27 @@ export const projects: Project[] = [
   },
   {
     name: 'MBO Services',
-    tagline: 'Site corporate — ESN / conseil IT',
+    tagline: 'Site corporate d’une ESN — WordPress sur-mesure',
     description:
-      'Site vitrine haut de gamme pour une ESN (Cloud, Cybersécurité, Data & IA) : Next.js en export statique, animations Motion, design soigné et accessibilité.',
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Motion'],
-    demoUrl: '',
+      'Site vitrine d’une ESN (Cloud, Cybersécurité, Data & IA) : arborescence, gabarits Elementor sur-mesure, formulaires de contact et optimisation du chargement. Conçu pour être repris et enrichi par l’équipe sans développeur.',
+    tech: ['WordPress', 'Elementor Pro', 'Thème sur-mesure', 'Contact Form 7', 'SEO'],
+    demoUrl: 'https://mboservices.tech',
     image: `${BASE}projects/mbo-services.jpg`,
     accentColor: 'info',
+    privateSource: true,
+  },
+  {
+    name: 'M2CG Ingénierie',
+    tagline: 'Site corporate — ingénierie nucléaire et industrielle',
+    description:
+      'Site vitrine d’un bureau d’ingénierie intervenant dans le nucléaire, l’énergie et l’industrie : pôles d’expertise, processus d’intervention, espace carrières et contact. Gabarits Elementor sur-mesure, identité visuelle forte et parcours pensé pour la prise de contact.',
+    tech: ['WordPress', 'Elementor Pro', 'Thème sur-mesure', 'Contact Form 7', 'SEO'],
+    // ⚠️ URL TEMPORAIRE d'aperçu Hostinger : elle cessera de répondre quand le
+    // domaine définitif (m2cg-ing.com, déjà utilisé pour leurs e-mails) sera
+    // branché. À remplacer à ce moment-là, sinon le lien casse.
+    demoUrl: 'https://lightgreen-sandpiper-369560.hostingersite.com',
+    image: `${BASE}projects/m2cg.jpg`,
+    accentColor: 'warning',
     privateSource: true,
   },
 ]
