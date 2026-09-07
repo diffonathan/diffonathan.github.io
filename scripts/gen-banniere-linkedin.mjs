@@ -133,10 +133,13 @@ const COURBE =
 /** Les pastilles techniques, dans l'ordre. L'or marque la valeur, pas la techno. */
 const PASTILLES = [
   'React · TypeScript',
-  'Cloudflare Workers',
-  'FastAPI · Python',
+  'Python · FastAPI',
+  'Cloudflare · Docker',
   'Stripe',
-  { t: 'SaaS en production', or: true },
+  // L'or marque la preuve, jamais une techno. Le chiffre est vérifié : les huit
+  // adresses (2 outils métier, 3 produits web avec leurs vitrines, 2 sites
+  // corporate) répondent en HTTP 200. Le portfolio n'est pas compté.
+  { t: '8 projets en ligne', or: true },
 ];
 
 // Mesure préalable : `pastille()` reste synchrone et lit le cache.
@@ -148,14 +151,21 @@ await Promise.all(PASTILLES.map((it) => mesurer(typeof it === 'string' ? it : it
  * connaître SA boîte, d'où deux mesures : ce qui le précède, et lui-même.
  */
 const SPE = { taille: 21, poids: 700, ls: -0.2 };
-const SPE_AVANT = 'Développeur FullStack · Concepteur d’agents IA · ';
-const SPE_OR = 'Créateur de SaaS';
+const SPE_AVANT = 'Développeur Full Stack · ';
+const SPE_OR = 'Digitalisation des processus métier';
 const SPE_BASELINE = 216;
 
 const [avantL, orL] = await Promise.all([
   mesurer(SPE_AVANT, SPE),
   mesurer(SPE_OR, SPE),
 ]);
+// La courbe de valeur démarre à x = 1046 : au-delà, le texte la percute.
+// On mesure au lieu de l'espérer — un libellé rallongé passerait sinon inaperçu.
+if (X + avantL + orL > 1046) {
+  console.warn(
+    `⚠ ligne de spécialités : ${Math.round(X + avantL + orL)} px, la courbe commence à 1046.`,
+  );
+}
 // Hauteur de capitale de Segoe UI 800 ≈ 0,70 × corps ; la boîte du mot part
 // donc de sa ligne de base moins cette hauteur.
 const SPE_HAUT = SPE.taille * 0.7;
@@ -242,17 +252,17 @@ const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http
   <!-- Spécialités — le bleu porte l'action, l'or la valeur -->
   <text xml:space="preserve" x="${X}" y="216" font-family="${POLICE}" font-size="21"
         font-weight="700" letter-spacing="-0.2"
-        fill="${BLEU}">Développeur FullStack<tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="${BLEU}">Concepteur d’agents IA</tspan><tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="url(#feu)">${SPE_OR}</tspan></text>
+        fill="${BLEU}">Développeur Full Stack<tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="url(#feu)">${SPE_OR}</tspan></text>
 
   <!-- Preuve, pas promesse -->
   <text xml:space="preserve" x="${X}" y="252" font-family="${POLICE}" font-size="15.5"
-        font-weight="500" fill="${GRIS}">Je conçois, développe et mets en production — front, back, paiement Stripe, déploiement.</text>
+        font-weight="500" fill="${GRIS}">Je transforme des processus qui vivent dans Excel et Word en applications utilisées tous les jours.</text>
 
   ${rangee(X, 274, PASTILLES)}
 
   <!-- Contact : une seule ligne, alignée, hors zone d'avatar -->
   <text xml:space="preserve" x="${X}" y="340" font-family="${POLICE}" font-size="14.5"
-        font-weight="600" fill="${GRIS}">diffonathan.github.io<tspan fill="${GRIS_SOMBRE}">   ·   </tspan><tspan fill="${GRIS}">+212 660 179 871</tspan><tspan fill="${GRIS_SOMBRE}">   ·   </tspan><tspan fill="${GRIS}">diffoprincer@gmail.com</tspan></text>
+        font-weight="600" fill="${GRIS}">diffonathan.github.io<tspan fill="${GRIS_SOMBRE}">  ·  </tspan><tspan fill="${OR}">github.com/diffonathan</tspan><tspan fill="${GRIS_SOMBRE}">  ·  </tspan><tspan fill="${GRIS}">+212 660 179 871</tspan><tspan fill="${GRIS_SOMBRE}">  ·  </tspan><tspan fill="${GRIS}">diffoprincer@gmail.com</tspan></text>
 </svg>`;
 
 // densité 144 = 2 × la densité SVG par défaut (72) : librsvg rasterise le

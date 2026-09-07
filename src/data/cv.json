@@ -1,7 +1,7 @@
 {
   "nom": "Nathan Princer Diffo",
   "titre": "Développeur Full Stack — Digitalisation des processus métier",
-  "accroche": "Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours. *Deux outils que j'ai conçus et livrés sont en service dans une entreprise.*",
+  "accroche": "Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours. *Huit applications et sites que j'ai conçus et livrés sont en ligne.*",
   "contact": {
     "lieu": "Marrakech, Maroc",
     "telephone": "+212 660 179 871",
@@ -11,8 +11,14 @@
     "linkedin": "linkedin.com/in/nathan-princer-diffo"
   },
   "langues": [
-    { "langue": "Français", "niveau": "langue de travail" },
-    { "langue": "Anglais", "niveau": "technique" }
+    {
+      "langue": "Français",
+      "niveau": "langue de travail"
+    },
+    {
+      "langue": "Anglais",
+      "niveau": "technique"
+    }
   ],
   "sections": [
     {
@@ -22,14 +28,23 @@
         {
           "titre": "MBO Services — Développeur Full Stack",
           "sousTitre": "Marrakech · société de services informatiques",
-          "meta": "depuis 2023",
+          "meta": "avril – septembre 2026",
           "lignes": [
             "Deux activités de l'entreprise reposaient sur des fichiers Excel partagés et des modèles Word recopiés à la main : la réponse aux appels d'offres et le recrutement. *J'ai conçu, développé et mis en service les deux applications qui les remplacent.*",
             "Sur un appel d'offres, la date limite et le périmètre étaient cherchés à la main dans des dossiers de plusieurs centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire* : il ne reste qu'à valider.",
             "Un dossier ne peut plus partir en oubliant une étape obligatoire — le parcours est verrouillé, du premier document jusqu'à la facturation.",
             "Côté recrutement, le suivi et le classement des candidatures ne peuvent plus diverger : faire avancer un candidat range automatiquement son dossier. Les documents d'embauche sont produits depuis des modèles au lieu d'être recopiés.",
-            "*L'équipe RH a basculé sans rien changer à ses habitudes* — le nouveau suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format.",
-            "Refonte du site de l'entreprise et livraison d'un site client, tous deux pensés pour être mis à jour par l'équipe sans repasser par un développeur."
+            "*L'équipe RH a basculé sans rien changer à ses habitudes* — le nouveau suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format."
+          ]
+        },
+        {
+          "titre": "Hope Traders Academy — Développeur Full Stack indépendant",
+          "sousTitre": "Prestation · organisme de formation",
+          "meta": "2026",
+          "lignes": [
+            "*Trois produits web livrés de bout en bout*, chacun avec son site de présentation et son application : une plateforme de formation et d'espace membres, un journal de suivi d'activité, un terminal d'analyse de marché.",
+            "Conception, développement, mise en ligne et suivi : interface, données, paiement par abonnement, envoi des e-mails et espace d'administration.",
+            "Chaque outil est exploité directement par le client, sans intervention technique au quotidien."
           ]
         },
         {
@@ -38,8 +53,7 @@
           "meta": "2023 – 2025",
           "lignes": [
             "Applications web sur mesure pour trois clients : développement complet, de l'interface à la base de données.",
-            "Sites vitrines et boutiques en ligne, à partir de maquettes fournies par les équipes design.",
-            "Travail en équipe avec les pôles design et marketing, en méthode agile."
+            "Sites vitrines et boutiques en ligne, à partir de maquettes fournies par les équipes design ; travail avec les pôles design et marketing, en méthode agile."
           ]
         }
       ]
@@ -50,7 +64,8 @@
       "entrees": [
         {
           "titre": "Réponse aux appels d'offres — outil interne",
-          "sousTitre": "En service chez MBO Services · tracker.mboservices.tech",
+          "sousTitre": "MBO Services · en service",
+          "lien": "tracker.mboservices.tech",
           "lignes": [
             "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes imposées, tableau de bord des affaires en cours.",
             "*Conçu pour des utilisateurs non techniques* — chaque écran embarque son mode d'emploi et une visite guidée à la première connexion."
@@ -58,26 +73,52 @@
         },
         {
           "titre": "Recrutement — du besoin exprimé à l'arrivée du candidat",
-          "sousTitre": "En service chez MBO Services · rh.mboservices.tech",
+          "sousTitre": "MBO Services · en service",
+          "lien": "rh.mboservices.tech",
           "lignes": [
             "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage automatique.",
             "Conforme au RGPD — les données des candidats sont relancées puis supprimées automatiquement à l'échéance."
           ]
         },
         {
-          "titre": "Plateforme d'abonnement et d'espace membres",
-          "sousTitre": "Produit web conçu et développé de bout en bout",
+          "titre": "Plateforme de formation et d'espace membres",
+          "sousTitre": "Hope Traders Academy · site et application",
+          "lien": "vip.hopetraders.fr",
           "lignes": [
-            "Inscription, paiement récurrent, contenus qui s'ouvrent progressivement, messagerie avec l'équipe et espace d'administration.",
+            "Inscription, paiement par abonnement, cours qui s'ouvrent progressivement, messagerie avec l'équipe et espace d'administration.",
             "Consultable au navigateur et *installable sur téléphone* comme une application."
           ]
         },
         {
-          "titre": "Terminal d'analyse de marché",
-          "sousTitre": "Produit web conçu et développé de bout en bout",
+          "titre": "Journal de suivi d'activité",
+          "sousTitre": "Hope Traders Academy · site et application",
+          "lien": [
+            "hopejournal.hopetraders.fr",
+            "journal.hopetraders.fr"
+          ],
           "lignes": [
-            "Rassemble *cinq sources de données publiques dispersées* et les présente en une seule lecture, sur 67 marchés suivis.",
-            "Comptes, essai gratuit et abonnement ; alertes envoyées avant les publications importantes."
+            "Importe l'historique d'un compte et le restitue en statistiques, courbes et calendrier ; carnet de notes et export des rapports en PDF.",
+            "Un assistant relit les opérations et *fait ressortir ce qui revient* — les habitudes qu'on répète sans les voir."
+          ]
+        },
+        {
+          "titre": "Terminal d'analyse de marché",
+          "sousTitre": "Hope Traders Academy · site et application",
+          "lien": "confluenceterminal.hopetraders.fr",
+          "lignes": [
+            "Rassemble *cinq sources de données publiques dispersées* et les présente en une seule lecture, sur 67 marchés suivis. Comptes, essai gratuit, abonnement et alertes avant les publications importantes."
+          ]
+        },
+        {
+          "titre": "Deux sites corporate sur WordPress",
+          "sousTitre": "MBO Services · M2CG Ingénierie",
+          "lien": [
+            "mboservices.tech",
+            "lightgreen-sandpiper-369560.hostingersite.com"
+          ],
+          "lignes": [
+            "Une société de services informatiques et un bureau d'ingénierie : arborescence, pages d'expertise, formulaires de contact et temps de chargement.",
+            "*Gabarits sur-mesure plutôt qu'empilement d'extensions* — les équipes font vivre leurs pages elles-mêmes, sans développeur."
           ]
         }
       ]
@@ -86,14 +127,59 @@
       "id": "competences",
       "titre": "Compétences",
       "entrees": [
-        { "titre": "Langages", "lignes": ["JavaScript · TypeScript · Python · PHP · SQL"] },
-        { "titre": "Développement web", "lignes": ["React · FastAPI · Laravel · Node.js", "API REST · HTML · CSS"] },
-        { "titre": "Bases de données", "lignes": ["MySQL · PostgreSQL · SQLite"] },
-        { "titre": "Cloud et déploiement", "lignes": ["Cloudflare · Docker · VPS Linux", "CI/CD · Git · GitHub Actions"] },
-        { "titre": "Paiement et sécurité", "lignes": ["Stripe · authentification · RGPD"] },
-        { "titre": "Intelligence artificielle", "lignes": ["Intégration de modèles de langage", "Lecture et extraction de documents"] },
-        { "titre": "Bureautique et CMS", "lignes": ["Microsoft 365 · SharePoint", "WordPress · WooCommerce"] },
-        { "titre": "Méthode", "lignes": ["Agile (Jira, Trello) · Figma", "Tests automatisés"] }
+        {
+          "titre": "Langages",
+          "lignes": [
+            "JavaScript · TypeScript · Python · PHP · SQL"
+          ]
+        },
+        {
+          "titre": "Développement web",
+          "lignes": [
+            "React · FastAPI · Laravel · Node.js",
+            "API REST · HTML · CSS"
+          ]
+        },
+        {
+          "titre": "Bases de données",
+          "lignes": [
+            "MySQL · PostgreSQL · SQLite"
+          ]
+        },
+        {
+          "titre": "Cloud et déploiement",
+          "lignes": [
+            "Cloudflare · Docker · VPS Linux",
+            "CI/CD · Git · GitHub Actions"
+          ]
+        },
+        {
+          "titre": "Paiement et sécurité",
+          "lignes": [
+            "Stripe · authentification · RGPD"
+          ]
+        },
+        {
+          "titre": "Intelligence artificielle",
+          "lignes": [
+            "Intégration de modèles de langage",
+            "Lecture et extraction de documents"
+          ]
+        },
+        {
+          "titre": "CMS",
+          "lignes": [
+            "WordPress · Elementor Pro",
+            "WooCommerce · Microsoft 365"
+          ]
+        },
+        {
+          "titre": "Méthode",
+          "lignes": [
+            "Agile (Jira, Trello) · Figma",
+            "Tests automatisés"
+          ]
+        }
       ]
     },
     {
@@ -102,7 +188,6 @@
       "entrees": [
         {
           "titre": "ESMA — Marrakech",
-          "sousTitre": "Ingénierie de Développement et Web Services · Génie Informatique",
           "meta": "2021 – 2023",
           "lignes": [
             "*2023* — Bac+5, Ingénierie de Développement et Web Services.",
@@ -114,14 +199,14 @@
     }
   ],
   "questions": [
-    "IAWEB.DEV (2023-2025) et MBO Services (depuis 2023) se chevauchent : périodes simultanées, successives, ou l'une en freelance ?",
-    "Quel est ton intitulé de poste contractuel chez MBO Services ?",
+    "MBO Services est daté « avril – septembre 2026 » : la mission est-elle terminée, ou se poursuit-elle ? Si elle continue, j'écris « depuis avril 2026 ».",
+    "Le lien M2CG est une adresse Hostinger temporaire : elle cessera de répondre quand m2cg-ing.com sera branché. À remplacer ce jour-là.",
+    "Ton portfolio en ligne affiche encore « MBO Services · 2023 — Aujourd'hui » : à corriger pour rester cohérent avec le CV.",
     "Ton niveau d'anglais : as-tu un score (TOEIC, IELTS) à faire figurer ?"
   ],
   "avertissements": [
-    "Retiré car FAUX : « cookies HttpOnly » — le jeton vit en localStorage et part en Bearer, aucun cookie dans le code.",
-    "Retiré car NON LIVRÉ : « applications Android et iOS » — seul un APK de debug existe, aucun build iOS. Remplacé par « installable sur téléphone », qui est vrai.",
-    "Retiré car INEXISTANT : « notifications push » — aucun mécanisme push dans le dépôt.",
-    "Le CV ne nomme pas les produits web, mais le portfolio lié dans le bandeau les nomme, lui : voir la remarque sur diffonathan.github.io."
+    "Les trois produits Hope Traders Academy sont présentés comme une PRESTATION indépendante pour un client, jamais comme une participation à l'entreprise.",
+    "La durée par outil (un mois chacun) n'est pas mentionnée, comme demandé.",
+    "« Huit applications et sites en ligne » est vérifié : les huit adresses répondent en HTTP 200 (le portfolio n'est pas compté)."
   ]
 }

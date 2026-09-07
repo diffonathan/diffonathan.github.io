@@ -76,6 +76,9 @@ const BARRE = SOMBRE
 const esc = (s) =>
   String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+/** Complète le protocole quand le JSON n'en porte pas. */
+const url = (u) => (/^https?:|^mailto:|^tel:/.test(u) ? u : `https://${u}`);
+
 /** Les fragments entre astérisques passent en gras : le JSON met en relief un
  *  fait sans avoir à écrire de HTML. */
 const relief = (s) => esc(s).replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
@@ -114,7 +117,7 @@ const enCorps = (cv.sections || []).filter((s) => !enBarre.includes(s));
  * `fort` met la ligne en avant : GitHub porte les sources, c'est le lien qu'un
  * lecteur technique cherche en premier.
  */
-const url = (u) => (/^https?:|^mailto:|^tel:/.test(u) ? u : `https://${u}`);
+
 const contactLiens = [
   { texte: cv.contact?.lieu },
   {
@@ -129,6 +132,11 @@ const contactLiens = [
 ].filter((c) => c.texte);
 
 /* ── Corps principal : frise verticale ────────────────────────────────────── */
+/**
+ * `lien` rend l'adresse du projet CLIQUABLE dans le PDF. Un recruteur qui lit à
+ * l'écran ouvre l'outil en un clic ; recopier une adresse à la main, personne
+ * ne le fait. Le protocole est ajouté si le JSON n'en porte pas.
+ */
 const entreeCorps = (e) => `
   <article class="entree">
     <header>
@@ -136,6 +144,13 @@ const entreeCorps = (e) => `
       ${e.meta ? `<span class="meta">${esc(e.meta)}</span>` : ''}
     </header>
     ${e.sousTitre ? `<p class="sous-titre">${relief(e.sousTitre)}</p>` : ''}
+    ${
+      e.lien
+        ? `<p class="lien">${[].concat(e.lien)
+            .map((u) => `<a href="${esc(url(u))}">${esc(u.replace(/^https?:\/\//, ''))}</a>`)
+            .join('<span class="sep"> · </span>')}</p>`
+        : ''
+    }
     ${
       Array.isArray(e.lignes) && e.lignes.length
         ? `<ul>${e.lignes.map((l) => `<li>${relief(l)}</li>`).join('')}</ul>`
@@ -321,6 +336,11 @@ const html = `<!doctype html>
     font-size: 8.1pt; color: ${GRIS}; white-space: nowrap; font-weight: 700; letter-spacing: 0.2px;
   }
   .sous-titre { margin: 0.5mm 0 1.3mm; font-size: 8.9pt; color: ${BLEU}; font-weight: 600; }
+  /* Le lien du projet : gris comme une note, mais cliquable. Le mettre en bleu
+     entrerait en concurrence avec le sous-titre, déjà bleu. */
+  .lien { margin: -0.6mm 0 1.3mm; font-size: 8.4pt; }
+  .lien a { color: ${GRIS}; text-decoration: none; font-weight: 600; }
+  .lien .sep { color: ${FILET}; }
   .entree ul { margin: 1.1mm 0 0; padding-left: 0; list-style: none; }
   .entree li { margin: 0 0 1mm; position: relative; padding-left: 3mm; }
   .entree li::before {

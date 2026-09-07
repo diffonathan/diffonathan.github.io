@@ -96,7 +96,9 @@ export interface SocialLink {
 export const identity = {
   name: 'Nathan Princer Diffo',
   initials: 'NPD',
-  baseline: 'Développeur FullStack · Concepteur d’agents IA · Créateur de SaaS',
+  // Même positionnement que le CV et la bannière LinkedIn. « Full Stack » en
+  // deux mots : c'est la forme qu'indexe la recherche LinkedIn.
+  baseline: 'Développeur Full Stack · Digitalisation des processus métier',
   location: 'Marrakech, Maroc',
   /** Format E.164 pour le lien `tel:` ; l'affichage est espacé pour la lecture. */
   telephone: '+212660179871',
@@ -104,15 +106,17 @@ export const identity = {
   email: 'diffoprincer@gmail.com', // adresse PERSONNELLE — le portfolio ne
   // relève pas de MBO Services, l'adresse professionnelle n'y a pas sa place.
   availabilityBadge: 'Disponible pour missions & collaborations',
-  cvUrl: `${BASE}cv.pdf`, // Remplacez public/cv.pdf par votre vrai CV
+  // Généré par `npm run cv` depuis src/data/cv.json — ne pas éditer le PDF.
+  cvUrl: `${BASE}cv.pdf`,
 }
 
 /* ----------------------------- Hero ------------------------------------ */
 
 export const hero = {
   subtitle:
-    'De l’idée au produit en production : j’architecture des applications web performantes, ' +
-    'des agents IA et des plateformes SaaS complètes — front, back, paiement et déploiement inclus.',
+    'Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word ' +
+    'en applications que les équipes utilisent tous les jours — de l’interface au serveur, ' +
+    'paiement et mise en ligne compris.',
   ctaPrimary: 'Voir mes projets',
   ctaSecondary: 'Télécharger mon CV',
 }
@@ -133,12 +137,11 @@ export const navCta = { label: 'Me contacter', href: '#contact' }
 
 export const about = {
   title: 'À propos',
-  // TODO : personnalisez cette bio
   bio: [
-    'Développeur FullStack passionné par les produits qui vont au bout : je conçois, développe et déploie des applications web complètes — de l’interface au backend, de l’authentification au paiement Stripe.',
-    'Mon terrain de jeu : les SaaS exigeants (analyse financière institutionnelle, journaux de trading, plateformes de formation) et les agents IA qui automatisent les tâches répétitives. J’aime les interfaces sombres et précises, le code typé strict et les produits qui se déploient en un clic.',
+    'Je conçois et mets en production des applications de bout en bout : l’interface, le serveur, la base de données, le paiement, la mise en ligne — et la prise en main par ceux qui s’en servent.',
+    'Ce que je fais le plus souvent : remplacer des processus qui vivent dans des fichiers Excel et des modèles Word par un outil que l’équipe adopte. Un outil interne échoue rarement sur la technique — il échoue parce que personne ne l’ouvre. C’est ce qui m’intéresse dans ce métier.',
   ],
-  photoUrl: `${BASE}profile.jpg`, // Remplacez public/profile.jpg par votre photo (carrée)
+  photoUrl: `${BASE}profile.jpg`,
 }
 
 // TODO : confirmer ces chiffres
@@ -197,7 +200,7 @@ export const projects: Project[] = [
     name: 'ConfluenceTerminal',
     tagline: 'Terminal d’analyse fondamentale de niveau institutionnel',
     description:
-      'Verdict directionnel sur 150+ actifs et 3 horizons, croisant macro (FRED), positionnement institutionnel (COT/CFTC), énergie (EIA), géopolitique (GDELT) et backtest historique. Comptes, essai de 30 jours et abonnement Stripe ; alertes Telegram avant les publications à fort impact.',
+      'Verdict directionnel sur 67 actifs et 3 horizons, croisant macro (FRED), positionnement institutionnel (COT/CFTC), énergie (EIA), géopolitique (GDELT) et backtest historique. Comptes, essai de 30 jours et abonnement Stripe ; alertes Telegram avant les publications à fort impact.',
     tech: ['React', 'TypeScript', 'Tailwind', 'Cloudflare Workers', 'D1', 'Stripe', 'Groq', 'TradingView'],
     demoUrl: 'https://confluenceterminal.hopetraders.fr',
     image: `${BASE}projects/confluenceterminal.jpg`,
@@ -219,7 +222,7 @@ export const projects: Project[] = [
     name: 'HopeJournal',
     tagline: 'Journal de trading avec coach IA',
     description:
-      'Journal complet pour traders : import CSV MT4/MT5, statistiques et courbes d’équité, backtesting via widget TradingView, et un coach IA qui analyse les trades pour identifier les schémas récurrents.',
+      'Journal complet pour traders : import CSV MT4/MT5, statistiques et courbes d’équité, calendrier, carnet de notes et export PDF, et un coach IA qui analyse les trades pour identifier les schémas récurrents.',
     tech: ['React', 'TypeScript', 'Supabase', 'Groq', 'Recharts'],
     demoUrl: 'https://hopejournal.hopetraders.fr',
     image: `${BASE}projects/hopejournal-site.jpg`,
@@ -331,7 +334,7 @@ export const projectsSection = {
 
 export const services: Service[] = [
   {
-    title: 'Développement FullStack sur-mesure',
+    title: 'Développement Full Stack sur-mesure',
     description:
       'Applications web complètes : architecture, base de données, API, interface et déploiement. TypeScript strict, tests et performance au rendez-vous.',
     icon: Code2,
@@ -363,26 +366,44 @@ export const servicesSection = {
 
 /* ---------------------------- Expérience -------------------------------- */
 
-// TODO : personnalisez postes, entreprises et dates
+/**
+ * Trois périodes qui s’enchaînent, sans chevauchement.
+ *
+ * Les dates précédentes (« Indépendant 2024 — Aujourd’hui » et « MBO Services
+ * 2023 — Aujourd’hui ») se recouvraient sur deux ans et se contredisaient : la
+ * chronologie réelle est IAWEB.DEV, puis la prestation Hope Traders Academy,
+ * puis MBO Services. Doit rester alignée sur src/data/cv.json.
+ */
 export const experience: ExperienceItem[] = [
   {
-    role: 'Créateur de SaaS & concepteur d’agents IA',
-    company: 'Indépendant',
-    period: '2024 — Aujourd’hui',
+    role: 'Développeur Full Stack',
+    company: 'MBO Services — Consulting IT',
+    period: 'avril — septembre 2026',
     missions: [
-      'Conception et mise en production de ConfluenceTerminal : données FRED, EIA, CFTC et GDELT, verdict sur 150+ actifs, abonnement Stripe.',
-      'Développement de HopeJournal, journal de trading avec coach IA, import MT4/MT5 et backtesting intégré.',
-      'Plateformes complètes de bout en bout : authentification, paiement Stripe, espaces membres, PWA et infrastructure serverless Cloudflare.',
+      'Digitalisation de deux processus internes qui reposaient sur des fichiers Excel et des modèles Word : la réponse aux appels d’offres et le recrutement. Les deux applications sont en service.',
+      'Sur un appel d’offres, l’outil retrouve la date limite et le périmètre dans des dossiers de centaines de pages, et montre le passage exact d’où il les tire.',
+      'Côté RH, le suivi reprend les colonnes exactes du tableur qu’il remplace et s’exporte au même format : l’équipe a basculé sans changer ses habitudes.',
+      'Refonte du site corporate et livraison d’un site client, conçus pour être mis à jour sans développeur.',
     ],
   },
   {
-    role: 'Développeur FullStack',
-    company: 'MBO Services — Consulting IT',
-    period: '2023 — Aujourd’hui',
+    role: 'Développeur Full Stack indépendant',
+    company: 'Hope Traders Academy — prestation',
+    period: '2026',
     missions: [
-      'Développement d’outils métier internes : gestion d’appels d’offres, application de recrutement connectée à Microsoft 365.',
-      'Refonte du site corporate WordPress avec thème sur-mesure et Elementor.',
-      'Automatisation de processus documentaires (génération de documents, notifications, relances).',
+      'Trois produits web livrés de bout en bout, chacun avec son site de présentation et son application.',
+      'Plateforme de formation et d’espace membres : inscription, abonnement, cours débloqués progressivement, messagerie et administration.',
+      'Journal de suivi d’activité et terminal d’analyse de marché, exploités directement par le client.',
+    ],
+  },
+  {
+    role: 'Développeur Web Full Stack',
+    company: 'IAWEB.DEV',
+    period: '2023 — 2025',
+    missions: [
+      'Applications web sur mesure pour Bailey Assurances, CRFPE et Interloc : développement complet, de l’interface à la base de données.',
+      'Sites vitrines et boutiques en ligne, à partir de maquettes fournies par les équipes design.',
+      'Travail en équipe avec les pôles design et marketing, en méthode agile.',
     ],
   },
 ]
