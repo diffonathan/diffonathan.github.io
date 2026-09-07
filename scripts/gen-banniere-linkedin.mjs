@@ -6,8 +6,15 @@
  * ce qui compte doit donc vivre dans la bande centrale, à droite de la zone
  * réservée à l'avatar — sinon le nom se retrouve caché par sa propre photo.
  *
+ * Deuxième contrainte, celle qui décide de la netteté : 1584 × 396 est la taille
+ * d'AFFICHAGE de LinkedIn, pas la taille de fichier à fournir. Rasterisé à 1×,
+ * chaque glyphe est étalé sur un écran à densité double puis recompressé par
+ * LinkedIn — le résultat paraît flou. On rend donc le SVG à 2× (3168 × 792) en
+ * doublant la densité, ce qui rasterise le vectoriel à la bonne échelle plutôt
+ * que d'agrandir une image déjà pixelisée.
+ *
  * Usage : node scripts/gen-banniere-linkedin.mjs
- * Sortie : public/brand/banniere-linkedin.png
+ * Sortie : public/brand/banniere-linkedin.png (3168 × 792, à téléverser tel quel)
  */
 import sharp from 'sharp';
 import { mkdirSync } from 'node:fs';
@@ -27,6 +34,15 @@ const OR = '#F9A825';
 const BLANC = '#FFFFFF';
 const GRIS = '#B1B1B1';
 const GRIS_SOMBRE = '#63636A';
+/**
+ * --grad-fire : le dégradé des MOTS MIS EN VALEUR de la charte. Le site
+ * l'applique à la ligne de spécialités (`.grad-text` dans src/index.css) ;
+ * la bannière posait un or plat à la place, et les deux ne se ressemblaient
+ * plus. Les deux teintes sont celles du jeton, à l'octet près.
+ */
+const FEU_A = '#fbcd25';  // le départ du dégradé CSS (0 %)
+const FEU_B = '#f36e23';  // son arrivée (100 %)
+const ANGLE_FEU = -15;    // degrés, comme linear-gradient(-15deg, …)
 const POLICE = "'Segoe UI', 'DM Sans', Arial, Helvetica, sans-serif";
 
 /** Marge gauche du contenu : au-delà de la zone d'avatar LinkedIn. */
@@ -34,9 +50,57 @@ const X = 452;
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+/**
+ * Largeur réelle d'un libellé de pastille, par rendu puis rognage.
+ *
+ * L'ancienne formule `longueur × 7,6 + 30` supposait toutes les lettres de même
+ * largeur : « Stripe » et « FastAPI · Python » étaient comptés au caractère, si
+ * bien qu'un simple changement de libellé décalait toute la rangée. Une dizaine
+ * de rasterisations au démarrage suffit à s'en passer.
+ */
+const LARGEURS = new Map();
+const STYLE_PASTILLE = { taille: 12.5, poids: 600, ls: 0.2 };
+const cle = (t, s) => `${t}|${s.taille}|${s.poids}|${s.ls}`;
+
+async function mesurer(texte, style = STYLE_PASTILLE) {
+  const k = cle(texte, style);
+  if (LARGEURS.has(k)) return LARGEURS.get(k);
+  const svg =
+    `<svg width="2400" height="${Math.ceil(style.taille * 3)}" xmlns="http://www.w3.org/2000/svg">` +
+    `<text x="20" y="${style.taille * 2}" font-family="${POLICE}" font-size="${style.taille}"` +
+    ` font-weight="${style.poids}" letter-spacing="${style.ls}"` +
+    ` fill="#FFFFFF">${esc(texte)}</text></svg>`;
+  const { info } = await sharp(Buffer.from(svg))
+    .trim({ threshold: 1 }).toBuffer({ resolveWithObject: true });
+  LARGEURS.set(k, info.width);
+  return info.width;
+}
+
+/**
+ * Transpose `linear-gradient(Adeg, …)` en <linearGradient> SVG sur une boîte
+ * donnée. CSS mesure l'angle depuis « vers le haut », dans le sens horaire, et
+ * la longueur de la ligne de dégradé vaut |L·sin A| + |H·cos A| — sans quoi les
+ * teintes seraient tronquées aux coins. On reproduit ce calcul plutôt que de
+ * poser deux points au jugé.
+ */
+function degradeCSS(id, angleDeg, x, y, larg, haut, de, vers) {
+  const A = (angleDeg * Math.PI) / 180;
+  const dx = Math.sin(A);
+  const dy = -Math.cos(A);
+  const L = Math.abs(larg * Math.sin(A)) + Math.abs(haut * Math.cos(A));
+  const cx = x + larg / 2;
+  const cy = y + haut / 2;
+  const r = (v) => Number(v.toFixed(2));
+  return `<linearGradient id="${id}" gradientUnits="userSpaceOnUse"` +
+    ` x1="${r(cx - (dx * L) / 2)}" y1="${r(cy - (dy * L) / 2)}"` +
+    ` x2="${r(cx + (dx * L) / 2)}" y2="${r(cy + (dy * L) / 2)}">` +
+    `<stop offset="0" stop-color="${de}"/><stop offset="1" stop-color="${vers}"/></linearGradient>`;
+}
+
 /** Pastille technique — largeur mesurée sur le texte, pas devinée. */
 function pastille(x, y, texte, { or = false } = {}) {
-  const l = Math.round(texte.length * 7.6 + 30);
+  // 30 px de respiration horizontale, 15 de chaque côté du libellé.
+  const l = Math.round((LARGEURS.get(cle(texte, STYLE_PASTILLE)) ?? texte.length * 7.6) + 30);
   return {
     largeur: l,
     svg: `<g transform="translate(${x} ${y})">
@@ -66,6 +130,41 @@ function rangee(x, y, items) {
 const COURBE =
   'M1046,352 L1112,326 L1178,338 L1244,292 L1310,306 L1376,246 L1442,262 L1508,196 L1584,214';
 
+/** Les pastilles techniques, dans l'ordre. L'or marque la valeur, pas la techno. */
+const PASTILLES = [
+  'React · TypeScript',
+  'Cloudflare Workers',
+  'FastAPI · Python',
+  'Stripe',
+  { t: 'SaaS en production', or: true },
+];
+
+// Mesure préalable : `pastille()` reste synchrone et lit le cache.
+await Promise.all(PASTILLES.map((it) => mesurer(typeof it === 'string' ? it : it.t)));
+
+/**
+ * La ligne de spécialités. Le dernier segment est le mot mis en valeur : il
+ * reçoit --grad-fire, exactement comme `.grad-text` sur le site. Il faut donc
+ * connaître SA boîte, d'où deux mesures : ce qui le précède, et lui-même.
+ */
+const SPE = { taille: 21, poids: 700, ls: -0.2 };
+const SPE_AVANT = 'Développeur FullStack · Concepteur d’agents IA · ';
+const SPE_OR = 'Créateur de SaaS';
+const SPE_BASELINE = 216;
+
+const [avantL, orL] = await Promise.all([
+  mesurer(SPE_AVANT, SPE),
+  mesurer(SPE_OR, SPE),
+]);
+// Hauteur de capitale de Segoe UI 800 ≈ 0,70 × corps ; la boîte du mot part
+// donc de sa ligne de base moins cette hauteur.
+const SPE_HAUT = SPE.taille * 0.7;
+const DEGRADE_FEU = degradeCSS(
+  'feu', ANGLE_FEU,
+  X + avantL, SPE_BASELINE - SPE_HAUT, orL, SPE_HAUT,
+  FEU_A, FEU_B,
+);
+
 const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="fond" x1="0" y1="0" x2="1" y2="1">
@@ -90,6 +189,7 @@ const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http
       <stop offset="0%"   stop-color="${BLEU}" stop-opacity="0.16"/>
       <stop offset="100%" stop-color="${BLEU}" stop-opacity="0"/>
     </linearGradient>
+    ${DEGRADE_FEU}
     <linearGradient id="barre" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="${BLEU}"/>
       <stop offset="100%" stop-color="${OR}"/>
@@ -142,19 +242,27 @@ const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http
   <!-- Spécialités — le bleu porte l'action, l'or la valeur -->
   <text xml:space="preserve" x="${X}" y="216" font-family="${POLICE}" font-size="21"
         font-weight="700" letter-spacing="-0.2"
-        fill="${BLEU}">Développeur FullStack<tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="${BLEU}">Concepteur d’agents IA</tspan><tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="${OR}">Créateur de SaaS</tspan></text>
+        fill="${BLEU}">Développeur FullStack<tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="${BLEU}">Concepteur d’agents IA</tspan><tspan fill="${GRIS_SOMBRE}"> · </tspan><tspan fill="url(#feu)">${SPE_OR}</tspan></text>
 
   <!-- Preuve, pas promesse -->
   <text xml:space="preserve" x="${X}" y="252" font-family="${POLICE}" font-size="15.5"
         font-weight="500" fill="${GRIS}">Je conçois, développe et mets en production — front, back, paiement Stripe, déploiement.</text>
 
-  ${rangee(X, 274, ['React · TypeScript', 'Cloudflare Workers', 'FastAPI · Python', 'Stripe', { t: 'SaaS en production', or: true }])}
+  ${rangee(X, 274, PASTILLES)}
 
   <!-- Contact : une seule ligne, alignée, hors zone d'avatar -->
   <text xml:space="preserve" x="${X}" y="340" font-family="${POLICE}" font-size="14.5"
         font-weight="600" fill="${GRIS}">diffonathan.github.io<tspan fill="${GRIS_SOMBRE}">   ·   </tspan><tspan fill="${GRIS}">+212 660 179 871</tspan><tspan fill="${GRIS_SOMBRE}">   ·   </tspan><tspan fill="${GRIS}">diffoprincer@gmail.com</tspan></text>
 </svg>`;
 
-await sharp(Buffer.from(svg)).png().toFile(join(DEST, 'banniere-linkedin.png'));
+// densité 144 = 2 × la densité SVG par défaut (72) : librsvg rasterise le
+// vectoriel à 3168 × 792, il ne s'agit pas d'un agrandissement après coup.
+await sharp(Buffer.from(svg), { density: 144 })
+  .png({ compressionLevel: 9 })
+  .toFile(join(DEST, 'banniere-linkedin.png'));
+
 const m = await sharp(join(DEST, 'banniere-linkedin.png')).metadata();
 console.log(`écrit : public/brand/banniere-linkedin.png — ${m.width}×${m.height}`);
+if (m.width !== W * 2) {
+  console.warn(`⚠ attendu ${W * 2} px de large : la densité n'a pas été appliquée.`);
+}

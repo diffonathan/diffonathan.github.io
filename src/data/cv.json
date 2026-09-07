@@ -1,0 +1,127 @@
+{
+  "nom": "Nathan Princer Diffo",
+  "titre": "Développeur Full Stack — Digitalisation des processus métier",
+  "accroche": "Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours. *Deux outils que j'ai conçus et livrés sont en service dans une entreprise.*",
+  "contact": {
+    "lieu": "Marrakech, Maroc",
+    "telephone": "+212 660 179 871",
+    "email": "diffoprincer@gmail.com",
+    "site": "diffonathan.github.io",
+    "github": "github.com/diffonathan",
+    "linkedin": "linkedin.com/in/nathan-princer-diffo"
+  },
+  "langues": [
+    { "langue": "Français", "niveau": "langue de travail" },
+    { "langue": "Anglais", "niveau": "technique" }
+  ],
+  "sections": [
+    {
+      "id": "experience",
+      "titre": "Expérience professionnelle",
+      "entrees": [
+        {
+          "titre": "MBO Services — Développeur Full Stack",
+          "sousTitre": "Marrakech · société de services informatiques",
+          "meta": "depuis 2023",
+          "lignes": [
+            "Deux activités de l'entreprise reposaient sur des fichiers Excel partagés et des modèles Word recopiés à la main : la réponse aux appels d'offres et le recrutement. *J'ai conçu, développé et mis en service les deux applications qui les remplacent.*",
+            "Sur un appel d'offres, la date limite et le périmètre étaient cherchés à la main dans des dossiers de plusieurs centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire* : il ne reste qu'à valider.",
+            "Un dossier ne peut plus partir en oubliant une étape obligatoire — le parcours est verrouillé, du premier document jusqu'à la facturation.",
+            "Côté recrutement, le suivi et le classement des candidatures ne peuvent plus diverger : faire avancer un candidat range automatiquement son dossier. Les documents d'embauche sont produits depuis des modèles au lieu d'être recopiés.",
+            "*L'équipe RH a basculé sans rien changer à ses habitudes* — le nouveau suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format.",
+            "Refonte du site de l'entreprise et livraison d'un site client, tous deux pensés pour être mis à jour par l'équipe sans repasser par un développeur."
+          ]
+        },
+        {
+          "titre": "IAWEB.DEV — Développeur Web Full Stack",
+          "sousTitre": "Prestation pour Bailey Assurances, CRFPE, Interloc",
+          "meta": "2023 – 2025",
+          "lignes": [
+            "Applications web sur mesure pour trois clients : développement complet, de l'interface à la base de données.",
+            "Sites vitrines et boutiques en ligne, à partir de maquettes fournies par les équipes design.",
+            "Travail en équipe avec les pôles design et marketing, en méthode agile."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "realisations",
+      "titre": "Ce que j'ai livré",
+      "entrees": [
+        {
+          "titre": "Réponse aux appels d'offres — outil interne",
+          "sousTitre": "En service chez MBO Services · tracker.mboservices.tech",
+          "lignes": [
+            "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes imposées, tableau de bord des affaires en cours.",
+            "*Conçu pour des utilisateurs non techniques* — chaque écran embarque son mode d'emploi et une visite guidée à la première connexion."
+          ]
+        },
+        {
+          "titre": "Recrutement — du besoin exprimé à l'arrivée du candidat",
+          "sousTitre": "En service chez MBO Services · rh.mboservices.tech",
+          "lignes": [
+            "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage automatique.",
+            "Conforme au RGPD — les données des candidats sont relancées puis supprimées automatiquement à l'échéance."
+          ]
+        },
+        {
+          "titre": "Plateforme d'abonnement et d'espace membres",
+          "sousTitre": "Produit web conçu et développé de bout en bout",
+          "lignes": [
+            "Inscription, paiement récurrent, contenus qui s'ouvrent progressivement, messagerie avec l'équipe et espace d'administration.",
+            "Consultable au navigateur et *installable sur téléphone* comme une application."
+          ]
+        },
+        {
+          "titre": "Terminal d'analyse de marché",
+          "sousTitre": "Produit web conçu et développé de bout en bout",
+          "lignes": [
+            "Rassemble *cinq sources de données publiques dispersées* et les présente en une seule lecture, sur 67 marchés suivis.",
+            "Comptes, essai gratuit et abonnement ; alertes envoyées avant les publications importantes."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "competences",
+      "titre": "Compétences",
+      "entrees": [
+        { "titre": "Langages", "lignes": ["JavaScript · TypeScript · Python · PHP · SQL"] },
+        { "titre": "Développement web", "lignes": ["React · FastAPI · Laravel · Node.js", "API REST · HTML · CSS"] },
+        { "titre": "Bases de données", "lignes": ["MySQL · PostgreSQL · SQLite"] },
+        { "titre": "Cloud et déploiement", "lignes": ["Cloudflare · Docker · VPS Linux", "CI/CD · Git · GitHub Actions"] },
+        { "titre": "Paiement et sécurité", "lignes": ["Stripe · authentification · RGPD"] },
+        { "titre": "Intelligence artificielle", "lignes": ["Intégration de modèles de langage", "Lecture et extraction de documents"] },
+        { "titre": "Bureautique et CMS", "lignes": ["Microsoft 365 · SharePoint", "WordPress · WooCommerce"] },
+        { "titre": "Méthode", "lignes": ["Agile (Jira, Trello) · Figma", "Tests automatisés"] }
+      ]
+    },
+    {
+      "id": "formation",
+      "titre": "Formation",
+      "entrees": [
+        {
+          "titre": "ESMA — Marrakech",
+          "sousTitre": "Ingénierie de Développement et Web Services · Génie Informatique",
+          "meta": "2021 – 2023",
+          "lignes": [
+            "*2023* — Bac+5, Ingénierie de Développement et Web Services.",
+            "*2022* — Bac+4, Ingénierie de Développement et Web Services.",
+            "*2021* — Bac+3, Génie Informatique."
+          ]
+        }
+      ]
+    }
+  ],
+  "questions": [
+    "IAWEB.DEV (2023-2025) et MBO Services (depuis 2023) se chevauchent : périodes simultanées, successives, ou l'une en freelance ?",
+    "Quel est ton intitulé de poste contractuel chez MBO Services ?",
+    "Ton niveau d'anglais : as-tu un score (TOEIC, IELTS) à faire figurer ?"
+  ],
+  "avertissements": [
+    "Retiré car FAUX : « cookies HttpOnly » — le jeton vit en localStorage et part en Bearer, aucun cookie dans le code.",
+    "Retiré car NON LIVRÉ : « applications Android et iOS » — seul un APK de debug existe, aucun build iOS. Remplacé par « installable sur téléphone », qui est vrai.",
+    "Retiré car INEXISTANT : « notifications push » — aucun mécanisme push dans le dépôt.",
+    "Le CV ne nomme pas les produits web, mais le portfolio lié dans le bandeau les nomme, lui : voir la remarque sur diffonathan.github.io."
+  ]
+}
