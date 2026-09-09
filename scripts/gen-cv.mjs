@@ -81,7 +81,13 @@ const url = (u) => (/^https?:|^mailto:|^tel:/.test(u) ? u : `https://${u}`);
 
 /** Les fragments entre astérisques passent en gras : le JSON met en relief un
  *  fait sans avoir à écrire de HTML. */
-const relief = (s) => esc(s).replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
+// Gère **double** AVANT *simple* : sans cela, `**mot**` laissait une paire
+// d'astérisques visibles autour du gras, la syntaxe markdown la plus
+// spontanée étant justement la double.
+const relief = (s) =>
+  esc(s)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
 
 const cv = JSON.parse(readFileSync(SOURCE, 'utf8'));
 
@@ -94,6 +100,16 @@ const photoPath = join(racine, 'public', 'profile.jpg');
 if (PHOTO && existsSync(photoPath)) {
   portrait = `data:image/jpeg;base64,${readFileSync(photoPath).toString('base64')}`;
 }
+
+/**
+ * Les seuls libellés que le gabarit posait lui-même. Écrits en dur, ils
+ * restaient en français dans une version anglaise du CV, à côté de sections
+ * traduites — l'incohérence la plus visible d'un document bilingue.
+ */
+const L = {
+  contact: cv.libelles?.contact ?? 'Contact',
+  langues: cv.libelles?.langues ?? 'Langues',
+};
 
 /**
  * Sections qui partent dans la barre ; le reste va au corps principal.
@@ -203,7 +219,7 @@ const barre = !COLONNE ? '' : `
   <aside class="barre">
     ${portrait ? `<img class="portrait" src="${portrait}" alt="">` : ''}
     <section class="b-bloc">
-      <h4>Contact</h4>
+      <h4>${esc(L.contact)}</h4>
       <ul class="b-contact">${contactLiens
         .map((c) => {
           const t = esc(c.texte);
@@ -214,7 +230,7 @@ const barre = !COLONNE ? '' : `
     </section>
     ${
       Array.isArray(cv.langues) && cv.langues.length
-        ? `<section class="b-bloc"><h4>Langues</h4><ul class="b-liste">${cv.langues
+        ? `<section class="b-bloc"><h4>${esc(L.langues)}</h4><ul class="b-liste">${cv.langues
             .map((l) => `<li><strong>${esc(l.langue)}</strong>${l.niveau ? ` — ${esc(l.niveau)}` : ''}</li>`)
             .join('')}</ul></section>`
         : ''
@@ -374,7 +390,7 @@ const html = `<!doctype html>
     ${enCorps.map(sectionCorps).join('')}
     ${
       !COLONNE && Array.isArray(cv.langues) && cv.langues.length
-        ? `<section class="bloc"><h2>Langues</h2><div class="frise"><article class="entree"><ul>${cv.langues
+        ? `<section class="bloc"><h2>${esc(L.langues)}</h2><div class="frise"><article class="entree"><ul>${cv.langues
             .map((l) => `<li><strong>${esc(l.langue)}</strong>${l.niveau ? ` — ${esc(l.niveau)}` : ''}</li>`)
             .join('')}</ul></article></div></section>`
         : ''
