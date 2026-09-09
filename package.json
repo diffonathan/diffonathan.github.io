@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "cv": "node scripts/gen-cv.mjs"
+    "cv": "node scripts/gen-cv.mjs",
+    "icons": "node scripts/gen-favicons.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
