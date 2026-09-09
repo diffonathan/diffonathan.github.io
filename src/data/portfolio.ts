@@ -326,7 +326,10 @@ export const projectsSection = {
   title: 'Projets phares',
   subtitle:
     'Une sélection de produits conçus, développés et mis en production de bout en bout.',
-  privateNote: 'Code source privé — accès sur demande',
+  // « — accès sur demande » retiré : le code de ces produits reste privé, il
+  // appartient à leurs commanditaires. Promettre un accès qu'on ne peut pas
+  // donner crée une attente qu'il faudra décevoir.
+  privateNote: 'Code source privé',
   demoLabel: 'Démo live',
 }
 
