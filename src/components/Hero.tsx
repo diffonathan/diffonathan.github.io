@@ -89,6 +89,17 @@ export default function Hero() {
             </a>
           </motion.div>
 
+          <motion.p {...enter(0.45)} className="mt-4 text-sm text-secondary">
+            {hero.cvEnPrefix}
+            <a
+              href={identity.cvUrlEn}
+              download
+              className="font-medium text-accent-soft underline-offset-4 hover:underline"
+            >
+              {hero.cvEnLabel}
+            </a>
+          </motion.p>
+
           <motion.p {...enter(0.5)} className="mt-8 text-sm text-secondary">
             {identity.location}
           </motion.p>
