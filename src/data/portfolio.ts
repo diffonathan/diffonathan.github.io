@@ -114,8 +114,10 @@ export const identity = {
   email: 'diffoprincer@gmail.com', // adresse PERSONNELLE — le portfolio ne
   // relève pas de MBO Services, l'adresse professionnelle n'y a pas sa place.
   availabilityBadge: 'Disponible pour missions & collaborations',
-  // Généré par `npm run cv` depuis src/data/cv.json — ne pas éditer le PDF.
+  // Générés par `npm run cv` depuis src/data/cv.json et cv-en.json — ne jamais
+  // éditer les PDF à la main, ils sont écrasés à chaque génération.
   cvUrl: `${BASE}cv.pdf`,
+  cvUrlEn: `${BASE}cv-en.pdf`,
 }
 
 /* ----------------------------- Hero ------------------------------------ */
@@ -127,6 +129,11 @@ export const hero = {
     'paiement et mise en ligne compris.',
   ctaPrimary: 'Voir mes projets',
   ctaSecondary: 'Télécharger mon CV',
+  // La version anglaise vit sous les boutons plutôt qu'en troisième bouton :
+  // trois appels à l'action se concurrencent, et la majorité des lecteurs
+  // visés sont francophones. Elle reste visible pour qui la cherche.
+  cvEnPrefix: 'CV également disponible ',
+  cvEnLabel: 'en anglais',
 }
 
 /* --------------------------- Navigation --------------------------------- */
