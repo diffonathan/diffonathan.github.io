@@ -170,7 +170,7 @@ export const stackCategories: StackCategory[] = [
   {
     title: 'Frontend',
     icon: Layers,
-    items: ['React', 'Vite', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    items: ['React', 'Angular', 'Vite', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
   },
   {
     title: 'Backend',
@@ -178,7 +178,7 @@ export const stackCategories: StackCategory[] = [
     items: [
       'Node.js',
       'FastAPI / Python',
-      'Laravel',
+      'Laravel / Blade',
       'Symfony',
       'Yii2',
       'Java / Spring Boot',
