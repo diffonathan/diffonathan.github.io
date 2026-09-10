@@ -236,3 +236,35 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Torche — halo lumineux qui suit le curseur.
+   `position: fixed` et `pointer-events: none` : la torche flotte au-dessus de
+   toute la page sans jamais intercepter un clic. `z-index` bas pour rester
+   DERRIERE la barre de navigation et les cartes, sinon elle voilerait le texte
+   au lieu de l'eclairer.
+   PAS de `mix-blend-mode` : les sections du site sont transparentes, et le fond
+   sombre vient de `body`, dont la couleur est propagee au canevas du navigateur.
+   Or le canevas ne fait pas partie de l'arriere-plan avec lequel un element peut
+   fusionner : `screen` n'avait donc rien a eclaircir et la torche restait
+   invisible. Un degrade translucide par-dessus un fond sombre eclaire tout aussi
+   bien, et sans dependre du contexte d'empilement. */
+.torche {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  background: radial-gradient(
+    340px circle at var(--torche-x, 50%) var(--torche-y, 50%),
+    color-mix(in srgb, var(--color-accent) 22%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent) 9%, transparent) 40%,
+    transparent 72%
+  );
+}
+
+/* Sur un theme clair, une lumiere additive delave la page : on l'eteint. */
+:root[data-theme='light'] .torche,
+html.light .torche {
+  display: none;
+}

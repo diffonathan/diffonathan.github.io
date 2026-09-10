@@ -13,9 +13,11 @@ import {
   Globe,
   Layers,
   Mail,
+  Megaphone,
   Phone,
   Rocket,
   Server,
+  Smartphone,
   Sparkles,
   Wrench,
 } from 'lucide-react'
@@ -161,7 +163,7 @@ export const stats: Stat[] = [
 
 export const stackSection = {
   title: 'Stack technique',
-  subtitle: 'Les technologies que j’utilise au quotidien pour construire des produits solides.',
+  subtitle: 'Les technologies avec lesquelles je conçois, développe et mets en production.',
 }
 
 export const stackCategories: StackCategory[] = [
@@ -173,7 +175,22 @@ export const stackCategories: StackCategory[] = [
   {
     title: 'Backend',
     icon: Server,
-    items: ['Node.js', 'Cloudflare Workers', 'D1 / KV', 'Supabase', 'FastAPI', 'Stripe'],
+    items: [
+      'Node.js',
+      'FastAPI / Python',
+      'Laravel',
+      'Symfony',
+      'Yii2',
+      'Java / Spring Boot',
+      'Cloudflare Workers',
+      'D1 / KV / Supabase',
+      'Stripe',
+    ],
+  },
+  {
+    title: 'Mobile',
+    icon: Smartphone,
+    items: ['Flutter', 'Dart', 'Kotlin', 'Firebase'],
   },
   {
     title: 'Intelligence Artificielle',
@@ -186,16 +203,14 @@ export const stackCategories: StackCategory[] = [
     ],
   },
   {
+    title: 'Web & acquisition',
+    icon: Megaphone,
+    items: ['WordPress / Elementor', 'WooCommerce', 'Systeme.io', 'Tunnels de vente', 'Envato'],
+  },
+  {
     title: 'Outils',
     icon: Wrench,
-    items: [
-      'Git / GitHub',
-      'Cloudflare Pages',
-      'GitHub Actions',
-      'Docker / Caddy',
-      'WordPress / Elementor',
-      'Figma',
-    ],
+    items: ['Git / GitHub', 'GitHub Actions', 'Docker / Caddy', 'Cloudflare Pages', 'Figma'],
   },
 ]
 

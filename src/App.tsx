@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import Torche from './components/Torche'
 import Hero from './components/Hero'
 import About from './components/About'
 import TechStack from './components/TechStack'
@@ -14,6 +15,7 @@ function App() {
       <a href="#main" className="skip-link">
         Aller au contenu principal
       </a>
+      <Torche />
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
