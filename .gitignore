@@ -25,3 +25,8 @@ dist-ssr
 
 # Archive temporaire de déploiement
 portfolio_dist.zip
+
+# Sorties du generateur de carrousels : regenerables par
+# `node scripts/gen-carrousel.mjs`, et reecrites a chaque publication.
+# Le script, lui, est versionne : c'est lui la source.
+brand/

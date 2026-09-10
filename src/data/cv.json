@@ -65,7 +65,6 @@
         {
           "titre": "Réponse aux appels d'offres — outil interne",
           "sousTitre": "MBO Services · en service",
-          "lien": "tracker.mboservices.tech",
           "lignes": [
             "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes imposées, tableau de bord des affaires en cours.",
             "*Conçu pour des utilisateurs non techniques* — chaque écran embarque son mode d'emploi et une visite guidée à la première connexion."
@@ -74,7 +73,6 @@
         {
           "titre": "Recrutement — du besoin exprimé à l'arrivée du candidat",
           "sousTitre": "MBO Services · en service",
-          "lien": "rh.mboservices.tech",
           "lignes": [
             "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage automatique.",
             "Conforme au RGPD — les données des candidats sont relancées puis supprimées automatiquement à l'échéance."

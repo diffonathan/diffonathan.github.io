@@ -60,7 +60,6 @@
         {
           "titre": "Tender response — internal tool",
           "sousTitre": "MBO Services · in service",
-          "lien": "tracker.mboservices.tech",
           "lignes": [
             "Carries a bid from the first document through to the invoice: intake of attachments, automated reading, enforced stages, and a dashboard of live opportunities.",
             "*Built for non-technical users* — every screen carries its own instructions and a guided tour on first login."
@@ -69,7 +68,6 @@
         {
           "titre": "Recruitment — from stated need to the candidate's first day",
           "sousTitre": "MBO Services · in service",
-          "lien": "rh.mboservices.tech",
           "lignes": [
             "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, generation of hiring documents, automatic archiving.",
             "GDPR-compliant — candidate data is flagged for review, then deleted automatically once its retention period ends."
