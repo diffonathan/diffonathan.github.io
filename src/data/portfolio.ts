@@ -150,6 +150,9 @@ export const about = {
     'Ce que je fais le plus souvent : remplacer des processus qui vivent dans des fichiers Excel et des modèles Word par un outil que l’équipe adopte. Un outil interne échoue rarement sur la technique — il échoue parce que personne ne l’ouvre. C’est ce qui m’intéresse dans ce métier.',
   ],
   photoUrl: `${BASE}profile.jpg`,
+  /** Vignette ronde de la barre de navigation — même cadrage que le portrait
+      du carrousel, rendue à 144 px pour rester nette sur écran dense. */
+  avatarUrl: `${BASE}avatar.png`,
 }
 
 // TODO : confirmer ces chiffres
