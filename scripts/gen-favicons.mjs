@@ -12,13 +12,14 @@
  * ── Ce qui a été essayé et écarté ───────────────────────────────────────────
  * - Un cadrage très serré sur le visage, au motif qu'à 16 px chaque pixel
  *   compte : il coupe le haut du crâne et étouffe l'image à TOUTES les tailles.
- *   Le gain de lisibilité ne compensait pas. Voir le commentaire de CADRAGE.
+ *   Le gain de lisibilité ne compensait pas. Voir le commentaire de CADRAGES.
  * - Un renfort de contraste (linear 1.4, -38) pour « sauver » les petites
  *   tailles : il vire la peau à l'orange et donne un visage artificiel. Le
  *   remède était pire que le mal ; les couleurs restent naturelles.
- * - Le masque circulaire sur les icônes : il coûte 21 % de la surface, donc des
- *   pixels de visage, pour un gain purement décoratif. Elles sont carrées,
- *   pleine page. Seul l'avatar de la barre est rond — voir plus bas pourquoi.
+ * - Le masque circulaire sur les icônes d'onglet : il coûte 21 % de la surface,
+ *   donc des pixels de visage. Elles ont des coins arrondis à 20 %, ce qui les
+ *   fait lire comme une icône sans rogner autant. L'avatar de la barre, lui,
+ *   est bien rond : à 36 px on a la place, et un rond se lit comme une personne.
  *
  * ── Pourquoi il n'y a plus de favicon.svg ───────────────────────────────────
  * Une photo n'est pas vectorisable. Or les navigateurs PRÉFÈRENT le SVG quand
@@ -39,24 +40,43 @@ const SOURCE = join(PUB, 'profile.jpg');
 if (!existsSync(SOURCE)) throw new Error(`Photo introuvable : ${SOURCE}`);
 
 /**
- * Un seul cadrage, sur une source de 800 x 800 : tête entière et un peu d'air
- * autour. Il sert à TOUTES les tailles, de l'onglet de 16 px à l'icône de 512.
+ * Deux cadrages, sur une source de 800 x 800. La différence n'est pas
+ * esthétique, elle vient de la taille d'affichage.
  *
- * Un cadrage plus serré (330 px sur la source) avait d'abord été retenu, au
- * motif qu'à 16 px chaque pixel de visage compte. Comparé à taille réelle, il
- * coupe le haut du crâne et donne une impression d'étouffement à toutes les
- * tailles — le gain de lisibilité ne compensait pas. Celui-ci reste lisible à
- * 16 px et paraît juste partout ailleurs.
+ * `icone`  — 460 px : tête entière avec un peu d'air. Retenu après comparaison
+ *            de quatre largeurs à taille réelle ; plus serré (330 px), il coupe
+ *            le haut du crâne et étouffe l'image à toutes les tailles.
+ * `avatar` — 565 px : tête et épaules, veste comprise. À 36 px dans la barre on
+ *            a la place d'un vrai portrait, et il se lit mieux qu'un gros plan.
+ *            C'est aussi le cadrage du portrait du carrousel LinkedIn.
  */
-const CADRAGE = { left: 170, top: 60, width: 460, height: 460 };
+const CADRAGES = {
+  icone: { left: 170, top: 60, width: 460, height: 460 },
+  avatar: { left: 118, top: 55, width: 565, height: 565 },
+};
 
 /** Rend la photo à la taille demandée, sans retouche de couleur. */
-const rendre = (taille) =>
-  sharp(SOURCE).extract(CADRAGE).resize(taille, taille, { fit: 'cover' });
+const rendre = (cadrage, taille) =>
+  sharp(SOURCE).extract(CADRAGES[cadrage]).resize(taille, taille, { fit: 'cover' });
+
+/**
+ * Coins arrondis, à 20 % du côté — comparé à 14 % (invisible à 16 px) et 28 %
+ * (qui commence à rogner les joues). Le masque est appliqué APRÈS le
+ * redimensionnement, sur la taille finale : arrondir avant puis réduire
+ * produirait des coins baveux.
+ */
+const RAYON = 0.2;
+const coinsArrondis = async (buf, taille) => {
+  const masque = Buffer.from(
+    `<svg width="${taille}" height="${taille}"><rect width="${taille}" height="${taille}" ` +
+      `rx="${taille * RAYON}" ry="${taille * RAYON}" fill="#fff"/></svg>`,
+  );
+  return sharp(buf).composite([{ input: masque, blend: 'dest-in' }]).png().toBuffer();
+};
 
 // ── Onglet ────────────────────────────────────────────────────────────────
-await rendre(16).png().toFile(join(PUB, 'favicon-16.png'));
-const png32 = await rendre(32).png().toBuffer();
+writeFileSync(join(PUB, 'favicon-16.png'), await coinsArrondis(await rendre('icone', 16).png().toBuffer(), 16));
+const png32 = await coinsArrondis(await rendre('icone', 32).png().toBuffer(), 32);
 writeFileSync(join(PUB, 'favicon-32.png'), png32);
 
 // favicon.ico — enveloppe le PNG 32x32. Certains agrégateurs et vieux
@@ -77,19 +97,21 @@ png32.copy(ico, 22);
 writeFileSync(join(PUB, 'favicon.ico'), ico);
 
 // ── Écran d'accueil et manifeste ──────────────────────────────────────────
+// Volontairement CARRÉES : iOS et Android appliquent leur propre masque. Les
+// arrondir ici produirait un double arrondi, avec des bords rongés.
 for (const [fichier, taille] of [
   ['apple-touch-icon.png', 180],
   ['icon-192.png', 192],
   ['icon-512.png', 512],
 ]) {
-  await rendre(taille).png().toFile(join(PUB, fichier));
+  await rendre('icone', taille).png().toFile(join(PUB, fichier));
 }
 
 // ── La vignette de la barre de navigation ─────────────────────────────────
 // Ronde ici, contrairement aux icônes : à 36 px on a la place, et un rond se
 // lit comme une personne là où un carré se lit comme une application.
 const AV = 144;
-const carre = await rendre(AV).png().toBuffer();
+const carre = await rendre('avatar', AV).png().toBuffer();
 const masque = Buffer.from(
   `<svg width="${AV}" height="${AV}"><circle cx="${AV / 2}" cy="${AV / 2}" r="${AV / 2}" fill="#fff"/></svg>`,
 );
