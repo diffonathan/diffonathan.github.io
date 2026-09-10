@@ -115,6 +115,12 @@ export default function Projects() {
                         </a>
                       )
                     )}
+                    {project.internalTool && (
+                      <span className="inline-flex items-center gap-1.5 text-xs text-secondary">
+                        <Lock size={13} aria-hidden="true" />
+                        {projectsSection.internalNote}
+                      </span>
+                    )}
                     {project.privateSource && (
                       <span className="inline-flex items-center gap-1.5 text-xs text-secondary">
                         <Lock size={13} aria-hidden="true" />

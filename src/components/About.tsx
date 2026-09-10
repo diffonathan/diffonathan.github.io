@@ -25,7 +25,7 @@ function StatCard({ stat, delay }: { stat: Stat; delay: number }) {
   return (
     <Reveal delay={delay}>
       <div ref={ref} className="card card-hover px-6 py-8 text-center">
-        <p className="stat-number text-4xl text-accent">
+        <p className="stat-number grad-text text-4xl">
           {display}
           {stat.suffix}
         </p>

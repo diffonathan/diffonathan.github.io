@@ -67,6 +67,12 @@ export interface Project {
   /** Couleur d’accent du placeholder (token CSS). */
   accentColor: 'accent' | 'success' | 'info' | 'warning' | 'danger'
   privateSource: boolean
+  /** Outil interne d'un commanditaire : pas d'adresse publique, et on ne la
+      cite pas. Un lien vers une page de connexion n'apprend rien à un visiteur
+      mais expose l'existence et l'adresse d'un outil qui ne nous appartient
+      pas. La démonstration guidée, sur données fictives, montre davantage sans
+      rien divulguer. */
+  internalTool?: boolean
   /** Visite guidée — pour les outils métier qui ne peuvent pas être ouverts
       au public (ils traitent des candidats et des appels d'offres réels). */
   demo?: DemoGuidee
@@ -235,7 +241,8 @@ export const projects: Project[] = [
     description:
       'Application métier qui industrialise la réponse aux appels d’offres : extraction automatique des dates et du périmètre depuis les documents, workflow en 9 étapes verrouillées, revue technique produite par un LLM en tâche de fond, génération documentaire et détection des doublons.',
     tech: ['FastAPI', 'Python', 'JavaScript', 'Docker', 'Caddy', 'Groq'],
-    demoUrl: 'https://tracker.mboservices.tech',
+    demoUrl: '',
+    internalTool: true,
     image: `${BASE}demo/tracker-tableau-de-bord.jpg`,
     accentColor: 'success',
     privateSource: true,
@@ -268,7 +275,8 @@ export const projects: Project[] = [
     description:
       'Outil de recrutement autonome : suivi des candidats, génération de huit documents contractuels par gabarits, trigramme RH, conformité RGPD et intégration SharePoint / Microsoft 365. Déployée sur VPS en conteneurs.',
     tech: ['FastAPI', 'Python', 'Docker', 'Caddy', 'Microsoft Graph', 'Groq'],
-    demoUrl: 'https://rh.mboservices.tech',
+    demoUrl: '',
+    internalTool: true,
     image: `${BASE}demo/rh-suivi.jpg`,
     accentColor: 'accent',
     privateSource: true,
@@ -330,6 +338,7 @@ export const projectsSection = {
   // appartient à leurs commanditaires. Promettre un accès qu'on ne peut pas
   // donner crée une attente qu'il faudra décevoir.
   privateNote: 'Code source privé',
+  internalNote: 'Outil interne — non ouvert au public',
   demoLabel: 'Démo live',
 }
 
