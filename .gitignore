@@ -30,3 +30,11 @@ portfolio_dist.zip
 # `node scripts/gen-carrousel.mjs`, et reecrites a chaque publication.
 # Le script, lui, est versionne : c'est lui la source.
 brand/
+
+# Lettres de motivation — JAMAIS versionnées dans un dépôt public.
+# Elles contiennent le nom des entreprises visées et les postes convoités :
+# publier la liste de ses candidatures en cours dessert la recherche d'emploi,
+# un recruteur pouvant lire l'argumentaire écrit pour un concurrent. Elles
+# citaient aussi les adresses d'outils internes d'un client.
+# Les fichiers restent sur le disque, ils servent d'entrée à `gen-lettre.mjs`.
+src/data/lettre-*.json
