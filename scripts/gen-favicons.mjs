@@ -1,85 +1,109 @@
 /**
- * Icônes du portfolio — monogramme « ND », généré depuis une source unique.
+ * Icônes du portfolio — le visage de Nathan, généré depuis une source unique.
  *
- * ── Pourquoi « ND » et pas la photo ─────────────────────────────────────────
- * Un onglet fait 16 px, soit 256 pixels en tout. Un visage y perd tout ce qui
- * le rend reconnaissable : à cette taille il devient une tache beige, et
- * l'onglet n'est plus repérable au milieu de vingt autres. Testé, comparé, et
- * écarté pour cette raison. La photo garde toute sa place là où elle est
- * grande — bloc « À propos », CV, LinkedIn.
+ * ── Le choix, et ce qu'il coûte ─────────────────────────────────────────────
+ * Un onglet fait 16 px, soit 256 pixels en tout. Le monogramme « ND » qui
+ * occupait cette place était plus net et plus repérable au milieu de vingt
+ * autres onglets — c'est un fait, mesuré en comparant les deux à taille réelle.
+ * Le visage a été retenu quand même : ce site est personnel, et la cohérence
+ * avec la barre de navigation, le carrousel LinkedIn et le CV vaut plus que la
+ * lisibilité maximale d'une icône d'onglet.
  *
- * ── Pourquoi deux lettres et pas une ────────────────────────────────────────
- * Deux est le maximum lisible à 16 px, et « ND » distingue mieux qu'un « N »
- * seul, qui appartient à des milliers de sites.
+ * ── Ce qui a été essayé et écarté ───────────────────────────────────────────
+ * - Le cadrage large de la barre (tête + épaules) : à 16 px le visage n'occupe
+ *   plus qu'une poignée de pixels et devient illisible. Il faut cadrer BEAUCOUP
+ *   plus serré ici que partout ailleurs.
+ * - Un renfort de contraste (linear 1.4, -38) pour « sauver » les petites
+ *   tailles : il vire la peau à l'orange et donne un visage artificiel. Le
+ *   remède était pire que le mal ; les couleurs restent naturelles.
+ * - Le masque circulaire : il coûte 21 % de la surface, donc des pixels de
+ *   visage, pour un gain purement décoratif. L'image est carrée, pleine page.
  *
- * ── Pourquoi pas de bordure ─────────────────────────────────────────────────
- * L'ancienne icône portait un liseré de 2 px sur un cadre de 64 : à l'affichage
- * en 16 px, cette bordure mangeait près de 20 % de la largeur utile en pure
- * décoration. Le monogramme occupe désormais tout le cadre.
+ * ── Pourquoi il n'y a plus de favicon.svg ───────────────────────────────────
+ * Une photo n'est pas vectorisable. Or les navigateurs PRÉFÈRENT le SVG quand
+ * il est déclaré : le laisser en place aurait affiché l'ancien monogramme et
+ * rendu tout ce fichier sans effet. Le lien a été retiré de index.html.
  *
  * Usage : npm run icons
  */
 import sharp from 'sharp';
-import { writeFileSync } from 'node:fs';
+import { existsSync, writeFileSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ici = dirname(fileURLToPath(import.meta.url));
 const PUB = join(ici, '..', 'public');
+const SOURCE = join(PUB, 'profile.jpg');
 
-// Mêmes valeurs que le site, le CV et les lettres.
-const BLEU = '#0781FE';
+if (!existsSync(SOURCE)) throw new Error(`Photo introuvable : ${SOURCE}`);
 
 /**
- * La source unique. Tout le reste en découle — aucune icône n'est retouchée à
- * la main, sans quoi elles finissent par diverger.
+ * Deux cadrages, sur une source de 800 x 800.
  *
- * `textLength` fige la largeur du monogramme : sans lui, le rendu dépend de la
- * police disponible sur la machine, et l'icône changerait de proportions d'un
- * poste à l'autre.
+ * `icone`  — très serré : front, yeux, bouche, menton. C'est le seul moyen que
+ *            le visage reste lisible à 16 px, où chaque pixel compte.
+ * `grande` — un peu d'air autour de la tête, pour les tailles où l'on n'est
+ *            plus contraint (écran d'accueil iOS, manifeste d'application).
  */
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="${BLEU}"/>
-  <text x="32" y="44" text-anchor="middle" textLength="46" lengthAdjust="spacingAndGlyphs"
-        font-family="'Segoe UI', 'DM Sans', Arial, sans-serif"
-        font-size="34" font-weight="800" letter-spacing="-2" fill="#ffffff">ND</text>
-</svg>`;
+const CADRAGES = {
+  icone: { left: 236, top: 118, width: 330, height: 330 },
+  grande: { left: 170, top: 60, width: 460, height: 460 },
+};
 
-writeFileSync(join(PUB, 'favicon.svg'), svg);
+/** Rend la photo à la taille demandée, sans retouche de couleur. */
+const rendre = (cadrage, taille) =>
+  sharp(SOURCE).extract(CADRAGES[cadrage]).resize(taille, taille, { fit: 'cover' });
 
-// Le SVG couvre les navigateurs actuels ; les PNG servent de repli et
-// alimentent les onglets sur les systèmes qui ne lisent pas le vectoriel.
-// `density` élevé : sharp rasterise le SVG à cette résolution AVANT de
-// redimensionner, ce qui évite l'escalier sur les diagonales du « N ».
-await sharp(Buffer.from(svg), { density: 512 }).resize(16, 16).png().toFile(join(PUB, 'favicon-16.png'));
-const png32 = await sharp(Buffer.from(svg), { density: 512 }).resize(32, 32).png().toBuffer();
+// ── Onglet ────────────────────────────────────────────────────────────────
+await rendre('icone', 16).png().toFile(join(PUB, 'favicon-16.png'));
+const png32 = await rendre('icone', 32).png().toBuffer();
 writeFileSync(join(PUB, 'favicon-32.png'), png32);
 
-// favicon.ico — un ICO qui embarque le PNG 32×32. Certains agrégateurs et
-// vieux navigateurs demandent /favicon.ico sans lire les balises <link>.
+// favicon.ico — enveloppe le PNG 32x32. Certains agrégateurs et vieux
+// navigateurs demandent /favicon.ico sans lire les balises <link>.
 const ico = Buffer.alloc(22 + png32.length);
-ico.writeUInt16LE(0, 0);                 // réservé
-ico.writeUInt16LE(1, 2);                 // type : icône
-ico.writeUInt16LE(1, 4);                 // nombre d'images
-ico.writeUInt8(32, 6);                   // largeur
-ico.writeUInt8(32, 7);                   // hauteur
-ico.writeUInt8(0, 8);                    // palette
-ico.writeUInt8(0, 9);                    // réservé
-ico.writeUInt16LE(1, 10);                // plans
-ico.writeUInt16LE(32, 12);               // bits par pixel
-ico.writeUInt32LE(png32.length, 14);     // taille des données
-ico.writeUInt32LE(22, 18);               // décalage
+ico.writeUInt16LE(0, 0); // réservé
+ico.writeUInt16LE(1, 2); // type : icône
+ico.writeUInt16LE(1, 4); // nombre d'images
+ico.writeUInt8(32, 6); // largeur
+ico.writeUInt8(32, 7); // hauteur
+ico.writeUInt8(0, 8); // palette
+ico.writeUInt8(0, 9); // réservé
+ico.writeUInt16LE(1, 10); // plans
+ico.writeUInt16LE(32, 12); // bits par pixel
+ico.writeUInt32LE(png32.length, 14); // taille des données
+ico.writeUInt32LE(22, 18); // décalage
 png32.copy(ico, 22);
 writeFileSync(join(PUB, 'favicon.ico'), ico);
 
-// Icônes d'application : écran d'accueil iOS, et tailles attendues d'un
-// manifeste si le portfolio devient installable un jour.
+// ── Écran d'accueil et manifeste ──────────────────────────────────────────
 for (const [fichier, taille] of [
   ['apple-touch-icon.png', 180],
   ['icon-192.png', 192],
   ['icon-512.png', 512],
 ]) {
-  await sharp(Buffer.from(svg), { density: 1024 }).resize(taille, taille).png().toFile(join(PUB, fichier));
+  await rendre('grande', taille).png().toFile(join(PUB, fichier));
 }
 
-console.log('Icônes « ND » générées : favicon svg/16/32/ico, apple-touch 180, icon 192/512.');
+// ── La vignette de la barre de navigation ─────────────────────────────────
+// Ronde ici, contrairement aux icônes : à 36 px on a la place, et un rond se
+// lit comme une personne là où un carré se lit comme une application.
+const AV = 144;
+const carre = await rendre('grande', AV).png().toBuffer();
+const masque = Buffer.from(
+  `<svg width="${AV}" height="${AV}"><circle cx="${AV / 2}" cy="${AV / 2}" r="${AV / 2}" fill="#fff"/></svg>`,
+);
+await sharp(carre)
+  .composite([{ input: masque, blend: 'dest-in' }])
+  .png()
+  .toFile(join(PUB, 'avatar.png'));
+
+// L'ancien monogramme vectoriel doit disparaître : tant qu'il existe, un
+// navigateur qui le trouverait l'afficherait de préférence à la photo.
+const svg = join(PUB, 'favicon.svg');
+if (existsSync(svg)) {
+  rmSync(svg);
+  console.log('  favicon.svg supprimé (le monogramme aurait primé sur la photo)');
+}
+
+console.log('Icônes générées depuis la photo : favicon 16/32/ico, apple-touch 180, icon 192/512, avatar 144.');
