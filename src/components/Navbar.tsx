@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { identity, navCta, navLinks } from '../data/portfolio'
+import { about, identity, navCta, navLinks } from '../data/portfolio'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('#accueil')
+  const [avatarErreur, setAvatarErreur] = useState(false)
 
   // Scroll-spy : met en surbrillance le lien de la section visible
   useEffect(() => {
@@ -34,9 +35,26 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a href="#accueil" className="flex items-center gap-3" onClick={closeMobile}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
-            {identity.initials}
-          </span>
+          {/* Le visage plutôt qu'un monogramme : ce site est personnel, pas une
+              marque. À 36 px le visage reste lisible — vérifié à taille réelle —
+              et le nom est écrit juste à côté, donc la vignette n'a pas à
+              identifier, seulement à incarner.
+              Le monogramme reste le repli si l'image ne charge pas, et il reste
+              le favicon : à 16 px dans un onglet, un visage devient une tache. */}
+          {avatarErreur ? (
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
+              {identity.initials}
+            </span>
+          ) : (
+            <img
+              src={about.avatarUrl}
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-full object-cover ring-1 ring-border"
+              onError={() => setAvatarErreur(true)}
+            />
+          )}
           <span className="hidden text-sm font-semibold sm:block">{identity.name}</span>
         </a>
 
