@@ -10,14 +10,15 @@
  * lisibilité maximale d'une icône d'onglet.
  *
  * ── Ce qui a été essayé et écarté ───────────────────────────────────────────
- * - Le cadrage large de la barre (tête + épaules) : à 16 px le visage n'occupe
- *   plus qu'une poignée de pixels et devient illisible. Il faut cadrer BEAUCOUP
- *   plus serré ici que partout ailleurs.
+ * - Un cadrage très serré sur le visage, au motif qu'à 16 px chaque pixel
+ *   compte : il coupe le haut du crâne et étouffe l'image à TOUTES les tailles.
+ *   Le gain de lisibilité ne compensait pas. Voir le commentaire de CADRAGE.
  * - Un renfort de contraste (linear 1.4, -38) pour « sauver » les petites
  *   tailles : il vire la peau à l'orange et donne un visage artificiel. Le
  *   remède était pire que le mal ; les couleurs restent naturelles.
- * - Le masque circulaire : il coûte 21 % de la surface, donc des pixels de
- *   visage, pour un gain purement décoratif. L'image est carrée, pleine page.
+ * - Le masque circulaire sur les icônes : il coûte 21 % de la surface, donc des
+ *   pixels de visage, pour un gain purement décoratif. Elles sont carrées,
+ *   pleine page. Seul l'avatar de la barre est rond — voir plus bas pourquoi.
  *
  * ── Pourquoi il n'y a plus de favicon.svg ───────────────────────────────────
  * Une photo n'est pas vectorisable. Or les navigateurs PRÉFÈRENT le SVG quand
@@ -38,25 +39,24 @@ const SOURCE = join(PUB, 'profile.jpg');
 if (!existsSync(SOURCE)) throw new Error(`Photo introuvable : ${SOURCE}`);
 
 /**
- * Deux cadrages, sur une source de 800 x 800.
+ * Un seul cadrage, sur une source de 800 x 800 : tête entière et un peu d'air
+ * autour. Il sert à TOUTES les tailles, de l'onglet de 16 px à l'icône de 512.
  *
- * `icone`  — très serré : front, yeux, bouche, menton. C'est le seul moyen que
- *            le visage reste lisible à 16 px, où chaque pixel compte.
- * `grande` — un peu d'air autour de la tête, pour les tailles où l'on n'est
- *            plus contraint (écran d'accueil iOS, manifeste d'application).
+ * Un cadrage plus serré (330 px sur la source) avait d'abord été retenu, au
+ * motif qu'à 16 px chaque pixel de visage compte. Comparé à taille réelle, il
+ * coupe le haut du crâne et donne une impression d'étouffement à toutes les
+ * tailles — le gain de lisibilité ne compensait pas. Celui-ci reste lisible à
+ * 16 px et paraît juste partout ailleurs.
  */
-const CADRAGES = {
-  icone: { left: 236, top: 118, width: 330, height: 330 },
-  grande: { left: 170, top: 60, width: 460, height: 460 },
-};
+const CADRAGE = { left: 170, top: 60, width: 460, height: 460 };
 
 /** Rend la photo à la taille demandée, sans retouche de couleur. */
-const rendre = (cadrage, taille) =>
-  sharp(SOURCE).extract(CADRAGES[cadrage]).resize(taille, taille, { fit: 'cover' });
+const rendre = (taille) =>
+  sharp(SOURCE).extract(CADRAGE).resize(taille, taille, { fit: 'cover' });
 
 // ── Onglet ────────────────────────────────────────────────────────────────
-await rendre('icone', 16).png().toFile(join(PUB, 'favicon-16.png'));
-const png32 = await rendre('icone', 32).png().toBuffer();
+await rendre(16).png().toFile(join(PUB, 'favicon-16.png'));
+const png32 = await rendre(32).png().toBuffer();
 writeFileSync(join(PUB, 'favicon-32.png'), png32);
 
 // favicon.ico — enveloppe le PNG 32x32. Certains agrégateurs et vieux
@@ -82,14 +82,14 @@ for (const [fichier, taille] of [
   ['icon-192.png', 192],
   ['icon-512.png', 512],
 ]) {
-  await rendre('grande', taille).png().toFile(join(PUB, fichier));
+  await rendre(taille).png().toFile(join(PUB, fichier));
 }
 
 // ── La vignette de la barre de navigation ─────────────────────────────────
 // Ronde ici, contrairement aux icônes : à 36 px on a la place, et un rond se
 // lit comme une personne là où un carré se lit comme une application.
 const AV = 144;
-const carre = await rendre('grande', AV).png().toBuffer();
+const carre = await rendre(AV).png().toBuffer();
 const masque = Buffer.from(
   `<svg width="${AV}" height="${AV}"><circle cx="${AV / 2}" cy="${AV / 2}" r="${AV / 2}" fill="#fff"/></svg>`,
 );
