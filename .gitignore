@@ -38,3 +38,10 @@ brand/
 # citaient aussi les adresses d'outils internes d'un client.
 # Les fichiers restent sur le disque, ils servent d'entrée à `gen-lettre.mjs`.
 src/data/lettre-*.json
+
+# Candidatures — NE JAMAIS publier.
+# public/ est servi tel quel sur diffonathan.github.io : une lettre déposée
+# ici devient téléchargeable par n'importe qui, y compris par l'autre
+# recruteur. Les fichiers de candidature vivent dans Projet/candidatures/.
+public/lettre-*.pdf
+public/cv-cibles/
