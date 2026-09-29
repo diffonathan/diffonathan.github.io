@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { DemoGuidee } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 interface Props {
   demo: DemoGuidee
@@ -17,6 +18,7 @@ interface Props {
  * Une démo interactive publique aurait exposé le même socle que la production.
  */
 export default function DemoWalkthrough({ demo, projet, onClose }: Props) {
+  const { ui } = useContenu()
   const [i, setI] = useState(0)
   const etape = demo.etapes[i]
   const dernier = demo.etapes.length - 1
@@ -54,23 +56,23 @@ export default function DemoWalkthrough({ demo, projet, onClose }: Props) {
         tabIndex={-1}
         role="dialog"
         aria-modal="true"
-        aria-label={`Démo guidée — ${projet}`}
+        aria-label={ui.demoAria(projet)}
         className="relative flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-border bg-card outline-none"
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête */}
         <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
           <div className="min-w-0">
-            <p className="text-xs font-semibold text-accent">Démo guidée</p>
+            <p className="text-xs font-semibold text-accent">{ui.demoTitre}</p>
             <h3 className="truncate text-lg font-bold text-foreground">{projet}</h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Fermer la démo"
+            aria-label={ui.demoFermerAria}
             className="shrink-0 rounded-lg border border-border px-3 py-1.5 text-sm text-secondary hover:text-foreground"
           >
-            Fermer
+            {ui.fermer}
           </button>
         </div>
 
@@ -84,7 +86,7 @@ export default function DemoWalkthrough({ demo, projet, onClose }: Props) {
           />
           <div className="px-5 py-4">
             <p className="text-xs font-semibold text-secondary">
-              Étape {i + 1} / {demo.etapes.length}
+              {ui.etape(i + 1, demo.etapes.length)}
             </p>
             <h4 className="mt-1 text-base font-bold text-foreground">{etape.titre}</h4>
             <p className="mt-1.5 text-sm leading-relaxed text-body">{etape.texte}</p>
@@ -112,7 +114,7 @@ export default function DemoWalkthrough({ demo, projet, onClose }: Props) {
               disabled={i === 0}
               className="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-secondary disabled:opacity-40 hover:text-foreground"
             >
-              Précédent
+              {ui.precedent}
             </button>
             <button
               type="button"
@@ -120,16 +122,16 @@ export default function DemoWalkthrough({ demo, projet, onClose }: Props) {
               className="rounded-lg px-4 py-2 text-sm font-bold text-white"
               style={{ background: 'var(--color-accent)' }}
             >
-              {i === dernier ? 'Terminer' : 'Suivant'}
+              {i === dernier ? ui.terminer : ui.suivant}
             </button>
           </div>
         </div>
 
         {/* Mention de loyauté : le visiteur doit savoir ce qu'il regarde. */}
         <p className="border-t border-border px-5 py-2 text-[11px] text-secondary">
-          Captures d’une instance de démonstration — clients, candidats et dossiers sont
-          <strong className="text-body"> entièrement fictifs</strong>. L’outil en production
-          traite des données confidentielles et n’est pas ouvert au public.
+          {ui.demoAvertissementAvant}
+          <strong className="text-body">{ui.demoAvertissementFort}</strong>
+          {ui.demoAvertissementApres}
         </p>
       </div>
     </div>

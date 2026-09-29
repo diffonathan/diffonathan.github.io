@@ -1,6 +1,7 @@
-import { identity, socials, footer } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 export default function Footer() {
+  const { identity, socials, footer } = useContenu()
   const year = new Date().getFullYear()
 
   return (

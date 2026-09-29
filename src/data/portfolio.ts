@@ -10,15 +10,16 @@ import type { ComponentType, SVGProps } from 'react'
 import {
   Bot,
   Code2,
-  Globe,
   Layers,
   Mail,
   Megaphone,
   Phone,
   Rocket,
   Server,
+  ShoppingCart,
   Smartphone,
   Sparkles,
+  Workflow,
   Wrench,
 } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../components/ui/BrandIcons'
@@ -63,6 +64,9 @@ export interface Project {
   tech: string[]
   /** URL de la démo live — laisser vide ("") pour masquer le bouton. */
   demoUrl: string
+  /** Dépôt public. Renseigné uniquement quand le code peut VRAIMENT être lu :
+      un lien vers un dépôt privé n'apprend rien et se termine en 404. */
+  codeUrl?: string
   /** Chemin d’une capture d’écran dans /public (ex: "/projects/confluence.png").
       Laisser vide pour afficher le placeholder stylisé. */
   image: string
@@ -93,6 +97,12 @@ export interface ExperienceItem {
   missions: string[]
 }
 
+/** Une façon de travailler ensemble (freelance, salariat à distance, sur site). */
+export interface Modalite {
+  label: string
+  detail: string
+}
+
 export interface SocialLink {
   label: string
   url: string
@@ -113,7 +123,7 @@ export const identity = {
   telephoneAffiche: '+212 660 179 871',
   email: 'diffoprincer@gmail.com', // adresse PERSONNELLE — le portfolio ne
   // relève pas de MBO Services, l'adresse professionnelle n'y a pas sa place.
-  availabilityBadge: 'Disponible pour missions & collaborations',
+  availabilityBadge: 'Disponible — freelance ou poste à distance',
   // Générés par `npm run cv` depuis src/data/cv.json et cv-en.json — ne jamais
   // éditer les PDF à la main, ils sont écrasés à chaque génération.
   cvUrl: `${BASE}cv.pdf`,
@@ -203,6 +213,7 @@ export const stackCategories: StackCategory[] = [
       'Java / Spring Boot',
       'Cloudflare Workers',
       'D1 / KV / Supabase',
+      'Apache Kafka',
       'Stripe',
     ],
   },
@@ -236,6 +247,40 @@ export const stackCategories: StackCategory[] = [
 /* ----------------------------- Projets ---------------------------------- */
 
 export const projects: Project[] = [
+  {
+    name: 'RDV Santé',
+    tagline: 'Prise de rendez-vous et file d’attente en temps réel',
+    description:
+      'Au Maroc, on prend rendez-vous par téléphone et on attend en salle sans savoir combien de personnes précèdent. Ici, le patient réserve en ligne et suit sa position depuis son téléphone ; le secrétariat pilote la journée depuis un seul écran. Quatre services indépendants qui ne s’appellent jamais directement : ils s’échangent des événements, et si l’un tombe les autres continuent.',
+    tech: ['Java 21', 'Spring Boot', 'Microservices', 'Apache Kafka', 'PostgreSQL', 'Angular', 'Docker', 'Testcontainers'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/rdv-sante',
+    image: `${BASE}projects/rdv-sante.jpg`,
+    accentColor: 'success',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/rdv-sante.jpg`,
+          titre: 'L’écran de la salle d’attente',
+          texte:
+            'Pensé pour une télévision accrochée au mur, lu debout à trois mètres : une seule information importante — qui est appelé — et les suivants en dessous. Il se met à jour dès que le secrétariat agit, sans rechargement et sans que personne n’y touche.',
+        },
+        {
+          image: `${BASE}projects/rdv-sante-secretariat.jpg`,
+          titre: 'Le secrétariat, en un seul écran',
+          texte:
+            'Les rendez-vous attendus à droite, la file à gauche. Pointer une arrivée fait entrer le patient dans la file ; « Appeler le suivant » le fait passer en consultation. Le rang n’est jamais saisi à la main : il se déduit de l’heure d’arrivée, donc il ne peut pas se désynchroniser.',
+        },
+        {
+          image: `${BASE}projects/rdv-sante-technique.jpg`,
+          titre: 'Le projet explique son propre fonctionnement',
+          texte:
+            'L’application embarque une visite guidée et un écran qui raconte, sans jargon, ce qui a été difficile : deux personnes qui réservent la même seconde, un rappel qui se perd, un message envoyé deux fois. Y compris une erreur que j’ai commise et la façon dont je l’ai trouvée.',
+        },
+      ],
+    },
+  },
   {
     name: 'ConfluenceTerminal',
     tagline: 'Terminal d’analyse fondamentale de niveau institutionnel',
@@ -372,6 +417,7 @@ export const projectsSection = {
   // appartient à leurs commanditaires. Promettre un accès qu'on ne peut pas
   // donner crée une attente qu'il faudra décevoir.
   privateNote: 'Code source privé',
+  codeLabel: 'Code source',
   internalNote: 'Outil interne — non ouvert au public',
   demoLabel: 'Démo live',
 }
@@ -380,16 +426,16 @@ export const projectsSection = {
 
 export const services: Service[] = [
   {
-    title: 'Développement Full Stack sur-mesure',
+    title: 'Digitalisation de processus métier',
     description:
-      'Applications web complètes : architecture, base de données, API, interface et déploiement. TypeScript strict, tests et performance au rendez-vous.',
-    icon: Code2,
+      'Vos fichiers Excel, vos modèles Word et vos allers-retours par e-mail deviennent une application : une seule saisie, des étapes verrouillées, les documents générés et un suivi partagé. Je conserve le format que l’équipe connaît pour que la bascule ne lui coûte rien.',
+    icon: Workflow,
   },
   {
-    title: 'Conception d’agents IA & automatisations',
+    title: 'Applications web métier sur-mesure',
     description:
-      'Agents IA intégrés à vos outils (Groq, Claude, OpenAI) : analyse de documents, assistants métier, workflows automatisés qui font gagner des heures.',
-    icon: Bot,
+      'De l’architecture à la mise en production : base de données, API, interface, comptes et droits d’accès. TypeScript strict, tests et performance au rendez-vous.',
+    icon: Code2,
   },
   {
     title: 'Création de SaaS (MVP → production)',
@@ -398,16 +444,29 @@ export const services: Service[] = [
     icon: Rocket,
   },
   {
-    title: 'Sites web & landing pages performantes',
+    title: 'Applications mobiles Android & iOS',
     description:
-      'Sites vitrines et landing pages orientés conversion : design soigné, SEO, temps de chargement optimisés et intégration analytics.',
-    icon: Globe,
+      'Une seule base de code Flutter pour les deux plateformes, ou du natif Kotlin quand le projet l’exige : notifications push, usage hors-ligne, connexion à vos services existants et publication sur les stores.',
+    icon: Smartphone,
+  },
+  {
+    title: 'Sites vitrines, landing pages & e-commerce',
+    description:
+      'Sites de présentation, pages d’atterrissage orientées conversion et boutiques en ligne (WooCommerce, paiement Stripe) : design soigné, SEO, chargement rapide, et une administration que vous reprenez sans développeur.',
+    icon: ShoppingCart,
+  },
+  {
+    title: 'Agents IA & automatisations',
+    description:
+      'Agents IA intégrés à vos outils (Groq, Claude, OpenAI) : analyse de documents, assistants métier, workflows automatisés qui font gagner des heures.',
+    icon: Bot,
   },
 ]
 
 export const servicesSection = {
   title: 'Services',
-  subtitle: 'Ce que je peux construire pour vous.',
+  subtitle:
+    'Site vitrine, boutique en ligne, SaaS, application métier, application mobile ou processus interne à digitaliser : je prends le projet de la première maquette à la mise en production.',
 }
 
 /* ---------------------------- Expérience -------------------------------- */
@@ -480,6 +539,27 @@ export const contact = {
   },
 }
 
+/** Affiché sous les coordonnées : recruteurs et clients n'ont pas les mêmes
+    questions, et la réponse tient en trois lignes. */
+export const disponibilite = {
+  title: 'Travailler ensemble',
+  items: [
+    {
+      label: 'Freelance',
+      detail: 'Mission au forfait ou en régie, de la conception à la mise en production.',
+    },
+    {
+      label: 'En entreprise, à distance',
+      detail:
+        'Ma préférence : poste entièrement équipé chez moi, disponible sur vos outils et vos rituels d’équipe.',
+    },
+    {
+      label: 'Sur site',
+      detail: 'Possible, en particulier pour les phases de cadrage et les points d’équipe.',
+    },
+  ] as Modalite[],
+}
+
 export const socials: SocialLink[] = [
   {
     label: 'Email',
@@ -507,4 +587,48 @@ export const socials: SocialLink[] = [
 
 export const footer = {
   note: 'Conçu et développé avec React, TypeScript & Three.js.',
+}
+
+/* -------------------- Métadonnées & libellés d'interface ----------------- */
+
+/** Réécrites à chaud à chaque bascule de langue (voir src/i18n.tsx). */
+export const meta = {
+  htmlLang: 'fr',
+  ogLocale: 'fr_FR',
+  title: 'Nathan Princer Diffo — Développeur Full Stack, digitalisation des processus',
+  description:
+    'Développeur Full Stack à Marrakech. Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours — de l’interface au serveur, paiement et mise en ligne compris.',
+  descriptionCourte:
+    'Je transforme des processus qui vivent dans Excel et Word en applications que les équipes utilisent tous les jours.',
+}
+
+/** Tout ce qui n'est pas du contenu éditorial : libellés de boutons, textes
+    alternatifs, messages d'état. Les fonctions servent aux phrases à trou —
+    l'ordre des mots change d'une langue à l'autre, une concaténation dans le
+    composant ne se traduirait pas. */
+export const ui = {
+  skipLink: 'Aller au contenu principal',
+  navAriaLabel: 'Navigation principale',
+  menuOuvrir: 'Ouvrir le menu',
+  menuFermer: 'Fermer le menu',
+  langueLabel: 'Choisir la langue du site',
+  langueNom: { fr: 'Français', en: 'Anglais' } as Record<'fr' | 'en', string>,
+  portraitAlt: (nom: string) => `Portrait de ${nom}`,
+  captureAlt: (projet: string) => `Capture d’écran de ${projet}`,
+  apercuAlt: (projet: string) => `Aperçu à venir pour ${projet}`,
+  voirDemo: 'Voir la démo guidée',
+  demoTitre: 'Démo guidée',
+  demoAria: (projet: string) => `Démo guidée — ${projet}`,
+  demoFermerAria: 'Fermer la démo',
+  fermer: 'Fermer',
+  etape: (n: number, total: number) => `Étape ${n} / ${total}`,
+  precedent: 'Précédent',
+  suivant: 'Suivant',
+  terminer: 'Terminer',
+  demoAvertissementAvant:
+    'Captures d’une instance de démonstration — clients, candidats et dossiers sont',
+  demoAvertissementFort: ' entièrement fictifs',
+  demoAvertissementApres:
+    '. L’outil en production traite des données confidentielles et n’est pas ouvert au public.',
+  mailSujet: (nom: string) => `Contact portfolio — ${nom}`,
 }

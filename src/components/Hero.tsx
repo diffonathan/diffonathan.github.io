@@ -1,12 +1,13 @@
 import { lazy, Suspense } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Download } from 'lucide-react'
-import { hero, identity } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 // Three.js est chargé en différé pour ne pas retarder le premier affichage
 const ThreeBackground = lazy(() => import('./ThreeBackground'))
 
 export default function Hero() {
+  const { hero, identity } = useContenu()
   const reduceMotion = useReducedMotion()
 
   const enter = (delay: number) =>

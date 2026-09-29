@@ -8,12 +8,15 @@ import Services from './components/Services'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { useContenu } from './i18n'
 
 function App() {
+  const { ui } = useContenu()
+
   return (
     <>
       <a href="#main" className="skip-link">
-        Aller au contenu principal
+        {ui.skipLink}
       </a>
       <Torche />
       <Navbar />

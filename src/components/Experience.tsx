@@ -1,8 +1,10 @@
 import Reveal from './ui/Reveal'
 import SectionHeading from './ui/SectionHeading'
-import { experience, experienceSection } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 export default function Experience() {
+  const { experience, experienceSection } = useContenu()
+
   return (
     <section id="experience" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">

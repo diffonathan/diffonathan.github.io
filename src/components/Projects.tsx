@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { ExternalLink, Lock, PlayCircle } from 'lucide-react'
+import { GithubIcon } from './ui/BrandIcons'
 import Reveal from './ui/Reveal'
 import Badge from './ui/Badge'
 import SectionHeading from './ui/SectionHeading'
-import { projects, projectsSection } from '../data/portfolio'
 import type { Project } from '../data/portfolio'
+import { useContenu } from '../i18n'
 import DemoWalkthrough from './DemoWalkthrough'
 
 /* Classes complètes par couleur (Tailwind ne compile pas les classes dynamiques) */
@@ -18,11 +19,13 @@ const placeholderStyles: Record<Project['accentColor'], string> = {
 
 /** Visuel du projet : capture d'écran si fournie, sinon placeholder stylisé. */
 function ProjectVisual({ project }: { project: Project }) {
+  const { ui } = useContenu()
+
   if (project.image) {
     return (
       <img
         src={project.image}
-        alt={`Capture d'écran de ${project.name}`}
+        alt={ui.captureAlt(project.name)}
         loading="lazy"
         className="aspect-video w-full rounded-t-2xl object-cover"
       />
@@ -40,7 +43,7 @@ function ProjectVisual({ project }: { project: Project }) {
     <div
       className={`relative flex aspect-video items-center justify-center overflow-hidden rounded-t-2xl border-b border-border bg-gradient-to-br via-surface to-surface ${placeholderStyles[project.accentColor]}`}
       role="img"
-      aria-label={`Aperçu à venir pour ${project.name}`}
+      aria-label={ui.apercuAlt(project.name)}
     >
       {/* Grille décorative discrète */}
       <div
@@ -60,6 +63,7 @@ function ProjectVisual({ project }: { project: Project }) {
 }
 
 export default function Projects() {
+  const { projects, projectsSection, ui } = useContenu()
   // Projet dont la visite guidee est ouverte (null = aucune).
   const [visite, setVisite] = useState<Project | null>(null)
 
@@ -99,7 +103,7 @@ export default function Projects() {
                         onClick={() => setVisite(project)}
                         className="btn-primary px-4 py-2 text-sm"
                       >
-                        Voir la démo guidée
+                        {ui.voirDemo}
                         <PlayCircle size={15} aria-hidden="true" />
                       </button>
                     ) : (
@@ -120,6 +124,19 @@ export default function Projects() {
                         <Lock size={13} aria-hidden="true" />
                         {projectsSection.internalNote}
                       </span>
+                    )}
+                    {/* Le lien n'apparaît que si le dépôt est vraiment
+                        lisible — voir le champ codeUrl. */}
+                    {project.codeUrl && (
+                      <a
+                        href={project.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary px-4 py-2 text-sm"
+                      >
+                        {projectsSection.codeLabel}
+                        <GithubIcon size={15} aria-hidden="true" />
+                      </a>
                     )}
                     {project.privateSource && (
                       <span className="inline-flex items-center gap-1.5 text-xs text-secondary">

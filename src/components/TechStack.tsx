@@ -1,9 +1,11 @@
 import Reveal from './ui/Reveal'
 import Badge from './ui/Badge'
 import SectionHeading from './ui/SectionHeading'
-import { stackCategories, stackSection } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 export default function TechStack() {
+  const { stackCategories, stackSection } = useContenu()
+
   return (
     <section id="stack" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

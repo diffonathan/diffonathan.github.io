@@ -1,0 +1,522 @@
+/* ============================================================================
+   ENGLISH CONTENT — twin of portfolio.ts
+   ----------------------------------------------------------------------------
+   Same exports, same keys: TypeScript refuses to compile if this file drifts
+   from the French one (see src/i18n.tsx). Only the TEXT differs — icons,
+   colours, image paths, URLs, figures and technology names stay identical.
+   Types are imported rather than redeclared, so there is one definition only.
+============================================================================ */
+
+import {
+  Bot,
+  Code2,
+  Layers,
+  Mail,
+  Megaphone,
+  Phone,
+  Rocket,
+  Server,
+  ShoppingCart,
+  Smartphone,
+  Sparkles,
+  Workflow,
+  Wrench,
+} from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '../components/ui/BrandIcons'
+import type {
+  ExperienceItem,
+  Modalite,
+  Project,
+  Service,
+  SocialLink,
+  Stat,
+  StackCategory,
+} from './portfolio'
+
+const BASE = import.meta.env.BASE_URL
+
+/* --------------------------- Identity ---------------------------------- */
+
+export const identity = {
+  name: 'Nathan Princer Diffo',
+  initials: 'NPD',
+  baseline: 'Full Stack Developer · Business Process Digitalisation',
+  location: 'Marrakech, Morocco',
+  telephone: '+212660179871',
+  telephoneAffiche: '+212 660 179 871',
+  email: 'diffoprincer@gmail.com',
+  availabilityBadge: 'Available — freelance or remote position',
+  // Mirrored on purpose: in English the primary download is the English CV,
+  // and the secondary link points back to the French one.
+  cvUrl: `${BASE}cv-en.pdf`,
+  cvUrlEn: `${BASE}cv.pdf`,
+}
+
+/* ----------------------------- Hero ------------------------------------ */
+
+export const hero = {
+  subtitle:
+    'I turn processes that live in spreadsheets and Word templates into applications ' +
+    'teams actually use every day — from the interface to the server, payment and ' +
+    'go-live included.',
+  ctaPrimary: 'See my work',
+  ctaSecondary: 'Download my CV',
+  cvEnPrefix: 'CV also available ',
+  cvEnLabel: 'in French',
+}
+
+/* --------------------------- Navigation --------------------------------- */
+
+export const navLinks = [
+  { label: 'Home', href: '#accueil' },
+  { label: 'Work', href: '#projets' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Services', href: '#services' },
+  { label: 'Contact', href: '#contact' },
+]
+
+export const navCta = { label: 'Get in touch', href: '#contact' }
+
+/* ----------------------------- About ------------------------------------ */
+
+export const about = {
+  title: 'About',
+  bio: [
+    'I design and ship applications end to end: the interface, the server, the database, payment, go-live — and making sure the people who use it can actually pick it up.',
+    'What I do most often: replace processes that live in spreadsheets and Word templates with a tool the team adopts. An internal tool rarely fails on the technical side — it fails because nobody opens it. That is the part of this job that interests me.',
+  ],
+  photoUrl: `${BASE}profile.jpg`,
+  avatarUrl: `${BASE}avatar.png`,
+}
+
+export const stats: Stat[] = [
+  { value: 3, suffix: '+', label: 'Years of experience' },
+  { value: 10, suffix: '+', label: 'Projects shipped' },
+  { value: 4, suffix: '', label: 'SaaS products built' },
+]
+
+/* --------------------------- Tech stack --------------------------------- */
+
+export const stackSection = {
+  title: 'Tech stack',
+  subtitle: 'The technologies I design, build and ship with.',
+}
+
+export const stackCategories: StackCategory[] = [
+  {
+    title: 'Frontend',
+    icon: Layers,
+    items: [
+      'React',
+      'Angular',
+      'Blade',
+      'Vite',
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'Framer Motion',
+    ],
+  },
+  {
+    title: 'Backend',
+    icon: Server,
+    items: [
+      'Node.js',
+      'FastAPI / Python',
+      'Laravel',
+      'Symfony',
+      'Yii2',
+      'Java / Spring Boot',
+      'Cloudflare Workers',
+      'D1 / KV / Supabase',
+      'Apache Kafka',
+      'Stripe',
+    ],
+  },
+  {
+    title: 'Mobile',
+    icon: Smartphone,
+    items: ['Flutter', 'Dart', 'Kotlin', 'Firebase'],
+  },
+  {
+    title: 'Artificial Intelligence',
+    icon: Sparkles,
+    items: ['AI agent design', 'LLM integration', 'Groq / Claude / OpenAI', 'Automation'],
+  },
+  {
+    title: 'Web & growth',
+    icon: Megaphone,
+    items: ['WordPress / Elementor', 'WooCommerce', 'Systeme.io', 'Sales funnels', 'Envato'],
+  },
+  {
+    title: 'Tools',
+    icon: Wrench,
+    items: ['Git / GitHub', 'GitHub Actions', 'Docker / Caddy', 'Cloudflare Pages', 'Figma'],
+  },
+]
+
+/* ------------------------------ Work ------------------------------------ */
+
+export const projects: Project[] = [
+  {
+    name: 'RDV Santé',
+    tagline: 'Appointment booking and a live waiting queue',
+    description:
+      'In Morocco you still book by phone, then sit in a waiting room with no idea how many people are ahead of you. Here the patient books online and follows their position from their phone, while the front desk runs the day from a single screen. Four independent services that never call each other directly: they exchange events, so if one goes down the others carry on.',
+    tech: ['Java 21', 'Spring Boot', 'Microservices', 'Apache Kafka', 'PostgreSQL', 'Angular', 'Docker', 'Testcontainers'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/rdv-sante',
+    image: `${BASE}projects/rdv-sante.jpg`,
+    accentColor: 'success',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/rdv-sante.jpg`,
+          titre: 'The waiting-room screen',
+          texte:
+            'Built for a television on the wall, read standing up from three metres away: one piece of information that matters — who is being called — and the next few below it. It updates the moment the front desk acts, with no reload and without anyone touching it.',
+        },
+        {
+          image: `${BASE}projects/rdv-sante-secretariat.jpg`,
+          titre: 'The front desk, on one screen',
+          texte:
+            'Expected appointments on the right, the queue on the left. Marking an arrival puts the patient in the queue; “call next” moves them through to the consultation. Position is never typed in — it is derived from arrival time, so it cannot drift out of sync.',
+        },
+        {
+          image: `${BASE}projects/rdv-sante-technique.jpg`,
+          titre: 'The project explains itself',
+          texte:
+            'The application ships with a guided tour and a screen that explains, in plain words, what was hard: two people booking the same second, a reminder going missing, a message sent twice. Including a mistake I made and how I found it.',
+        },
+      ],
+    },
+  },
+  {
+    name: 'ConfluenceTerminal',
+    tagline: 'Institutional-grade fundamental analysis terminal',
+    description:
+      'A directional verdict on 67 assets across 3 horizons, cross-referencing macro data (FRED), institutional positioning (COT/CFTC), energy (EIA), geopolitics (GDELT) and historical backtesting. Accounts, a 30-day trial and Stripe subscriptions; Telegram alerts ahead of high-impact releases.',
+    tech: ['React', 'TypeScript', 'Tailwind', 'Cloudflare Workers', 'D1', 'Stripe', 'Groq', 'TradingView'],
+    demoUrl: 'https://confluenceterminal.hopetraders.fr',
+    image: `${BASE}projects/confluenceterminal.jpg`,
+    accentColor: 'info',
+    privateSource: true,
+  },
+  {
+    name: 'Hope Traders Academy',
+    tagline: 'Trading education and signals platform',
+    description:
+      'A full membership area: live signals with push notifications, a 72-video course unlocked in stages, a weekly webinar, messaging with the team, call booking, an admin area and a certificate. Three Stripe payment plans, installable as an app (PWA).',
+    tech: ['React', 'TypeScript', 'Cloudflare Pages', 'Workers', 'D1 / KV', 'Stripe', 'PWA'],
+    demoUrl: 'https://vip.hopetraders.fr',
+    image: `${BASE}projects/hopetraders.jpg`,
+    accentColor: 'warning',
+    privateSource: true,
+  },
+  {
+    name: 'HopeJournal',
+    tagline: 'Trading journal with an AI coach',
+    description:
+      'A complete journal for traders: MT4/MT5 CSV import, statistics and equity curves, calendar, notebook and PDF export, plus an AI coach that reviews trades to surface recurring patterns.',
+    tech: ['React', 'TypeScript', 'Supabase', 'Groq', 'Recharts'],
+    demoUrl: 'https://hopejournal.hopetraders.fr',
+    image: `${BASE}projects/hopejournal-site.jpg`,
+    accentColor: 'accent',
+    privateSource: true,
+  },
+  {
+    name: 'Project Tracker',
+    tagline: 'AI-assisted tender response pipeline',
+    description:
+      'A business application that industrialises tender responses: automatic extraction of deadlines and scope of supply from the documents, a locked 9-stage workflow, a technical review produced by an LLM as a background job, document generation and duplicate detection.',
+    tech: ['FastAPI', 'Python', 'JavaScript', 'Docker', 'Caddy', 'Groq'],
+    demoUrl: '',
+    internalTool: true,
+    image: `${BASE}demo/tracker-tableau-de-bord.jpg`,
+    accentColor: 'success',
+    privateSource: true,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}demo/tracker-tableau-de-bord.jpg`,
+          titre: 'Steering: where every bid stands',
+          texte:
+            'The dashboard aggregates open tenders: volume handled, conversion rate, committed amounts and breakdown by status. Filters by year and month make it possible to compare two periods without leaving the page.',
+        },
+        {
+          image: `${BASE}demo/tracker-projets.jpg`,
+          titre: 'A locked, nine-stage workflow',
+          texte:
+            'Every bid follows an enforced path, from the NDA through to invoicing. A stage only opens once the previous one is closed: that is what stops a bid going out without a technical review or a mandatory document.',
+        },
+        {
+          image: `${BASE}demo/tracker-documentation.jpg`,
+          titre: 'The documentation lives inside the tool',
+          texte:
+            'Every screen carries its own instructions and a first-run walkthrough. The tool is used by non-technical people: it had to be usable without training.',
+        },
+      ],
+    },
+  },
+  {
+    name: 'Recruitment application',
+    tagline: 'HR management wired into Microsoft 365',
+    description:
+      'A standalone recruitment tool: candidate tracking, generation of eight contractual documents from templates, HR trigram identifiers, GDPR compliance and SharePoint / Microsoft 365 integration. Deployed on a VPS in containers.',
+    tech: ['FastAPI', 'Python', 'Docker', 'Caddy', 'Microsoft Graph', 'Groq'],
+    demoUrl: '',
+    internalTool: true,
+    image: `${BASE}demo/rh-suivi.jpg`,
+    accentColor: 'accent',
+    privateSource: true,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}demo/rh-tableau-de-bord.jpg`,
+          titre: 'From request to open role, in one entry',
+          texte:
+            'The tool reads the email stating the hiring need (or pasted text), pre-fills the role description, then numbers the file, creates its folder structure and generates the requirement form and the job advert in Word and PDF.',
+        },
+        {
+          image: `${BASE}demo/rh-recrutement.jpg`,
+          titre: 'The candidate journey, stage by stage',
+          texte:
+            'Each candidate moves through a pipeline whose current stage physically files their CV in the right sub-folder. The HR trigram is derived from the name and serves as the identifier throughout the process.',
+        },
+        {
+          image: `${BASE}demo/rh-suivi.jpg`,
+          titre: 'Tracking that replaces the spreadsheet',
+          texte:
+            'The tracking table uses the exact columns of the spreadsheet it replaces — and exports to the same format. The switch was designed to impose nothing new on the HR team. A GDPR purge is built in.',
+        },
+      ],
+    },
+  },
+  {
+    name: 'MBO Services',
+    tagline: 'IT services company website — custom WordPress',
+    description:
+      'Corporate site for an IT services company (Cloud, Cybersecurity, Data & AI): information architecture, custom Elementor templates, contact forms and load-time optimisation. Built so the team can maintain and extend it without a developer.',
+    tech: ['WordPress', 'Elementor Pro', 'Custom theme', 'Contact Form 7', 'SEO'],
+    demoUrl: 'https://mboservices.tech',
+    image: `${BASE}projects/mbo-services.jpg`,
+    accentColor: 'info',
+    privateSource: true,
+  },
+  {
+    name: 'M2CG Ingénierie',
+    tagline: 'Corporate site — nuclear and industrial engineering',
+    description:
+      'Corporate site for an engineering firm working in nuclear, energy and industry: areas of expertise, intervention process, careers area and contact. Custom Elementor templates, a strong visual identity and a journey built to generate enquiries.',
+    tech: ['WordPress', 'Elementor Pro', 'Custom theme', 'Contact Form 7', 'SEO'],
+    demoUrl: 'https://lightgreen-sandpiper-369560.hostingersite.com',
+    image: `${BASE}projects/m2cg.jpg`,
+    accentColor: 'warning',
+    privateSource: true,
+  },
+]
+
+export const projectsSection = {
+  title: 'Selected work',
+  subtitle: 'A selection of products designed, built and shipped end to end.',
+  privateNote: 'Private source code',
+  codeLabel: 'Source code',
+  internalNote: 'Internal tool — not open to the public',
+  demoLabel: 'Live demo',
+}
+
+/* ----------------------------- Services --------------------------------- */
+
+export const services: Service[] = [
+  {
+    title: 'Business process digitalisation',
+    description:
+      'Your spreadsheets, Word templates and email ping-pong become one application: entered once, stages locked, documents generated and tracking shared. I keep the format the team already knows so the switch costs them nothing.',
+    icon: Workflow,
+  },
+  {
+    title: 'Custom business web applications',
+    description:
+      'From architecture to go-live: database, API, interface, accounts and access rights. Strict TypeScript, tests and performance throughout.',
+    icon: Code2,
+  },
+  {
+    title: 'SaaS products (MVP → production)',
+    description:
+      'From a validated prototype to a product that takes payment: authentication, Stripe subscriptions, membership area, serverless infrastructure at a controlled cost.',
+    icon: Rocket,
+  },
+  {
+    title: 'Android & iOS mobile apps',
+    description:
+      'A single Flutter codebase for both platforms, or native Kotlin when the project calls for it: push notifications, offline use, connection to your existing services and publication to the stores.',
+    icon: Smartphone,
+  },
+  {
+    title: 'Brochure sites, landing pages & e-commerce',
+    description:
+      'Brochure sites, conversion-focused landing pages and online stores (WooCommerce, Stripe payments): careful design, SEO, fast loading, and an admin you take over without a developer.',
+    icon: ShoppingCart,
+  },
+  {
+    title: 'AI agents & automation',
+    description:
+      'AI agents wired into your tools (Groq, Claude, OpenAI): document analysis, business assistants, automated workflows that save hours.',
+    icon: Bot,
+  },
+]
+
+export const servicesSection = {
+  title: 'Services',
+  subtitle:
+    'A brochure site, an online store, a SaaS product, a business application, a mobile app or an internal process to digitalise: I take the project from the first mockup to production.',
+}
+
+/* ---------------------------- Experience -------------------------------- */
+
+export const experience: ExperienceItem[] = [
+  {
+    role: 'Full Stack Developer',
+    company: 'MBO Services — IT Consulting',
+    period: 'April — September 2026',
+    missions: [
+      'Digitalised two internal processes that ran on spreadsheets and Word templates: tender responses and recruitment. Both applications are in service.',
+      'On a tender, the tool finds the deadline and the scope of supply inside files running to hundreds of pages, and shows the exact passage it took them from.',
+      'On the HR side, the tracker uses the exact columns of the spreadsheet it replaces and exports to the same format: the team switched without changing its habits.',
+      'Rebuilt the corporate website and delivered a client site, both designed to be updated without a developer.',
+    ],
+  },
+  {
+    role: 'Freelance Full Stack Developer',
+    company: 'Hope Traders Academy — contract work',
+    period: '2026',
+    missions: [
+      'Three web products delivered end to end, each with its own marketing site and its application.',
+      'Training and membership platform: sign-up, subscription, courses unlocked in stages, messaging and administration.',
+      'Activity journal and market analysis terminal, both run directly by the client.',
+    ],
+  },
+  {
+    role: 'Full Stack Web Developer',
+    company: 'IAWEB.DEV',
+    period: '2023 — 2025',
+    missions: [
+      'Custom web applications for Bailey Assurances, CRFPE and Interloc: full development, from interface to database.',
+      'Brochure sites and online stores, built from designs supplied by the design teams.',
+      'Worked alongside the design and marketing teams in an agile setup.',
+    ],
+  },
+]
+
+export const experienceSection = {
+  title: 'Experience',
+  subtitle: 'My path in a few key steps.',
+}
+
+/* ----------------------------- Contact ---------------------------------- */
+
+export const contact = {
+  title: 'Contact',
+  subtitle: 'A project, a role, a SaaS idea? Let’s talk — I reply within 24 hours.',
+  formLabels: {
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
+    submit: 'Send message',
+    sending: 'Sending…',
+    success: 'Message sent — I’ll get back to you shortly.',
+    error: 'Sending failed. Please email me directly.',
+    mailtoInfo: 'Your mail client will open with the message pre-filled.',
+    namePlaceholder: 'Your name',
+    emailPlaceholder: 'you@example.com',
+    messagePlaceholder: 'Describe your project or your need…',
+  },
+}
+
+export const disponibilite = {
+  title: 'Working together',
+  items: [
+    {
+      label: 'Freelance',
+      detail: 'Fixed-price or time-and-materials engagements, from design through to production.',
+    },
+    {
+      label: 'Employed, remote',
+      detail:
+        'My preference: a fully equipped workstation at home, available on your tools and your team rituals.',
+    },
+    {
+      label: 'On site',
+      detail: 'Possible, in particular for scoping phases and team meetings.',
+    },
+  ] as Modalite[],
+}
+
+export const socials: SocialLink[] = [
+  {
+    label: 'Email',
+    url: `mailto:${identity.email}`,
+    icon: Mail,
+  },
+  {
+    label: 'Phone',
+    url: `tel:${identity.telephone}`,
+    icon: Phone,
+  },
+  {
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/nathan-princer-diffo',
+    icon: LinkedinIcon,
+  },
+  {
+    label: 'GitHub',
+    url: 'https://github.com/diffonathan',
+    icon: GithubIcon,
+  },
+]
+
+/* ------------------------------ Footer ---------------------------------- */
+
+export const footer = {
+  note: 'Designed and built with React, TypeScript & Three.js.',
+}
+
+/* -------------------- Metadata & interface labels ----------------------- */
+
+export const meta = {
+  htmlLang: 'en',
+  ogLocale: 'en_US',
+  title: 'Nathan Princer Diffo — Full Stack Developer, business process digitalisation',
+  description:
+    'Full Stack Developer based in Marrakech. I turn processes that live in spreadsheets and Word templates into applications teams use every day — from the interface to the server, payment and go-live included.',
+  descriptionCourte:
+    'I turn processes that live in spreadsheets and Word templates into applications teams use every day.',
+}
+
+export const ui = {
+  skipLink: 'Skip to main content',
+  navAriaLabel: 'Main navigation',
+  menuOuvrir: 'Open menu',
+  menuFermer: 'Close menu',
+  langueLabel: 'Choose the site language',
+  langueNom: { fr: 'French', en: 'English' } as Record<'fr' | 'en', string>,
+  portraitAlt: (nom: string) => `Portrait of ${nom}`,
+  captureAlt: (projet: string) => `Screenshot of ${projet}`,
+  apercuAlt: (projet: string) => `Preview coming soon for ${projet}`,
+  voirDemo: 'Watch the guided demo',
+  demoTitre: 'Guided demo',
+  demoAria: (projet: string) => `Guided demo — ${projet}`,
+  demoFermerAria: 'Close the demo',
+  fermer: 'Close',
+  etape: (n: number, total: number) => `Step ${n} of ${total}`,
+  precedent: 'Previous',
+  suivant: 'Next',
+  terminer: 'Finish',
+  demoAvertissementAvant:
+    'Screenshots from a demonstration instance — clients, candidates and files are',
+  demoAvertissementFort: ' entirely fictional',
+  demoAvertissementApres:
+    '. The production tool handles confidential data and is not open to the public.',
+  mailSujet: (nom: string) => `Portfolio enquiry — ${nom}`,
+}

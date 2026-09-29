@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { about, identity, navCta, navLinks } from '../data/portfolio'
+import { useContenu } from '../i18n'
+import BasculeLangue from './BasculeLangue'
 
 export default function Navbar() {
+  const { about, identity, navCta, navLinks, ui } = useContenu()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('#accueil')
   const [avatarErreur, setAvatarErreur] = useState(false)
@@ -23,7 +25,7 @@ export default function Navbar() {
     )
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [])
+  }, [navLinks])
 
   const closeMobile = () => setMobileOpen(false)
 
@@ -31,7 +33,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
       <nav
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
-        aria-label="Navigation principale"
+        aria-label={ui.navAriaLabel}
       >
         {/* Logo */}
         <a href="#accueil" className="flex items-center gap-3" onClick={closeMobile}>
@@ -78,6 +80,10 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          {/* Visible à toutes les largeurs : un visiteur anglophone ne doit pas
+              avoir à ouvrir le menu pour comprendre qu'il peut changer. */}
+          <BasculeLangue />
+
           <a href={navCta.href} className="btn-primary hidden px-5 py-2.5 md:inline-flex">
             {navCta.label}
           </a>
@@ -88,7 +94,7 @@ export default function Navbar() {
             className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg text-secondary transition-colors hover:text-foreground md:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            aria-label={mobileOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-label={mobileOpen ? ui.menuFermer : ui.menuOuvrir}
             onClick={() => setMobileOpen((open) => !open)}
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}

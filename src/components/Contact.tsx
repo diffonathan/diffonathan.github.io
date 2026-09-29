@@ -3,7 +3,7 @@ import type { FormEvent } from 'react'
 import { Send } from 'lucide-react'
 import Reveal from './ui/Reveal'
 import SectionHeading from './ui/SectionHeading'
-import { contact, identity, socials } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error' | 'mailto'
 
@@ -15,6 +15,7 @@ type FormStatus = 'idle' | 'sending' | 'success' | 'error' | 'mailto'
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined
 
 export default function Contact() {
+  const { contact, disponibilite, identity, socials, ui } = useContenu()
   const [status, setStatus] = useState<FormStatus>('idle')
   const labels = contact.formLabels
 
@@ -26,7 +27,7 @@ export default function Contact() {
 
     // Repli sans backend : ouvre le client mail avec le message pré-rempli
     if (!FORMSPREE_ENDPOINT) {
-      const subject = encodeURIComponent(`Contact portfolio — ${data.get('name')}`)
+      const subject = encodeURIComponent(ui.mailSujet(String(data.get('name'))))
       const body = encodeURIComponent(
         `${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`,
       )
@@ -78,6 +79,28 @@ export default function Contact() {
                   </span>
                 </a>
               ))}
+
+              {/* Recruteurs et clients ne posent pas la même question ; la
+                  réponse tient en trois lignes, autant la donner ici. */}
+              <div className="card p-5">
+                <h3 className="text-sm font-semibold">{disponibilite.title}</h3>
+                <ul className="mt-3 space-y-3">
+                  {disponibilite.items.map((item) => (
+                    <li key={item.label} className="flex gap-2.5">
+                      <span
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm">
+                        <span className="font-medium">{item.label}</span>
+                        <span className="mt-0.5 block leading-relaxed text-secondary">
+                          {item.detail}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </Reveal>
 

@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { animate, useInView, useReducedMotion } from 'framer-motion'
 import Reveal from './ui/Reveal'
 import SectionHeading from './ui/SectionHeading'
-import { about, identity, stats } from '../data/portfolio'
 import type { Stat } from '../data/portfolio'
+import { useContenu } from '../i18n'
 
 /** Compteur animé (0 → valeur) déclenché à l'apparition, en tabular-nums. */
 function StatCard({ stat, delay }: { stat: Stat; delay: number }) {
@@ -36,6 +36,7 @@ function StatCard({ stat, delay }: { stat: Stat; delay: number }) {
 }
 
 export default function About() {
+  const { about, identity, stats, ui } = useContenu()
   const [photoError, setPhotoError] = useState(false)
 
   return (
@@ -58,7 +59,7 @@ export default function About() {
               ) : (
                 <img
                   src={about.photoUrl}
-                  alt={`Portrait de ${identity.name}`}
+                  alt={ui.portraitAlt(identity.name)}
                   width={208}
                   height={208}
                   loading="lazy"
