@@ -193,6 +193,40 @@ export const projects: Project[] = [
     },
   },
   {
+    name: 'Factura',
+    tagline: 'Morocco-compliant invoicing, with no gaps in the numbering',
+    description:
+      'Moroccan micro-businesses still invoice in Word or Excel. Three things always end up happening: a number gets skipped, a mandatory legal mention is forgotten, and nobody knows who has not paid. The first two are expensive during a tax audit. Here the database itself refuses to create two invoices with the same number, to rewrite an issued invoice, or to record a payment larger than the amount due — and dunning letters go out on their own, never twice.',
+    tech: ['PHP 8.4', 'Laravel 13', 'Vue 3', 'Inertia', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'PHPUnit'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/factura',
+    image: `${BASE}projects/factura.jpg`,
+    accentColor: 'warning',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/factura.jpg`,
+          titre: 'What came in, and what is missing',
+          texte:
+            'Four figures and three colours whose meaning never changes: green is cash actually received, red is past its due date, grey is what we are still waiting for without concern. Gold is reserved for things you click — so an amount is never gold.',
+        },
+        {
+          image: `${BASE}projects/factura-document.jpg`,
+          titre: 'An invoice, exactly as it will be handed over',
+          texte:
+            'Legal identifiers for both issuer and client, VAT broken down by rate, balance due and payment history. Once issued it is frozen: you correct it with a credit note, never by rewriting it. That is the law, and it is the first thing an auditor checks.',
+        },
+        {
+          image: `${BASE}projects/factura-visite.jpg`,
+          titre: 'The application explains its own trade',
+          texte:
+            'A seven-step guided tour opens on the first visit. It starts with the problem — why a spreadsheet cannot hold a legal numbering series — then walks through the screens and ends with the technologies used. No jargon: the intended reader is not a developer.',
+        },
+      ],
+    },
+  },
+  {
     name: 'ConfluenceTerminal',
     tagline: 'Institutional-grade fundamental analysis terminal',
     description:

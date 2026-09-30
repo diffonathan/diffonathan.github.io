@@ -282,6 +282,40 @@ export const projects: Project[] = [
     },
   },
   {
+    name: 'Factura',
+    tagline: 'Facturation conforme au Maroc, sans trou de numérotation',
+    description:
+      'Une très petite entreprise marocaine facture encore sous Word ou Excel. Trois choses finissent toujours par arriver : on saute un numéro, on oublie une mention obligatoire, on ne sait plus qui n’a pas payé. Les deux premières coûtent cher lors d’un contrôle fiscal. Ici, la base de données elle-même refuse de créer deux factures au même numéro, de réécrire une facture émise ou d’encaisser plus que le montant dû — et les relances partent toutes seules, jamais deux fois.',
+    tech: ['PHP 8.4', 'Laravel 13', 'Vue 3', 'Inertia', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'PHPUnit'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/factura',
+    image: `${BASE}projects/factura.jpg`,
+    accentColor: 'warning',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/factura.jpg`,
+          titre: 'Ce qui est rentré, ce qui manque',
+          texte:
+            'Quatre chiffres et trois couleurs qui ne changent jamais de sens : le vert est l’argent encaissé, le rouge ce qui a dépassé son échéance, le gris ce qu’on attend sans inquiétude. L’or est réservé à ce sur quoi on clique — un montant n’est donc jamais doré.',
+        },
+        {
+          image: `${BASE}projects/factura-document.jpg`,
+          titre: 'Une facture, telle qu’elle sera remise',
+          texte:
+            'Mentions légales de l’émetteur et du client, TVA ventilée par taux, reste dû et historique des règlements. Une fois émise, elle est figée : on la corrige par un avoir, jamais en la réécrivant. C’est la loi, et c’est ce qu’un contrôleur vérifie en premier.',
+        },
+        {
+          image: `${BASE}projects/factura-visite.jpg`,
+          titre: 'L’application explique son propre métier',
+          texte:
+            'Une visite guidée en sept étapes s’ouvre à la première venue. Elle commence par le problème — pourquoi un tableur ne peut pas tenir une numérotation légale — puis montre les écrans, et finit par les technologies employées. Sans jargon : le lecteur visé n’est pas développeur.',
+        },
+      ],
+    },
+  },
+  {
     name: 'ConfluenceTerminal',
     tagline: 'Terminal d’analyse fondamentale de niveau institutionnel',
     description:
