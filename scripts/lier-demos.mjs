@@ -35,6 +35,8 @@ const PROJETS = {
 const demande = new Map()
 
 for (const argument of process.argv.slice(2)) {
+    if (argument === '--sans-verification') continue
+
     const correspondance = argument.match(/^--([a-z-]+)=(.+)$/)
 
     if (!correspondance || !PROJETS[correspondance[1]]) {
@@ -66,6 +68,56 @@ for (const [projet, adresse] of demande) {
     }
 
     const propre = url.href.replace(/\/$/, '')
+
+    // On VÉRIFIE que l'adresse répond avant de l'inscrire.
+    //
+    // Sans ce contrôle, une adresse d'exemple laissée telle quelle — ou un
+    // caractère de travers — produit un bouton qui mène nulle part sur un
+    // portfolio que des recruteurs ouvrent. C'est pire que pas de bouton du
+    // tout : un lien mort donne à penser que le projet l'est aussi.
+    //
+    // Les adresses d'EXEMPLE d'abord. Un premier essai acceptait
+    // « https://VOTRE-ADRESSE.onrender.com » : l'hébergeur répond sur
+    // n'importe quel sous-domaine, donc « le serveur répond » ne prouve rien.
+    if (/votre|exemple|adresse|xxx/i.test(url.hostname)) {
+        console.error(`\n« ${propre} » est une adresse d'exemple, pas la vôtre.`)
+        console.error("Déployez l'application, puis reprenez l'adresse que l'hébergeur donne.")
+        process.exit(1)
+    }
+
+    // Puis la vérification réelle. Un hébergement gratuit endort son service et
+    // le réveil dépasse parfois la minute : on accepte les pages d'attente et
+    // même un refus d'authentification — ce qu'on cherche, c'est qu'une
+    // application existe là.
+    //
+    // Le 404 est le seul refus : c'est ce que répond l'hébergeur pour un
+    // sous-domaine qui ne correspond à aucun service.
+    const forcer = process.argv.includes('--sans-verification')
+
+    process.stdout.write(`  vérification de ${propre}… `)
+
+    try {
+        const reponse = await fetch(propre, {
+            method: 'GET',
+            redirect: 'follow',
+            signal: AbortSignal.timeout(90_000),
+        })
+
+        if (reponse.status === 404) {
+            console.log('404')
+            console.error(`\nAucun service à l'adresse « ${propre} » : l'hébergeur répond 404.`)
+            console.error("L'application n'est probablement pas déployée sous ce nom.")
+            console.error('Pour passer outre : ajouter --sans-verification')
+            if (!forcer) process.exit(1)
+        } else {
+            console.log(`répond (${reponse.status})`)
+        }
+    } catch (erreur) {
+        console.log('injoignable')
+        console.error(`\nAdresse injoignable : « ${propre} » — ${erreur.message}`)
+        console.error('Pour passer outre : ajouter --sans-verification')
+        if (!forcer) process.exit(1)
+    }
 
     for (const fichier of MODULES) {
         const source = readFileSync(fichier, 'utf8')
