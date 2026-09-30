@@ -358,6 +358,7 @@ export const projectsSection = {
   codeLabel: 'Source code',
   internalNote: 'Internal tool — not open to the public',
   demoLabel: 'Live demo',
+  demoEveilNote: 'Free hosting: the first visit takes about a minute while the server wakes up.',
 }
 
 /* ----------------------------- Services --------------------------------- */

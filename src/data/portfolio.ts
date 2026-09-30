@@ -79,6 +79,13 @@ export interface Project {
       pas. La démonstration guidée, sur données fictives, montre davantage sans
       rien divulguer. */
   internalTool?: boolean
+  /** L'application dort quand personne ne la visite.
+      Les hébergements gratuits endorment un service après quelques minutes
+      d'inactivité ; le réveil prend 40 à 60 secondes. Le dire évite qu'une
+      page blanche d'une minute passe pour une panne — c'est la différence
+      entre « c'est lent » et « c'est cassé ». */
+  demoEveil?: boolean
+
   /** Visite guidée — pour les outils métier qui ne peuvent pas être ouverts
       au public (ils traitent des candidats et des appels d'offres réels). */
   demo?: DemoGuidee
@@ -454,6 +461,7 @@ export const projectsSection = {
   codeLabel: 'Code source',
   internalNote: 'Outil interne — non ouvert au public',
   demoLabel: 'Démo live',
+  demoEveilNote: 'Hébergement gratuit : la première ouverture prend environ une minute, le temps que le serveur se réveille.',
 }
 
 /* ----------------------------- Services --------------------------------- */

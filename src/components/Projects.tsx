@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ExternalLink, Lock, PlayCircle } from 'lucide-react'
+import { Clock, ExternalLink, Lock, PlayCircle } from 'lucide-react'
 import { GithubIcon } from './ui/BrandIcons'
 import Reveal from './ui/Reveal'
 import Badge from './ui/Badge'
@@ -97,7 +97,16 @@ export default function Projects() {
                     {/* Un outil metier a une visite guidee plutot qu'un lien :
                         son URL mene a un ecran de connexion, pas a une demo.
                         L'etiqueter « Demo live » induirait en erreur. */}
-                    {project.demo ? (
+                    {/* Visite guidée ET démo en ligne peuvent coexister, et
+                        c'était l'erreur ici : le ternaire n'en montrait
+                        qu'une, donc un projet doté des deux masquait son lien
+                        en ligne sans qu'on s'en aperçoive.
+
+                        Les deux ont leur usage. La visite guidée s'ouvre
+                        instantanément et raconte ; l'application en ligne
+                        prouve. Un recruteur pressé prend la première, un
+                        recruteur technique la seconde. */}
+                    {project.demo && (
                       <button
                         type="button"
                         onClick={() => setVisite(project)}
@@ -106,18 +115,18 @@ export default function Projects() {
                         {ui.voirDemo}
                         <PlayCircle size={15} aria-hidden="true" />
                       </button>
-                    ) : (
-                      project.demoUrl && (
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-primary px-4 py-2 text-sm"
-                        >
-                          {projectsSection.demoLabel}
-                          <ExternalLink size={15} aria-hidden="true" />
-                        </a>
-                      )
+                    )}
+
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`px-4 py-2 text-sm ${project.demo ? 'btn-secondary' : 'btn-primary'}`}
+                      >
+                        {projectsSection.demoLabel}
+                        <ExternalLink size={15} aria-hidden="true" />
+                      </a>
                     )}
                     {project.internalTool && (
                       <span className="inline-flex items-center gap-1.5 text-xs text-secondary">
@@ -142,6 +151,17 @@ export default function Projects() {
                       <span className="inline-flex items-center gap-1.5 text-xs text-secondary">
                         <Lock size={13} aria-hidden="true" />
                         {projectsSection.privateNote}
+                      </span>
+                    )}
+
+                    {/* Écrit en toutes lettres, et non en infobulle : une
+                        infobulle n'existe pas sur un téléphone, et c'est
+                        justement là qu'une minute d'écran blanc décourage le
+                        plus. Dire l'attente la rend acceptable. */}
+                    {project.demoUrl && project.demoEveil && (
+                      <span className="inline-flex items-center gap-1.5 text-xs text-secondary">
+                        <Clock size={13} aria-hidden="true" />
+                        {projectsSection.demoEveilNote}
                       </span>
                     )}
                   </div>
