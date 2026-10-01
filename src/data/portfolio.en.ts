@@ -212,6 +212,12 @@ export const projects: Project[] = [
             'Four figures and three colours whose meaning never changes: green is cash actually received, red is past its due date, grey is what we are still waiting for without concern. Gold is reserved for things you click — so an amount is never gold.',
         },
         {
+          image: `${BASE}projects/factura-creation.jpg`,
+          titre: 'Where an invoice is actually made',
+          texte:
+            'Two lines, two units, VAT and discount per line. The total on screen is computed exactly as the database will compute it — rounded to the centime line by line, then summed — so nothing shifts once it is saved. The two buttons state the only distinction that matters: a draft can still be edited, while issuing assigns the legal number and freezes everything.',
+        },
+        {
           image: `${BASE}projects/factura-document.jpg`,
           titre: 'An invoice, exactly as it will be handed over',
           texte:

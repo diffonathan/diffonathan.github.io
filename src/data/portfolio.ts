@@ -308,6 +308,12 @@ export const projects: Project[] = [
             'Quatre chiffres et trois couleurs qui ne changent jamais de sens : le vert est l’argent encaissé, le rouge ce qui a dépassé son échéance, le gris ce qu’on attend sans inquiétude. L’or est réservé à ce sur quoi on clique — un montant n’est donc jamais doré.',
         },
         {
+          image: `${BASE}projects/factura-creation.jpg`,
+          titre: 'Là où l’on fabrique une facture',
+          texte:
+            'Deux lignes, deux unités, la TVA et la remise ligne par ligne. Le total affiché est calculé exactement comme la base le fera — arrondi au centime à chaque ligne, puis sommé — pour qu’aucun écart n’apparaisse après l’enregistrement. Les deux boutons disent la seule différence qui compte : un brouillon se modifie, une émission attribue le numéro légal et fige tout.',
+        },
+        {
           image: `${BASE}projects/factura-document.jpg`,
           titre: 'Une facture, telle qu’elle sera remise',
           texte:

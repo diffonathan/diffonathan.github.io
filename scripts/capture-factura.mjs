@@ -25,8 +25,72 @@ mkdirSync(DEST, { recursive: true });
 const BASE = 'http://localhost:8000';
 const COMPTE = { email: 'demo@factura.ma', motDePasse: 'demonstration' };
 
+/**
+ * Pose une valeur dans un champ lié par `v-model`, et PRÉVIENT Vue.
+ *
+ * Écrire `el.value` ne suffit pas : Vue ne surveille pas la propriété, il
+ * écoute l'événement `input`. Sans lui, l'écran afficherait la bonne valeur
+ * pendant que le modèle garde l'ancienne — et les totaux resteraient à zéro
+ * sur une facture qui semble remplie. C'est le même piège que sur l'écran de
+ * connexion, plus bas.
+ */
+function poserDansLePage(el, valeur) {
+  if (!el) return;
+  el.value = valeur;
+  el.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
 const ECRANS = [
   { nom: 'factura', chemin: '/', attendre: '[data-visite="chiffres"]' },
+  {
+    // L'écran que la fiche projet ne montrait pas — alors que c'est l'endroit
+    // où l'on fabrique une facture, donc le cœur du produit.
+    //
+    // On le photographie REMPLI : un formulaire vide ne prouve rien, tandis
+    // qu'un document à deux lignes avec ses totaux calculés montre d'un coup
+    // d'œil la remise, la TVA par ligne et le total TTC.
+    nom: 'factura-creation',
+    chemin: '/documents/nouveau',
+    attendre: 'input[placeholder="Désignation"]',
+    preparer: async (page) => {
+      await page.evaluate(() => {
+        const bouton = [...document.querySelectorAll('button')].find((b) =>
+          b.textContent.includes('Ajouter une ligne'),
+        );
+        bouton?.click();
+      });
+      await page.waitForFunction(
+        () => document.querySelectorAll('input[placeholder="Désignation"]').length >= 2,
+        { timeout: 10_000 },
+      );
+
+      await page.evaluate((poserSource) => {
+        const poser = new Function(`return (${poserSource})`)();
+
+        poser(
+          document.querySelector('input[placeholder="Refonte du site institutionnel"]'),
+          'Refonte du site institutionnel',
+        );
+
+        // Un vrai devis de refonte : un forfait, puis des jours de formation.
+        // Deux unités différentes, pour que la colonne « unité » ait un sens.
+        const contenu = [
+          ['Conception et intégration de la page d’accueil', '1', 'forfait', '18000'],
+          ['Formation à l’outil de publication', '2', 'jour', '2500'],
+        ];
+
+        document.querySelectorAll('input[placeholder="Désignation"]').forEach((champ, i) => {
+          const ligne = champ.closest('div.rounded-xl');
+          if (!ligne || !contenu[i]) return;
+          const champs = ligne.querySelectorAll('input');
+          contenu[i].forEach((valeur, j) => poser(champs[j], valeur));
+        });
+      }, poserDansLePage.toString());
+
+      // Les totaux sont calculés par Vue : on leur laisse un cycle de rendu.
+      await new Promise((r) => setTimeout(r, 400));
+    },
+  },
   { nom: 'factura-document', chemin: '/documents/2', attendre: 'table' },
   { nom: 'factura-visite', chemin: '/', visite: true },
 ];
@@ -87,6 +151,7 @@ try {
 
     if (e.attendre) await page.waitForSelector(e.attendre, { timeout: 10_000 });
     if (e.visite) await page.waitForSelector('[role="dialog"]', { timeout: 10_000 });
+    if (e.preparer) await e.preparer(page);
 
     // Les fontes distantes et les transitions ont besoin d'un instant. Sans
     // cette pause, on photographie une page en cours d'apparition — texte à
