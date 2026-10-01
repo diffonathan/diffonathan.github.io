@@ -268,6 +268,12 @@ export const projects: Project[] = [
     demo: {
       etapes: [
         {
+          image: `${BASE}projects/rdv-sante-reservation.jpg`,
+          titre: 'Le rendez-vous se prend en trois gestes',
+          texte:
+            'Une clinique, un praticien, un créneau — puis trois champs. Les horaires déjà pris ne sont pas proposés, et deux patients qui visent la même case ne peuvent pas réussir tous les deux : c’est un index unique partiel qui l’interdit dans la base, pas une vérification dans le code. Le bandeau rappelle que tout est fictif — une application de santé ne se démontre pas sur de vraies données.',
+        },
+        {
           image: `${BASE}projects/rdv-sante.jpg`,
           titre: 'L’écran de la salle d’attente',
           texte:

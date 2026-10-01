@@ -172,6 +172,12 @@ export const projects: Project[] = [
     demo: {
       etapes: [
         {
+          image: `${BASE}projects/rdv-sante-reservation.jpg`,
+          titre: 'Booking takes three moves',
+          texte:
+            'A clinic, a practitioner, a slot — then three fields. Times already taken are never offered, and two patients aiming at the same one cannot both succeed: a partial unique index forbids it inside the database, not a check in the code. The banner says plainly that everything is fictional — a health application is not demonstrated on real data.',
+        },
+        {
           image: `${BASE}projects/rdv-sante.jpg`,
           titre: 'The waiting-room screen',
           texte:
