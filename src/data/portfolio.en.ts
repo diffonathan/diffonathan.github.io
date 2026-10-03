@@ -164,7 +164,8 @@ export const projects: Project[] = [
     description:
       'In Morocco you still book by phone, then sit in a waiting room with no idea how many people are ahead of you. Here the patient books online and follows their position from their phone, while the front desk runs the day from a single screen. Four independent services that never call each other directly: they exchange events, so if one goes down the others carry on.',
     tech: ['Java 21', 'Spring Boot', 'Microservices', 'Apache Kafka', 'PostgreSQL', 'Angular', 'Docker', 'Testcontainers'],
-    demoUrl: '',
+    demoUrl: 'https://rdv-sante.onrender.com',
+    demoEveil: true,
     codeUrl: 'https://github.com/diffonathan/rdv-sante',
     image: `${BASE}projects/rdv-sante.jpg`,
     accentColor: 'success',

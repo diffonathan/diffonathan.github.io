@@ -260,7 +260,8 @@ export const projects: Project[] = [
     description:
       'Au Maroc, on prend rendez-vous par téléphone et on attend en salle sans savoir combien de personnes précèdent. Ici, le patient réserve en ligne et suit sa position depuis son téléphone ; le secrétariat pilote la journée depuis un seul écran. Quatre services indépendants qui ne s’appellent jamais directement : ils s’échangent des événements, et si l’un tombe les autres continuent.',
     tech: ['Java 21', 'Spring Boot', 'Microservices', 'Apache Kafka', 'PostgreSQL', 'Angular', 'Docker', 'Testcontainers'],
-    demoUrl: '',
+    demoUrl: 'https://rdv-sante.onrender.com',
+    demoEveil: true,
     codeUrl: 'https://github.com/diffonathan/rdv-sante',
     image: `${BASE}projects/rdv-sante.jpg`,
     accentColor: 'success',
