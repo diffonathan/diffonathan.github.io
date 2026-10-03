@@ -300,7 +300,8 @@ export const projects: Project[] = [
     description:
       'Une très petite entreprise marocaine facture encore sous Word ou Excel. Trois choses finissent toujours par arriver : on saute un numéro, on oublie une mention obligatoire, on ne sait plus qui n’a pas payé. Les deux premières coûtent cher lors d’un contrôle fiscal. Ici, la base de données elle-même refuse de créer deux factures au même numéro, de réécrire une facture émise ou d’encaisser plus que le montant dû — et les relances partent toutes seules, jamais deux fois.',
     tech: ['PHP 8.4', 'Laravel 13', 'Vue 3', 'Inertia', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'PHPUnit'],
-    demoUrl: '',
+    demoUrl: 'https://factura-32dx.onrender.com',
+    demoEveil: true,
     codeUrl: 'https://github.com/diffonathan/factura',
     image: `${BASE}projects/factura.jpg`,
     accentColor: 'warning',
