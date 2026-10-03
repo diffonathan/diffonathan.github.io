@@ -204,7 +204,7 @@ export const projects: Project[] = [
     description:
       'Moroccan micro-businesses still invoice in Word or Excel. Three things always end up happening: a number gets skipped, a mandatory legal mention is forgotten, and nobody knows who has not paid. The first two are expensive during a tax audit. Here the database itself refuses to create two invoices with the same number, to rewrite an issued invoice, or to record a payment larger than the amount due — and dunning letters go out on their own, never twice.',
     tech: ['PHP 8.4', 'Laravel 13', 'Vue 3', 'Inertia', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'PHPUnit'],
-    demoUrl: 'https://factura-32dx.onrender.com',
+    demoUrl: 'https://factura-eu.onrender.com',
     demoEveil: true,
     codeUrl: 'https://github.com/diffonathan/factura',
     image: `${BASE}projects/factura.jpg`,
