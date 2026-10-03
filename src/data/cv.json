@@ -1,7 +1,7 @@
 {
   "nom": "Nathan Princer Diffo",
   "titre": "Développeur Full Stack — Digitalisation des processus métier",
-  "accroche": "Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours. *Huit applications et sites que j'ai conçus et livrés sont en ligne.*",
+  "accroche": "Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours. *Dix applications et sites que j'ai conçus et livrés sont en ligne*, dont deux au code entièrement ouvert.",
   "contact": {
     "lieu": "Marrakech, Maroc",
     "telephone": "+212 660 179 871",
@@ -32,8 +32,6 @@
           "lignes": [
             "Deux activités de l'entreprise reposaient sur des fichiers Excel partagés et des modèles Word recopiés à la main : la réponse aux appels d'offres et le recrutement. *J'ai conçu, développé et mis en service les deux applications qui les remplacent.*",
             "Sur un appel d'offres, la date limite et le périmètre étaient cherchés à la main dans des dossiers de plusieurs centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire* : il ne reste qu'à valider.",
-            "Un dossier ne peut plus partir en oubliant une étape obligatoire — le parcours est verrouillé, du premier document jusqu'à la facturation.",
-            "Côté recrutement, le suivi et le classement des candidatures ne peuvent plus diverger : faire avancer un candidat range automatiquement son dossier. Les documents d'embauche sont produits depuis des modèles au lieu d'être recopiés.",
             "*L'équipe RH a basculé sans rien changer à ses habitudes* — le nouveau suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format."
           ]
         },
@@ -63,19 +61,35 @@
       "titre": "Ce que j'ai livré",
       "entrees": [
         {
+          "titre": "Factura — facturation conforme au Maroc",
+          "sousTitre": "Projet personnel · code public · en ligne",
+          "lien": "github.com/diffonathan/factura",
+          "lignes": [
+            "PHP 8.4, Laravel 13, Vue 3 et PostgreSQL. *Le numéro légal est réservé dans la même transaction que la facture* : un échec ne consomme rien, et la série reste sans trou.",
+            "La base refuse elle-même deux factures au même numéro, la réécriture d'un document émis ou un encaissement supérieur au dû. Export PDF conforme, API REST documentée. *103 tests, 246 assertions.*"
+          ]
+        },
+        {
+          "titre": "RDV Santé — rendez-vous et file d'attente en temps réel",
+          "sousTitre": "Projet personnel · code public · en ligne",
+          "lien": "github.com/diffonathan/rdv-sante",
+          "lignes": [
+            "Java 21, Spring Boot 4, Angular 22, Apache Kafka et PostgreSQL. Quatre services autonomes qui s'échangent des événements au lieu de s'appeler : *si l'un tombe les autres continuent*.",
+            "*Un outbox transactionnel* garantit qu'aucun événement n'est perdu ni émis deux fois ; un index unique partiel interdit dans la base que deux patients prennent le même créneau. Tests sur PostgreSQL et Kafka réels."
+          ]
+        },
+        {
           "titre": "Réponse aux appels d'offres — outil interne",
           "sousTitre": "MBO Services · en service",
           "lignes": [
-            "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes imposées, tableau de bord des affaires en cours.",
-            "*Conçu pour des utilisateurs non techniques* — chaque écran embarque son mode d'emploi et une visite guidée à la première connexion."
+            "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes imposées, tableau de bord des affaires en cours. *Conçu pour des utilisateurs non techniques* — chaque écran embarque son mode d'emploi et une visite guidée à la première connexion."
           ]
         },
         {
           "titre": "Recrutement — du besoin exprimé à l'arrivée du candidat",
           "sousTitre": "MBO Services · en service",
           "lignes": [
-            "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage automatique.",
-            "Conforme au RGPD — les données des candidats sont relancées puis supprimées automatiquement à l'échéance."
+            "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage automatique. Conforme au RGPD — les données des candidats sont relancées puis supprimées automatiquement à l'échéance."
           ]
         },
         {
@@ -83,8 +97,7 @@
           "sousTitre": "Hope Traders Academy · site et application",
           "lien": "vip.hopetraders.fr",
           "lignes": [
-            "Inscription, paiement par abonnement, cours qui s'ouvrent progressivement, messagerie avec l'équipe et espace d'administration.",
-            "Consultable au navigateur et *installable sur téléphone* comme une application."
+            "Inscription, paiement par abonnement, cours qui s'ouvrent progressivement, messagerie avec l'équipe et espace d'administration. Consultable au navigateur et *installable sur téléphone* comme une application."
           ]
         },
         {
@@ -95,8 +108,7 @@
             "journal.hopetraders.fr"
           ],
           "lignes": [
-            "Importe l'historique d'un compte et le restitue en statistiques, courbes et calendrier ; carnet de notes et export des rapports en PDF.",
-            "Un assistant relit les opérations et *fait ressortir ce qui revient* — les habitudes qu'on répète sans les voir."
+            "Importe l'historique d'un compte et le restitue en statistiques, courbes et calendrier ; carnet de notes et export des rapports en PDF. Un assistant relit les opérations et *fait ressortir ce qui revient* — les habitudes qu'on répète sans les voir."
           ]
         },
         {
@@ -105,18 +117,6 @@
           "lien": "confluenceterminal.hopetraders.fr",
           "lignes": [
             "Rassemble *cinq sources de données publiques dispersées* et les présente en une seule lecture, sur 67 marchés suivis. Comptes, essai gratuit, abonnement et alertes avant les publications importantes."
-          ]
-        },
-        {
-          "titre": "Deux sites corporate sur WordPress",
-          "sousTitre": "MBO Services · M2CG Ingénierie",
-          "lien": [
-            "mboservices.tech",
-            "lightgreen-sandpiper-369560.hostingersite.com"
-          ],
-          "lignes": [
-            "Une société de services informatiques et un bureau d'ingénierie : arborescence, pages d'expertise, formulaires de contact et temps de chargement.",
-            "*Gabarits sur-mesure plutôt qu'empilement d'extensions* — les équipes font vivre leurs pages elles-mêmes, sans développeur."
           ]
         }
       ]
@@ -128,20 +128,30 @@
         {
           "titre": "Langages",
           "lignes": [
-            "JavaScript · TypeScript · Python · PHP · SQL"
+            "Java · TypeScript · JavaScript",
+            "PHP · Python · SQL"
           ]
         },
         {
           "titre": "Développement web",
           "lignes": [
-            "React · FastAPI · Laravel · Node.js",
+            "Spring Boot · Laravel · FastAPI",
+            "Angular · React · Vue 3 · Node.js",
             "API REST · HTML · CSS"
           ]
         },
         {
           "titre": "Bases de données",
           "lignes": [
-            "MySQL · PostgreSQL · SQLite"
+            "PostgreSQL · MySQL · SQLite",
+            "Contraintes, triggers, migrations"
+          ]
+        },
+        {
+          "titre": "Architecture",
+          "lignes": [
+            "Microservices · Apache Kafka",
+            "Outbox transactionnel · événements"
           ]
         },
         {
@@ -172,10 +182,10 @@
           ]
         },
         {
-          "titre": "Méthode",
+          "titre": "Méthode et tests",
           "lignes": [
             "Agile (Jira, Trello) · Figma",
-            "Tests automatisés"
+            "PHPUnit · JUnit · Testcontainers"
           ]
         }
       ]

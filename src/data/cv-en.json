@@ -1,8 +1,11 @@
 {
   "nom": "Nathan Princer Diffo",
   "titre": "Full Stack Developer — Business Process Digitalisation",
-  "accroche": "I turn processes that live in spreadsheets and Word templates into applications teams actually use every day. *Eight applications and websites I designed and shipped are live.*",
-  "libelles": { "contact": "Contact", "langues": "Languages" },
+  "accroche": "I turn processes that live in spreadsheets and Word templates into applications teams actually use every day. *Ten applications and websites I designed and shipped are live*, two of them fully open source.",
+  "libelles": {
+    "contact": "Contact",
+    "langues": "Languages"
+  },
   "contact": {
     "lieu": "Marrakech, Morocco",
     "telephone": "+212 660 179 871",
@@ -12,8 +15,14 @@
     "linkedin": "linkedin.com/in/nathan-princer-diffo"
   },
   "langues": [
-    { "langue": "French", "niveau": "working language" },
-    { "langue": "English", "niveau": "technical" }
+    {
+      "langue": "French",
+      "niveau": "working language"
+    },
+    {
+      "langue": "English",
+      "niveau": "technical"
+    }
   ],
   "sections": [
     {
@@ -27,8 +36,6 @@
           "lignes": [
             "Two of the company's core activities ran on shared spreadsheets and hand-copied Word templates: tender responses and recruitment. *I designed, built and shipped both replacement applications.*",
             "On a tender, the deadline and scope of supply had to be found by hand in files running to hundreds of pages, some of them scanned. The tool finds them and *shows the exact passage it took them from* — all that is left is to confirm.",
-            "A file can no longer go out with a mandatory step missed: the path is locked, from the first document through to invoicing.",
-            "On the recruitment side, tracking and filing can no longer drift apart — moving a candidate forward files their folder automatically, and hiring documents are generated from templates instead of being copied.",
             "*The HR team switched without changing a single habit* — the new tracker uses the exact columns of the spreadsheet it replaced, and exports to the same format."
           ]
         },
@@ -58,19 +65,35 @@
       "titre": "What I have shipped",
       "entrees": [
         {
+          "titre": "Factura — Morocco-compliant invoicing",
+          "sousTitre": "Personal project · open source · live",
+          "lien": "github.com/diffonathan/factura",
+          "lignes": [
+            "PHP 8.4, Laravel 13, Vue 3 and PostgreSQL. *The legal number is reserved in the same transaction as the invoice*: a failure consumes nothing, and the series stays gap-free.",
+            "The database itself refuses two invoices sharing a number, any rewrite of an issued document, or a payment above the amount due. Compliant PDF export, documented REST API. *103 tests, 246 assertions.*"
+          ]
+        },
+        {
+          "titre": "RDV Santé — appointments and a live waiting queue",
+          "sousTitre": "Personal project · open source · live",
+          "lien": "github.com/diffonathan/rdv-sante",
+          "lignes": [
+            "Java 21, Spring Boot 4, Angular 22, Apache Kafka and PostgreSQL. Four autonomous services exchanging events rather than calling one another: *if one goes down the others carry on*.",
+            "*A transactional outbox* guarantees no event is lost or emitted twice; a partial unique index forbids, inside the database, two patients taking the same slot. Tested against real PostgreSQL and Kafka."
+          ]
+        },
+        {
           "titre": "Tender response — internal tool",
           "sousTitre": "MBO Services · in service",
           "lignes": [
-            "Carries a bid from the first document through to the invoice: intake of attachments, automated reading, enforced stages, and a dashboard of live opportunities.",
-            "*Built for non-technical users* — every screen carries its own instructions and a guided tour on first login."
+            "Carries a bid from the first document through to the invoice: intake of attachments, automated reading, enforced stages, and a dashboard of live opportunities. *Built for non-technical users* — every screen carries its own instructions and a guided tour on first login."
           ]
         },
         {
           "titre": "Recruitment — from stated need to the candidate's first day",
           "sousTitre": "MBO Services · in service",
           "lignes": [
-            "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, generation of hiring documents, automatic archiving.",
-            "GDPR-compliant — candidate data is flagged for review, then deleted automatically once its retention period ends."
+            "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, generation of hiring documents, automatic archiving. GDPR-compliant — candidate data is flagged for review, then deleted automatically once its retention period ends."
           ]
         },
         {
@@ -78,17 +101,18 @@
           "sousTitre": "Hope Traders Academy · site and application",
           "lien": "vip.hopetraders.fr",
           "lignes": [
-            "Sign-up, subscription billing, content released in stages, messaging with the team, and an admin back office.",
-            "Runs in the browser and *installs on a phone* like a native app."
+            "Sign-up, subscription billing, content released in stages, messaging with the team, and an admin back office. Runs in the browser and *installs on a phone* like a native app."
           ]
         },
         {
           "titre": "Activity journal",
           "sousTitre": "Hope Traders Academy · site and application",
-          "lien": ["hopejournal.hopetraders.fr", "journal.hopetraders.fr"],
+          "lien": [
+            "hopejournal.hopetraders.fr",
+            "journal.hopetraders.fr"
+          ],
           "lignes": [
-            "Imports an account's history and turns it into statistics, charts and a calendar; notebook and PDF report export.",
-            "An assistant reads back through the entries and *surfaces what keeps recurring* — the habits you repeat without seeing them."
+            "Imports an account's history and turns it into statistics, charts and a calendar; notebook and PDF report export. An assistant reads back through the entries and *surfaces what keeps recurring* — the habits you repeat without seeing them."
           ]
         },
         {
@@ -98,15 +122,6 @@
           "lignes": [
             "Pulls together *five scattered public data sources* into a single read, across 67 tracked markets. Accounts, free trial, subscription, and alerts ahead of major releases."
           ]
-        },
-        {
-          "titre": "Two corporate websites on WordPress",
-          "sousTitre": "MBO Services · M2CG Ingénierie",
-          "lien": ["mboservices.tech", "lightgreen-sandpiper-369560.hostingersite.com"],
-          "lignes": [
-            "An IT services company and an engineering consultancy: site structure, expertise pages, contact forms and load times.",
-            "*Custom templates rather than a stack of plugins* — both teams keep their own pages alive, without a developer."
-          ]
         }
       ]
     },
@@ -114,14 +129,69 @@
       "id": "competences",
       "titre": "Skills",
       "entrees": [
-        { "titre": "Languages", "lignes": ["JavaScript · TypeScript · Python · PHP · SQL"] },
-        { "titre": "Web development", "lignes": ["React · FastAPI · Laravel · Node.js", "REST APIs · HTML · CSS"] },
-        { "titre": "Databases", "lignes": ["MySQL · PostgreSQL · SQLite"] },
-        { "titre": "Cloud and deployment", "lignes": ["Cloudflare · Docker · Linux VPS", "CI/CD · Git · GitHub Actions"] },
-        { "titre": "Payments and security", "lignes": ["Stripe · authentication · GDPR"] },
-        { "titre": "Applied AI", "lignes": ["Large language model integration", "Document reading and extraction"] },
-        { "titre": "CMS", "lignes": ["WordPress · Elementor Pro", "WooCommerce · Microsoft 365"] },
-        { "titre": "Ways of working", "lignes": ["Agile (Jira, Trello) · Figma", "Automated testing"] }
+        {
+          "titre": "Languages",
+          "lignes": [
+            "Java · TypeScript · JavaScript",
+            "PHP · Python · SQL"
+          ]
+        },
+        {
+          "titre": "Web development",
+          "lignes": [
+            "Spring Boot · Laravel · FastAPI",
+            "Angular · React · Vue 3 · Node.js",
+            "REST APIs · HTML · CSS"
+          ]
+        },
+        {
+          "titre": "Databases",
+          "lignes": [
+            "PostgreSQL · MySQL · SQLite",
+            "Constraints, triggers, migrations"
+          ]
+        },
+        {
+          "titre": "Architecture",
+          "lignes": [
+            "Microservices · Apache Kafka",
+            "Transactional outbox · events"
+          ]
+        },
+        {
+          "titre": "Cloud and deployment",
+          "lignes": [
+            "Cloudflare · Docker · Linux VPS",
+            "CI/CD · Git · GitHub Actions"
+          ]
+        },
+        {
+          "titre": "Payments and security",
+          "lignes": [
+            "Stripe · authentication · GDPR"
+          ]
+        },
+        {
+          "titre": "Applied AI",
+          "lignes": [
+            "Large language model integration",
+            "Document reading and extraction"
+          ]
+        },
+        {
+          "titre": "CMS",
+          "lignes": [
+            "WordPress · Elementor Pro",
+            "WooCommerce · Microsoft 365"
+          ]
+        },
+        {
+          "titre": "Ways of working and testing",
+          "lignes": [
+            "Agile (Jira, Trello) · Figma",
+            "PHPUnit · JUnit · Testcontainers"
+          ]
+        }
       ]
     },
     {

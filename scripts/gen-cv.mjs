@@ -142,7 +142,11 @@ const contactLiens = [
     href: cv.contact?.telephone && `tel:${String(cv.contact.telephone).replace(/[^+0-9]/g, '')}`,
   },
   { texte: cv.contact?.email, href: cv.contact?.email && `mailto:${cv.contact.email}` },
-  { texte: cv.contact?.site, href: cv.contact?.site && url(cv.contact.site) },
+  // Portfolio et GitHub sont mis en évidence tous les deux : ce sont les deux
+  // seules lignes du CV qui mènent à quelque chose de VÉRIFIABLE — les
+  // applications qui tournent d'un côté, le code qui les fait tourner de
+  // l'autre. Le reste du document demande qu'on le croie sur parole.
+  { texte: cv.contact?.site, href: cv.contact?.site && url(cv.contact.site), fort: true },
   { texte: cv.contact?.github, href: cv.contact?.github && url(cv.contact.github), fort: true },
   { texte: cv.contact?.linkedin, href: cv.contact?.linkedin && url(cv.contact.linkedin) },
 ].filter((c) => c.texte);
