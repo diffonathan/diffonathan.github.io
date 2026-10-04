@@ -159,6 +159,46 @@ export const stackCategories: StackCategory[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Artisans.ma',
+    tagline: 'Find a tradesperson who will actually come to you',
+    description:
+      'Getting a plumber to your home in Morocco means calling a number copied onto a scrap of paper, then a second, then a third. You never know which one will travel to your address, nor what they will charge until you hang up. So the search does not show the nearest tradespeople — it shows the ones whose own travel radius covers the job: a painter 168 km away in Essaouira shows up, a carpenter 30 km away who never leaves his valley does not. And a review only exists if the job was paid for and then marked complete.',
+    tech: ['NestJS', 'GraphQL', 'MongoDB', 'Next.js 16', 'React 19', 'TypeScript', 'Docker', 'Vitest'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/artisans-ma',
+    image: `${BASE}projects/artisans.jpg`,
+    accentColor: 'info',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/artisans.jpg`,
+          titre: 'The question is not “who is nearest”',
+          texte:
+            'Every tradesperson declares THEIR OWN travel radius, and that is what decides. The painter from Essaouira travels 200 km, so he appears for a job in Marrakech 168 km away. The carpenter in Tahannaout, 30 km from the same job, does not — his radius stops at 10 km. A single distance threshold cannot produce that: set to 30 km it keeps the wrong one, set to 200 km it keeps both.',
+        },
+        {
+          image: `${BASE}projects/artisans-devis.jpg`,
+          titre: 'Compare, then commit',
+          texte:
+            'The client describes the job once; tradespeople in range reply with a price, a lead time and what they intend to do. Accepting one automatically declines the others and freezes the amount onto the booking — if the quote is edited afterwards, the agreement does not move. The screen says what the click will do before you click it.',
+        },
+        {
+          image: `${BASE}projects/artisans-chantiers.jpg`,
+          titre: 'What the tradesperson sees, and what they do not',
+          texte:
+            'Jobs within their radius, with the distance and the client’s first name — never the exact address or phone number. Those arrive with the booking, once the quote has been accepted. This is not an access check bolted on top: the address is copied onto the booking, so it simply is not where they should not be reading it.',
+        },
+        {
+          image: `${BASE}projects/artisans-technique.jpg`,
+          titre: 'What the database cannot guarantee, said plainly',
+          texte:
+            'MongoDB has no foreign keys: nothing stops it accepting a review that matches no job at all. Rather than claim that is impossible, the application says so, replaces it with three verifiable mechanisms, and watches the rest with an integrity command. The technical page walks through the reasoning, the measurements, and the bugs found along the way.',
+        },
+      ],
+    },
+  },
+  {
     name: 'RDV Santé',
     tagline: 'Appointment booking and a live waiting queue',
     description:

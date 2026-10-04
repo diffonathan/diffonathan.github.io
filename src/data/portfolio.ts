@@ -255,6 +255,46 @@ export const stackCategories: StackCategory[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Artisans.ma',
+    tagline: 'Trouver un artisan qui accepte de venir chez vous',
+    description:
+      'Pour faire venir un plombier chez soi au Maroc, on appelle un numéro recopié sur un bout de papier, puis un deuxième, puis un troisième. On ne sait pas lequel se déplacera jusqu’à son adresse, ni combien il demandera avant d’avoir raccroché. La recherche ne montre donc pas les artisans les plus proches, mais ceux dont le rayon couvre l’adresse du chantier : un peintre d’Essaouira à 168 km apparaît, un menuisier à 30 km qui ne sort pas de sa vallée n’apparaît pas. Et un avis n’existe que si la prestation a été payée puis déclarée terminée.',
+    tech: ['NestJS', 'GraphQL', 'MongoDB', 'Next.js 16', 'React 19', 'TypeScript', 'Docker', 'Vitest'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/artisans-ma',
+    image: `${BASE}projects/artisans.jpg`,
+    accentColor: 'info',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/artisans.jpg`,
+          titre: 'La question n’est pas « qui est près de moi »',
+          texte:
+            'Chaque artisan déclare SON rayon d’intervention, et c’est lui qui décide. Le peintre d’Essaouira se déplace à 200 km : il apparaît pour un chantier à Marrakech, à 168 km de chez lui. Le menuisier de Tahannaout, à 30 km du même chantier, n’apparaît pas — son rayon s’arrête à 10 km. Un seuil unique de distance ne peut pas produire ce résultat : réglé à 30 km il garderait le mauvais, réglé à 200 km il garderait les deux.',
+        },
+        {
+          image: `${BASE}projects/artisans-devis.jpg`,
+          titre: 'Comparer, puis trancher',
+          texte:
+            'Le client décrit son chantier une fois ; les artisans du secteur répondent par un montant, un délai et ce qu’ils comptent faire. En accepter un refuse automatiquement les autres et fige le montant sur la réservation — si l’artisan modifie son devis ensuite, l’accord conclu ne bouge pas. L’écran dit ce que le clic déclenche avant qu’on clique.',
+        },
+        {
+          image: `${BASE}projects/artisans-chantiers.jpg`,
+          titre: 'Ce que l’artisan voit, et ce qu’il ne voit pas',
+          texte:
+            'Les chantiers de son rayon, avec la distance et le prénom du client — jamais l’adresse exacte ni le téléphone. Ils n’arrivent qu’avec la réservation, c’est-à-dire une fois le devis retenu. Ce n’est pas un contrôle d’accès posé par-dessus : l’adresse est recopiée sur la réservation, donc elle n’est pas là où il ne doit pas la lire.',
+        },
+        {
+          image: `${BASE}projects/artisans-technique.jpg`,
+          titre: 'Ce que la base ne peut pas garantir, écrit noir sur blanc',
+          texte:
+            'MongoDB n’a pas de clé étrangère : rien ne l’empêche d’accepter un avis qui ne correspond à aucune prestation. Plutôt que de le prétendre impossible, l’application le dit, le remplace par trois mécanismes vérifiables, et surveille le reste par une commande de contrôle. La page technique explique le raisonnement, les mesures et les erreurs trouvées en chemin.',
+        },
+      ],
+    },
+  },
+  {
     name: 'RDV Santé',
     tagline: 'Prise de rendez-vous et file d’attente en temps réel',
     description:
