@@ -255,6 +255,46 @@ export const stackCategories: StackCategory[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Mizan',
+    tagline: 'Répondre sur le Code du travail marocain, ou se taire',
+    description:
+      'Un salarié marocain qui se demande à quoi il a droit tombe sur un forum, sur un PDF de trois cents pages, ou sur une IA qui lui sort un numéro d’article qui n’existe pas. Ce qui manque n’est pas une réponse : c’est une réponse dont on puisse vérifier la source, et un système qui se taise quand il ne sait pas au lieu de fabriquer un article plausible. Mizan lit les 589 articles du Code du travail, ne répond que s’il a retrouvé les textes, et rejette en entier toute rédaction qui cite un article absent de ce qu’il a réellement récupéré — 31 inventions fabriquées pour l’épreuve, 31 arrêtées. Le projet ne promet rien qu’une commande du dépôt ne réimprime.',
+    tech: ['Python', 'FastAPI', 'RAG', 'BM25', 'embeddinggemma-300m', 'ONNX Runtime', 'Docker', 'unittest'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/mizan',
+    image: `${BASE}projects/mizan.jpg`,
+    accentColor: 'accent',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/mizan-silence.jpg`,
+          titre: 'Se taire est une réponse',
+          texte:
+            '« Comment déclarer mes revenus fonciers ? » n’a pas de réponse dans le Code du travail. Mizan ne rédige rien, et le modèle n’est même pas appelé — on n’invente pas ce qu’on n’a pas demandé. L’écran dit pourquoi : l’article le plus proche plafonne à 0,27 de proximité pour un seuil de 0,46, et il nomme les mots que le Code n’emploie jamais. Les textes approchants restent affichés, mais étiquetés CANDIDAT et non CITÉ. Sur les 36 questions du jeu qui n’ont pas de réponse dans le Code, 27 reçoivent ce silence.',
+        },
+        {
+          image: `${BASE}projects/mizan-tutoriel.jpg`,
+          titre: 'La garde des citations, prise sur le fait',
+          texte:
+            'C’est la seule vraie garantie du projet, et elle est invisible tant que tout va bien : le tutoriel la met donc en scène. On fait citer au rédacteur trois articles — 269 et 270, réellement retrouvés, et 1098, qui existe dans un AUTRE code. La réponse entière est rejetée. Ce n’est pas un filtre de probabilité mais une appartenance à un ensemble, affichée en clair : citations lues {269, 270, 1098}, articles récupérés {269, 270, 154, 13, 219}, inclusion rompue par 1098. Une réponse à moitié inventée n’est pas rapiécée.',
+        },
+        {
+          image: `${BASE}projects/mizan-article.jpg`,
+          titre: 'Un article sans son chapitre ne dit pas la même chose',
+          texte:
+            'L’article 231 arrive avec sa place exacte dans le Code : Livre II — Des conditions de travail et de la rémunération du salarié, Titre III — De la durée du travail, Chapitre IV — Du congé annuel payé, Section I. En droit, c’est cette hiérarchie qui dit à qui le texte s’applique, et une réponse qui la retire n’est plus vérifiable. La carte indique aussi par quel bras de recherche l’article a été trouvé et la page du PDF officiel, pour qu’on puisse contrôler ailleurs que dans l’application.',
+        },
+        {
+          image: `${BASE}projects/mizan.jpg`,
+          titre: 'Ce que le projet dit contre lui-même',
+          texte:
+            'Deux bandeaux sont là avant qu’on ait posé la moindre question. Le corpus est consolidé au 26 octobre 2011 : ce n’est pas l’état du droit aujourd’hui, et aucune jurisprudence n’y figure. Et sans clé de modèle, la rédaction affichée est factice — la RECHERCHE des articles, elle, est réelle, et c’est elle qui est mesurée. Le dossier nomme lui-même son plus gros trou : la garde vérifie une provenance, pas une pertinence, donc un article réel cité à tort passe.',
+        },
+      ],
+    },
+  },
+  {
     name: 'Artisans.ma',
     tagline: 'Trouver un artisan qui accepte de venir chez vous',
     description:

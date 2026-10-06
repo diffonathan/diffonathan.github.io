@@ -159,6 +159,46 @@ export const stackCategories: StackCategory[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Mizan',
+    tagline: 'Answer on Moroccan labour law, or decline to answer',
+    description:
+      'A Moroccan employee wondering what they are entitled to lands on a forum, on a three-hundred-page PDF, or on an AI that hands them an article number which does not exist. What is missing is not an answer: it is an answer whose source you can check, and a system that declines to answer when it does not know rather than producing a plausible-looking article. Mizan reads the 589 articles of the Labour Code, answers only when it has actually found the texts, and rejects outright any draft citing an article that is not in what it retrieved — 31 fabrications planted for the test, 31 stopped. Nothing is claimed here that a command in the repository does not print again.',
+    tech: ['Python', 'FastAPI', 'RAG', 'BM25', 'embeddinggemma-300m', 'ONNX Runtime', 'Docker', 'unittest'],
+    demoUrl: '',
+    codeUrl: 'https://github.com/diffonathan/mizan',
+    image: `${BASE}projects/mizan.jpg`,
+    accentColor: 'accent',
+    privateSource: false,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/mizan-silence.jpg`,
+          titre: 'Declining to answer is an answer',
+          texte:
+            '“How do I declare my rental income?” has no answer in the Labour Code. Mizan writes nothing at all, and the model is never even called — you cannot invent what was never asked for. The screen says why: the closest article tops out at 0.27 similarity against a 0.46 threshold, and it names the words the Code never uses. The near-miss texts stay on screen, but labelled CANDIDATE, not CITED. Of the 36 questions in the set that have no answer in the Code, 27 get this silence.',
+        },
+        {
+          image: `${BASE}projects/mizan-tutoriel.jpg`,
+          titre: 'The citation guard, caught in the act',
+          texte:
+            'It is the one real guarantee in the project, and it is invisible as long as nothing goes wrong — so the tutorial stages it. The writer is made to cite three articles: 269 and 270, genuinely retrieved, and 1098, which exists in ANOTHER code. The whole answer is rejected. This is not a probability filter but set membership, shown in the open: citations read {269, 270, 1098}, articles retrieved {269, 270, 154, 13, 219}, inclusion broken by 1098. An answer that is half invented does not get patched up.',
+        },
+        {
+          image: `${BASE}projects/mizan-article.jpg`,
+          titre: 'An article without its chapter does not say the same thing',
+          texte:
+            'Article 231 comes with its exact place in the Code: Book II — working conditions and pay, Title III — working hours, Chapter IV — paid annual leave, Section I. In law it is that hierarchy which says who the text applies to, and an answer that strips it away can no longer be checked. The card also names which search arm found the article and the page of the official PDF, so you can verify it somewhere other than inside this application.',
+        },
+        {
+          image: `${BASE}projects/mizan.jpg`,
+          titre: 'What the project says against itself',
+          texte:
+            'Two banners are there before you have asked anything. The corpus is consolidated as of 26 October 2011: that is not the law as it stands today, and no case law is included. And with no model key, the drafting on screen is a stand-in — the RETRIEVAL of the articles is real, and that is what has been measured. The write-up names its own biggest hole: the guard checks provenance, not relevance, so a genuine article cited in the wrong place still gets through.',
+        },
+      ],
+    },
+  },
+  {
     name: 'Artisans.ma',
     tagline: 'Find a tradesperson who will actually come to you',
     description:
