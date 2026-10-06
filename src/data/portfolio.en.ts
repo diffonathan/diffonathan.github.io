@@ -204,7 +204,7 @@ export const projects: Project[] = [
     description:
       'Getting a plumber to your home in Morocco means calling a number copied onto a scrap of paper, then a second, then a third. You never know which one will travel to your address, nor what they will charge until you hang up. So the search does not show the nearest tradespeople — it shows the ones whose own travel radius covers the job: a painter 168 km away in Essaouira shows up, a carpenter 30 km away who never leaves his valley does not. And a review only exists if the job was paid for and then marked complete.',
     tech: ['NestJS', 'GraphQL', 'MongoDB', 'Next.js 16', 'React 19', 'TypeScript', 'Docker', 'Vitest'],
-    demoUrl: '',
+    demoUrl: 'https://artisans-ma.onrender.com',
     codeUrl: 'https://github.com/diffonathan/artisans-ma',
     image: `${BASE}projects/artisans.jpg`,
     accentColor: 'info',

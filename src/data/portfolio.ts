@@ -300,7 +300,7 @@ export const projects: Project[] = [
     description:
       'Pour faire venir un plombier chez soi au Maroc, on appelle un numéro recopié sur un bout de papier, puis un deuxième, puis un troisième. On ne sait pas lequel se déplacera jusqu’à son adresse, ni combien il demandera avant d’avoir raccroché. La recherche ne montre donc pas les artisans les plus proches, mais ceux dont le rayon couvre l’adresse du chantier : un peintre d’Essaouira à 168 km apparaît, un menuisier à 30 km qui ne sort pas de sa vallée n’apparaît pas. Et un avis n’existe que si la prestation a été payée puis déclarée terminée.',
     tech: ['NestJS', 'GraphQL', 'MongoDB', 'Next.js 16', 'React 19', 'TypeScript', 'Docker', 'Vitest'],
-    demoUrl: '',
+    demoUrl: 'https://artisans-ma.onrender.com',
     codeUrl: 'https://github.com/diffonathan/artisans-ma',
     image: `${BASE}projects/artisans.jpg`,
     accentColor: 'info',
