@@ -164,7 +164,7 @@ export const projects: Project[] = [
     description:
       'A Moroccan employee wondering what they are entitled to lands on a forum, on a three-hundred-page PDF, or on an AI that hands them an article number which does not exist. What is missing is not an answer: it is an answer whose source you can check, and a system that declines to answer when it does not know rather than producing a plausible-looking article. Mizan reads the 589 articles of the Labour Code, answers only when it has actually found the texts, and rejects outright any draft citing an article that is not in what it retrieved — 31 fabrications planted for the test, 31 stopped. Nothing is claimed here that a command in the repository does not print again.',
     tech: ['Python', 'FastAPI', 'RAG', 'BM25', 'embeddinggemma-300m', 'ONNX Runtime', 'Docker', 'unittest'],
-    demoUrl: '',
+    demoUrl: 'https://nathanprincer-mizan-tutoriel.static.hf.space',
     codeUrl: 'https://github.com/diffonathan/mizan',
     image: `${BASE}projects/mizan.jpg`,
     accentColor: 'accent',
@@ -205,6 +205,7 @@ export const projects: Project[] = [
       'Getting a plumber to your home in Morocco means calling a number copied onto a scrap of paper, then a second, then a third. You never know which one will travel to your address, nor what they will charge until you hang up. So the search does not show the nearest tradespeople — it shows the ones whose own travel radius covers the job: a painter 168 km away in Essaouira shows up, a carpenter 30 km away who never leaves his valley does not. And a review only exists if the job was paid for and then marked complete.',
     tech: ['NestJS', 'GraphQL', 'MongoDB', 'Next.js 16', 'React 19', 'TypeScript', 'Docker', 'Vitest'],
     demoUrl: 'https://artisans-ma.onrender.com',
+    demoEveil: true,
     codeUrl: 'https://github.com/diffonathan/artisans-ma',
     image: `${BASE}projects/artisans.jpg`,
     accentColor: 'info',

@@ -260,7 +260,7 @@ export const projects: Project[] = [
     description:
       'Un salarié marocain qui se demande à quoi il a droit tombe sur un forum, sur un PDF de trois cents pages, ou sur une IA qui lui sort un numéro d’article qui n’existe pas. Ce qui manque n’est pas une réponse : c’est une réponse dont on puisse vérifier la source, et un système qui se taise quand il ne sait pas au lieu de fabriquer un article plausible. Mizan lit les 589 articles du Code du travail, ne répond que s’il a retrouvé les textes, et rejette en entier toute rédaction qui cite un article absent de ce qu’il a réellement récupéré — 31 inventions fabriquées pour l’épreuve, 31 arrêtées. Le projet ne promet rien qu’une commande du dépôt ne réimprime.',
     tech: ['Python', 'FastAPI', 'RAG', 'BM25', 'embeddinggemma-300m', 'ONNX Runtime', 'Docker', 'unittest'],
-    demoUrl: '',
+    demoUrl: 'https://nathanprincer-mizan-tutoriel.static.hf.space',
     codeUrl: 'https://github.com/diffonathan/mizan',
     image: `${BASE}projects/mizan.jpg`,
     accentColor: 'accent',
@@ -301,6 +301,7 @@ export const projects: Project[] = [
       'Pour faire venir un plombier chez soi au Maroc, on appelle un numéro recopié sur un bout de papier, puis un deuxième, puis un troisième. On ne sait pas lequel se déplacera jusqu’à son adresse, ni combien il demandera avant d’avoir raccroché. La recherche ne montre donc pas les artisans les plus proches, mais ceux dont le rayon couvre l’adresse du chantier : un peintre d’Essaouira à 168 km apparaît, un menuisier à 30 km qui ne sort pas de sa vallée n’apparaît pas. Et un avis n’existe que si la prestation a été payée puis déclarée terminée.',
     tech: ['NestJS', 'GraphQL', 'MongoDB', 'Next.js 16', 'React 19', 'TypeScript', 'Docker', 'Vitest'],
     demoUrl: 'https://artisans-ma.onrender.com',
+    demoEveil: true,
     codeUrl: 'https://github.com/diffonathan/artisans-ma',
     image: `${BASE}projects/artisans.jpg`,
     accentColor: 'info',
