@@ -169,7 +169,7 @@ export const projects: Project[] = [
     // either, hence an empty `codeUrl` rather than a link to something
     // nobody can read.
     demoUrl: '',
-    codeUrl: '',
+    codeUrl: 'https://github.com/diffonathan/tasswiya',
     // ⚠️ The cover is NOT tasswiya.jpg, and that is a measured judgement call,
     // not an oversight. The card renders the image as `aspect-video …
     // object-cover` (see Projects.tsx): anything outside the central 16:9 is

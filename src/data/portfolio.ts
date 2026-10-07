@@ -264,7 +264,7 @@ export const projects: Project[] = [
     // une adresse qui répondrait 404. Le dépôt public n'existe pas davantage,
     // d'où `codeUrl` vide plutôt qu'un lien vers un dépôt illisible.
     demoUrl: '',
-    codeUrl: '',
+    codeUrl: 'https://github.com/diffonathan/tasswiya',
     // ⚠️ La couverture N'EST PAS tasswiya.jpg, et c'est un arbitrage mesuré,
     // pas un oubli. La carte affiche l'image en `aspect-video … object-cover`
     // (voir Projects.tsx) : tout ce qui dépasse du 16:9 central est rogné. En
