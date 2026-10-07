@@ -1,7 +1,7 @@
 {
   "nom": "Nathan Princer Diffo",
   "titre": "Développeur Full Stack — Digitalisation des processus métier",
-  "accroche": "Je transforme des processus qui vivent dans des fichiers Excel et des modèles Word en applications que les équipes utilisent tous les jours. *Dix applications et sites que j'ai conçus et livrés sont en ligne*, dont trois au code entièrement ouvert.",
+  "accroche": "Je transforme des processus qui vivent dans Excel et Word en applications que les équipes utilisent chaque jour. *Dix applications et sites que j'ai livrés sont en ligne*, dont quatre au code entièrement ouvert.",
   "contact": {
     "lieu": "Marrakech, Maroc",
     "telephone": "+212 660 179 871",
@@ -30,9 +30,9 @@
           "sousTitre": "Marrakech · société de services informatiques",
           "meta": "avril – septembre 2026",
           "lignes": [
-            "Deux activités de l'entreprise reposaient sur des fichiers Excel partagés et des modèles Word recopiés à la main : la réponse aux appels d'offres et le recrutement. *J'ai conçu, développé et mis en service les deux applications qui les remplacent.*",
-            "Sur un appel d'offres, la date limite et le périmètre étaient cherchés à la main dans des dossiers de plusieurs centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire* : il ne reste qu'à valider.",
-            "*L'équipe RH a basculé sans rien changer à ses habitudes* — le nouveau suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format."
+            "Deux activités vivaient dans des Excel partagés et des modèles Word recopiés à la main : les appels d'offres et le recrutement. *J'ai conçu, développé et mis en service les deux applications qui les remplacent.*",
+            "La date limite et le périmètre se cherchaient à la main dans des dossiers de centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire* : il ne reste qu'à valider.",
+            "*L'équipe RH a basculé sans changer ses habitudes* — le suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format."
           ]
         },
         {
@@ -40,8 +40,8 @@
           "sousTitre": "Prestation · organisme de formation",
           "meta": "2026",
           "lignes": [
-            "*Trois produits web livrés de bout en bout*, chacun avec son site de présentation et son application : une plateforme de formation et d'espace membres, un journal de suivi d'activité, un terminal d'analyse de marché.",
-            "Conception, développement, mise en ligne et suivi : interface, données, paiement par abonnement, envoi des e-mails et espace d'administration.",
+            "*Trois produits web livrés de bout en bout*, chacun avec son site et son application : formation et espace membres, journal d'activité, terminal d'analyse de marché.",
+            "*Chatbots et automatisations* : réponses aux questions courantes, publication sur les réseaux, séquences d'e-mails — avec n8n, Make, Zapier et SendPulse *plutôt que du code*, pour que le client les modifie lui-même.",
             "Chaque outil est exploité directement par le client, sans intervention technique au quotidien."
           ]
         },
@@ -51,7 +51,7 @@
           "meta": "2023 – 2025",
           "lignes": [
             "Applications web sur mesure pour trois clients : développement complet, de l'interface à la base de données.",
-            "Sites vitrines et boutiques en ligne, à partir de maquettes fournies par les équipes design ; travail avec les pôles design et marketing, en méthode agile."
+            "Sites vitrines et boutiques en ligne à partir de maquettes fournies ; travail avec les pôles design et marketing, en méthode agile."
           ]
         }
       ]
@@ -128,8 +128,7 @@
         {
           "titre": "Langages",
           "lignes": [
-            "Java · TypeScript · JavaScript",
-            "PHP · Python · SQL"
+            "Java · TypeScript · PHP · Python · SQL"
           ]
         },
         {
@@ -137,7 +136,7 @@
           "lignes": [
             "Spring Boot · Laravel · FastAPI",
             "Angular · React · Vue 3 · Node.js",
-            "API REST · HTML · CSS"
+            "API REST · Stripe · RGPD"
           ]
         },
         {
@@ -162,23 +161,17 @@
           ]
         },
         {
-          "titre": "Paiement et sécurité",
-          "lignes": [
-            "Stripe · authentification · RGPD"
-          ]
-        },
-        {
-          "titre": "Intelligence artificielle",
+          "titre": "IA et automatisation",
           "lignes": [
             "Intégration de modèles de langage",
-            "Lecture et extraction de documents"
+            "Lecture et extraction de documents",
+            "n8n · Make · Zapier · SendPulse"
           ]
         },
         {
           "titre": "CMS",
           "lignes": [
-            "WordPress · Elementor Pro",
-            "WooCommerce · Microsoft 365"
+            "WordPress · Elementor · WooCommerce"
           ]
         },
         {
@@ -212,6 +205,7 @@
   "avertissements": [
     "Les trois produits Hope Traders Academy sont présentés comme une PRESTATION indépendante pour un client, jamais comme une participation à l'entreprise.",
     "La durée par outil (un mois chacun) n'est pas mentionnée, comme demandé.",
-    "« Huit applications et sites en ligne » est vérifié : les huit adresses répondent en HTTP 200 (le portfolio n'est pas compté)."
+    "« Dix applications et sites en ligne » est vérifié le 7 octobre 2026 : les dix adresses répondent (le portfolio n'est pas compté). RDV Santé a d'abord échoué sur un délai de 90 s — c'est le réveil à froid de l'hébergement gratuit, pas une panne ; il répond en 4 s une fois réveillé.",
+    "« Quatre au code entièrement ouvert » : Factura, RDV Santé, Artisans.ma et Mizan ont leur dépôt public sur github.com/diffonathan."
   ]
 }

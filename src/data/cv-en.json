@@ -1,7 +1,7 @@
 {
   "nom": "Nathan Princer Diffo",
   "titre": "Full Stack Developer — Business Process Digitalisation",
-  "accroche": "I turn processes that live in spreadsheets and Word templates into applications teams actually use every day. *Ten applications and websites I designed and shipped are live*, three of them fully open source.",
+  "accroche": "I turn processes that live in spreadsheets and Word templates into applications teams use every day. *Ten applications and websites I shipped are live*, four of them fully open source.",
   "libelles": {
     "contact": "Contact",
     "langues": "Languages"
@@ -34,9 +34,9 @@
           "sousTitre": "Marrakech, Morocco · IT services company",
           "meta": "Apr – Sep 2026",
           "lignes": [
-            "Two of the company's core activities ran on shared spreadsheets and hand-copied Word templates: tender responses and recruitment. *I designed, built and shipped both replacement applications.*",
-            "On a tender, the deadline and scope of supply had to be found by hand in files running to hundreds of pages, some of them scanned. The tool finds them and *shows the exact passage it took them from* — all that is left is to confirm.",
-            "*The HR team switched without changing a single habit* — the new tracker uses the exact columns of the spreadsheet it replaced, and exports to the same format."
+            "Two core activities ran on shared spreadsheets and hand-copied Word templates: tender responses and recruitment. *I designed, built and shipped both replacement applications.*",
+            "The deadline and scope of supply had to be found by hand in files running to hundreds of pages, some scanned. The tool finds them and *shows the exact passage it took them from* — all that is left is to confirm.",
+            "*The HR team switched without changing a habit* — the new tracker uses the exact columns of the spreadsheet it replaced, and exports to the same format."
           ]
         },
         {
@@ -44,8 +44,8 @@
           "sousTitre": "Contract work · training company",
           "meta": "2026",
           "lignes": [
-            "*Three web products delivered end to end*, each with its own marketing site and its application: a course and membership platform, an activity journal, and a market analysis terminal.",
-            "Design, development, launch and follow-up: interface, data, subscription billing, transactional email and admin back office.",
+            "*Three web products delivered end to end*, each with its own site and application: a course and membership platform, an activity journal, a market analysis terminal.",
+            "*Chatbots and automations*: answers to common questions, social posting, email sequences — built with n8n, Make, Zapier and SendPulse *rather than code*, so the client can change them without me.",
             "Each tool is run directly by the client, with no day-to-day technical involvement."
           ]
         },
@@ -55,7 +55,7 @@
           "meta": "2023 – 2025",
           "lignes": [
             "Custom web applications for three clients: full development, from interface to database.",
-            "Brochure sites and online stores, built from designs supplied by the design teams; worked alongside design and marketing in an agile setup."
+            "Brochure sites and online stores built from supplied designs; worked alongside design and marketing in an agile setup."
           ]
         }
       ]
@@ -79,21 +79,21 @@
           "lien": "github.com/diffonathan/rdv-sante",
           "lignes": [
             "Java 21, Spring Boot 4, Angular 22, Apache Kafka and PostgreSQL. Four autonomous services exchanging events rather than calling one another: *if one goes down the others carry on*.",
-            "*A transactional outbox* guarantees no event is lost or emitted twice; a partial unique index forbids, inside the database, two patients taking the same slot. Tested against real PostgreSQL and Kafka."
+            "*A transactional outbox* guarantees no event is lost or emitted twice; a partial unique index forbids two patients taking the same slot. Tested against real PostgreSQL and Kafka."
           ]
         },
         {
           "titre": "Tender response — internal tool",
           "sousTitre": "MBO Services · in service",
           "lignes": [
-            "Carries a bid from the first document through to the invoice: intake of attachments, automated reading, enforced stages, and a dashboard of live opportunities. *Built for non-technical users* — every screen carries its own instructions and a guided tour on first login."
+            "Carries a bid from the first document through to the invoice: intake, automated reading, enforced stages, live dashboard. *Built for non-technical users* — every screen carries its instructions and a guided tour on first login."
           ]
         },
         {
           "titre": "Recruitment — from stated need to the candidate's first day",
           "sousTitre": "MBO Services · in service",
           "lignes": [
-            "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, generation of hiring documents, automatic archiving. GDPR-compliant — candidate data is flagged for review, then deleted automatically once its retention period ends."
+            "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, generation of hiring documents, automatic archiving. GDPR-compliant — candidate data is flagged, then deleted once its retention period ends."
           ]
         },
         {
@@ -112,7 +112,7 @@
             "journal.hopetraders.fr"
           ],
           "lignes": [
-            "Imports an account's history and turns it into statistics, charts and a calendar; notebook and PDF report export. An assistant reads back through the entries and *surfaces what keeps recurring* — the habits you repeat without seeing them."
+            "Imports an account's history and turns it into statistics, charts and a calendar; notebook and PDF export. An assistant reads back through the entries and *surfaces what keeps recurring*."
           ]
         },
         {
@@ -132,8 +132,7 @@
         {
           "titre": "Languages",
           "lignes": [
-            "Java · TypeScript · JavaScript",
-            "PHP · Python · SQL"
+            "Java · TypeScript · PHP · Python · SQL"
           ]
         },
         {
@@ -141,7 +140,7 @@
           "lignes": [
             "Spring Boot · Laravel · FastAPI",
             "Angular · React · Vue 3 · Node.js",
-            "REST APIs · HTML · CSS"
+            "REST APIs · Stripe · GDPR"
           ]
         },
         {
@@ -166,23 +165,17 @@
           ]
         },
         {
-          "titre": "Payments and security",
-          "lignes": [
-            "Stripe · authentication · GDPR"
-          ]
-        },
-        {
-          "titre": "Applied AI",
+          "titre": "AI and automation",
           "lignes": [
             "Large language model integration",
-            "Document reading and extraction"
+            "Document reading and extraction",
+            "n8n · Make · Zapier · SendPulse"
           ]
         },
         {
           "titre": "CMS",
           "lignes": [
-            "WordPress · Elementor Pro",
-            "WooCommerce · Microsoft 365"
+            "WordPress · Elementor · WooCommerce"
           ]
         },
         {
@@ -202,7 +195,7 @@
           "titre": "ESMA — Marrakech, Morocco",
           "meta": "2021 – 2023",
           "lignes": [
-            "*2023* — Master's level (Bac+5), Software Engineering and Web Services.",
+            "*2023* — Bac+5, Software Engineering and Web Services.",
             "*2022* — Bac+4, Software Engineering and Web Services.",
             "*2021* — Bachelor's level (Bac+3), Computer Engineering."
           ]
@@ -212,11 +205,11 @@
   ],
   "questions": [
     "Le titre anglais dit « Business Process Digitalisation ». L'alternative plus recherchée par les recruteurs est « Digital Transformation » — moins précise, mais plus courante. Dis-moi si tu la préfères.",
-    "Les diplômes français n'ont pas d'équivalent exact : j'ai écrit « Master's level (Bac+5) » et « Bachelor's level (Bac+3) », qui est la convention pour un lecteur étranger.",
     "Version SANS PHOTO disponible : au Royaume-Uni et aux États-Unis, une photo peut faire écarter une candidature. Commande donnée dans la conversation."
   ],
   "avertissements": [
     "Traduction rédigée en anglais, pas transposée mot à mot : les tournures suivent l'usage anglophone.",
-    "Mêmes faits vérifiés que la version française — aucune affirmation ajoutée à la faveur de la traduction."
+    "Mêmes faits vérifiés que la version française — aucune affirmation ajoutée à la faveur de la traduction.",
+    "La ligne de formation dit « Bac+5 » dans les deux langues. La mention « Master's level » a été retirée de l'anglaise : la règle des candidatures proscrit « Master », et l'arbitrage du 3 octobre ne portait que sur « Bac+5 »."
   ]
 }
