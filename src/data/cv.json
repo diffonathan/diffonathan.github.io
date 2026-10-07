@@ -31,7 +31,7 @@
           "meta": "avril – septembre 2026",
           "lignes": [
             "Deux activités vivaient dans des Excel partagés et des modèles Word recopiés à la main : les appels d'offres et le recrutement. *J'ai conçu, développé et mis en service les deux applications qui les remplacent.*",
-            "La date limite et le périmètre se cherchaient à la main dans des dossiers de centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire* : il ne reste qu'à valider.",
+            "La date limite et le périmètre se cherchaient à la main dans des dossiers de centaines de pages, parfois scannés. L'outil les retrouve et *montre le passage exact d'où il les tire*.",
             "*L'équipe RH a basculé sans changer ses habitudes* — le suivi reprend les colonnes exactes de l'ancien tableur et s'exporte au même format."
           ]
         },
@@ -40,7 +40,7 @@
           "sousTitre": "Prestation · organisme de formation",
           "meta": "2026",
           "lignes": [
-            "*Trois produits web livrés de bout en bout*, chacun avec son site et son application : formation et espace membres, journal d'activité, terminal d'analyse de marché.",
+            "*Trois produits web livrés de bout en bout*, chacun avec son site et son application — détaillés plus bas.",
             "*Chatbots et automatisations* : réponses aux questions courantes, publication sur les réseaux, séquences d'e-mails — avec n8n, Make, Zapier et SendPulse *plutôt que du code*, pour que le client les modifie lui-même.",
             "Chaque outil est exploité directement par le client, sans intervention technique au quotidien."
           ]
@@ -50,7 +50,7 @@
           "sousTitre": "Prestation pour Bailey Assurances, CRFPE, Interloc",
           "meta": "2023 – 2025",
           "lignes": [
-            "Applications web sur mesure pour trois clients : développement complet, de l'interface à la base de données.",
+            "Applications web sur mesure pour trois clients, de l'interface à la base de données.",
             "Sites vitrines et boutiques en ligne à partir de maquettes fournies ; travail avec les pôles design et marketing, en méthode agile."
           ]
         }
@@ -66,7 +66,7 @@
           "lien": "github.com/diffonathan/factura",
           "lignes": [
             "PHP 8.4, Laravel 13, Vue 3 et PostgreSQL. *Le numéro légal est réservé dans la même transaction que la facture* : un échec ne consomme rien, et la série reste sans trou.",
-            "La base refuse elle-même deux factures au même numéro, la réécriture d'un document émis ou un encaissement supérieur au dû. Export PDF conforme, API REST documentée. *103 tests, 246 assertions.*"
+            "La base refuse elle-même deux factures au même numéro, la réécriture d'un document émis ou un encaissement supérieur au dû. *103 tests, 246 assertions.*"
           ]
         },
         {
@@ -75,48 +75,46 @@
           "lien": "github.com/diffonathan/rdv-sante",
           "lignes": [
             "Java 21, Spring Boot 4, Angular 22, Apache Kafka et PostgreSQL. Quatre services autonomes qui s'échangent des événements au lieu de s'appeler : *si l'un tombe les autres continuent*.",
-            "*Un outbox transactionnel* garantit qu'aucun événement n'est perdu ni émis deux fois ; un index unique partiel interdit dans la base que deux patients prennent le même créneau. Tests sur PostgreSQL et Kafka réels."
+            "*Un outbox transactionnel* garantit qu'aucun événement n'est perdu ni émis deux fois ; un index unique partiel interdit, dans la base, que deux patients prennent le même créneau."
+          ]
+        },
+        {
+          "titre": "Artisans.ma — trouver un artisan qui accepte de venir",
+          "sousTitre": "Projet personnel · code public · en ligne",
+          "lien": "github.com/diffonathan/artisans-ma",
+          "lignes": [
+            "TypeScript de bout en bout : NestJS et GraphQL côté API, Next.js 16 et React 19 côté interface. *La recherche montre les artisans dont le rayon déclaré couvre le chantier, pas les plus proches* — un peintre à 168 km apparaît, un menuisier à 30 km non.",
+            "Un avis n'existe que si la prestation a été payée puis déclarée terminée, *garanti sans clé étrangère*. *92 tests sur l'API, 172 sur l'interface.*"
+          ]
+        },
+        {
+          "titre": "Mizan — assistant du Code du travail marocain",
+          "sousTitre": "Projet personnel · code public · en ligne",
+          "lien": "github.com/diffonathan/mizan",
+          "lignes": [
+            "Python et FastAPI, recherche à deux bras sur les 589 articles du Code. *Toute réponse citant un article absent des textes retrouvés est rejetée en entier* — 31 inventions fabriquées pour l'essai, 31 arrêtées. Et il se tait quand aucun article ne correspond. *360 tests, bibliothèque standard seule.*"
           ]
         },
         {
           "titre": "Réponse aux appels d'offres — outil interne",
           "sousTitre": "MBO Services · en service",
           "lignes": [
-            "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes imposées, tableau de bord des affaires en cours. *Conçu pour des utilisateurs non techniques* — chaque écran embarque son mode d'emploi et une visite guidée à la première connexion."
+            "Accompagne un dossier du premier document jusqu'à la facture : réception des pièces, lecture automatique, étapes verrouillées, tableau des affaires en cours. *Pensé pour des utilisateurs non techniciens* — chaque écran porte ses consignes."
           ]
         },
         {
           "titre": "Recrutement — du besoin exprimé à l'arrivée du candidat",
           "sousTitre": "MBO Services · en service",
           "lignes": [
-            "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage automatique. Conforme au RGPD — les données des candidats sont relancées puis supprimées automatiquement à l'échéance."
+            "Remplace un tableur partagé et des dossiers rangés à la main : suivi des candidatures, production des documents d'embauche, archivage. Conforme au RGPD — les données d'un candidat sont effacées à l'échéance."
           ]
         },
         {
-          "titre": "Plateforme de formation et d'espace membres",
-          "sousTitre": "Hope Traders Academy · site et application",
-          "lien": "vip.hopetraders.fr",
+          "titre": "Trois produits pour un organisme de formation",
+          "sousTitre": "Prestation · en ligne",
+          "lien": "",
           "lignes": [
-            "Inscription, paiement par abonnement, cours qui s'ouvrent progressivement, messagerie avec l'équipe et espace d'administration. Consultable au navigateur et *installable sur téléphone* comme une application."
-          ]
-        },
-        {
-          "titre": "Journal de suivi d'activité",
-          "sousTitre": "Hope Traders Academy · site et application",
-          "lien": [
-            "hopejournal.hopetraders.fr",
-            "journal.hopetraders.fr"
-          ],
-          "lignes": [
-            "Importe l'historique d'un compte et le restitue en statistiques, courbes et calendrier ; carnet de notes et export des rapports en PDF. Un assistant relit les opérations et *fait ressortir ce qui revient* — les habitudes qu'on répète sans les voir."
-          ]
-        },
-        {
-          "titre": "Terminal d'analyse de marché",
-          "sousTitre": "Hope Traders Academy · site et application",
-          "lien": "confluenceterminal.hopetraders.fr",
-          "lignes": [
-            "Rassemble *cinq sources de données publiques dispersées* et les présente en une seule lecture, sur 67 marchés suivis. Comptes, essai gratuit, abonnement et alertes avant les publications importantes."
+            "Une plateforme de formation et d'espace membres (abonnement, cours ouverts progressivement, installable sur téléphone), un journal qui importe un historique et *fait ressortir ce qui revient*, et un terminal qui rassemble *cinq sources publiques dispersées*."
           ]
         }
       ]

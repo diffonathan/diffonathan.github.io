@@ -35,7 +35,7 @@
           "meta": "Apr – Sep 2026",
           "lignes": [
             "Two core activities ran on shared spreadsheets and hand-copied Word templates: tender responses and recruitment. *I designed, built and shipped both replacement applications.*",
-            "The deadline and scope of supply had to be found by hand in files running to hundreds of pages, some scanned. The tool finds them and *shows the exact passage it took them from* — all that is left is to confirm.",
+            "The deadline and scope of supply had to be found by hand in files running to hundreds of pages, some scanned. The tool finds them and *shows the exact passage it took them from*.",
             "*The HR team switched without changing a habit* — the new tracker uses the exact columns of the spreadsheet it replaced, and exports to the same format."
           ]
         },
@@ -44,7 +44,7 @@
           "sousTitre": "Contract work · training company",
           "meta": "2026",
           "lignes": [
-            "*Three web products delivered end to end*, each with its own site and application: a course and membership platform, an activity journal, a market analysis terminal.",
+            "*Three web products delivered end to end*, each with its own site and application — detailed below.",
             "*Chatbots and automations*: answers to common questions, social posting, email sequences — built with n8n, Make, Zapier and SendPulse *rather than code*, so the client can change them without me.",
             "Each tool is run directly by the client, with no day-to-day technical involvement."
           ]
@@ -54,7 +54,7 @@
           "sousTitre": "Contract work for Bailey Assurances, CRFPE, Interloc",
           "meta": "2023 – 2025",
           "lignes": [
-            "Custom web applications for three clients: full development, from interface to database.",
+            "Custom web applications for three clients, from interface to database.",
             "Brochure sites and online stores built from supplied designs; worked alongside design and marketing in an agile setup."
           ]
         }
@@ -70,7 +70,7 @@
           "lien": "github.com/diffonathan/factura",
           "lignes": [
             "PHP 8.4, Laravel 13, Vue 3 and PostgreSQL. *The legal number is reserved in the same transaction as the invoice*: a failure consumes nothing, and the series stays gap-free.",
-            "The database itself refuses two invoices sharing a number, any rewrite of an issued document, or a payment above the amount due. Compliant PDF export, documented REST API. *103 tests, 246 assertions.*"
+            "The database itself refuses two invoices sharing a number, any rewrite of an issued document, or a payment above the amount due. *103 tests, 246 assertions.*"
           ]
         },
         {
@@ -79,48 +79,46 @@
           "lien": "github.com/diffonathan/rdv-sante",
           "lignes": [
             "Java 21, Spring Boot 4, Angular 22, Apache Kafka and PostgreSQL. Four autonomous services exchanging events rather than calling one another: *if one goes down the others carry on*.",
-            "*A transactional outbox* guarantees no event is lost or emitted twice; a partial unique index forbids two patients taking the same slot. Tested against real PostgreSQL and Kafka."
+            "*A transactional outbox* guarantees no event is lost or emitted twice; a partial unique index forbids two patients taking the same slot."
+          ]
+        },
+        {
+          "titre": "Artisans.ma — finding a tradesperson who will actually come",
+          "sousTitre": "Personal project · open source · live",
+          "lien": "github.com/diffonathan/artisans-ma",
+          "lignes": [
+            "TypeScript throughout: NestJS and GraphQL on the API, Next.js 16 and React 19 on the front. *Search returns the tradespeople whose declared radius covers the job, not the nearest ones* — a painter 168 km away shows up, a carpenter 30 km away does not.",
+            "A review exists only once the job has been paid for and marked finished, *guaranteed without a foreign key*. *92 API tests, 172 on the front.*"
+          ]
+        },
+        {
+          "titre": "Mizan — assistant to the Moroccan Labour Code",
+          "sousTitre": "Personal project · open source · live",
+          "lien": "github.com/diffonathan/mizan",
+          "lignes": [
+            "Python and FastAPI, two-armed retrieval over the 589 articles of the Code. *Any answer citing an article outside the retrieved set is rejected whole* — 31 inventions staged, 31 caught. It declines to answer when nothing matches. *360 tests, standard library only.*"
           ]
         },
         {
           "titre": "Tender response — internal tool",
           "sousTitre": "MBO Services · in service",
           "lignes": [
-            "Carries a bid from the first document through to the invoice: intake, automated reading, enforced stages, live dashboard. *Built for non-technical users* — every screen carries its instructions and a guided tour on first login."
+            "Carries a bid from the first document through to the invoice: intake, automated reading, enforced stages, live dashboard. *Built for non-technical users* — every screen carries its instructions."
           ]
         },
         {
           "titre": "Recruitment — from stated need to the candidate's first day",
           "sousTitre": "MBO Services · in service",
           "lignes": [
-            "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, generation of hiring documents, automatic archiving. GDPR-compliant — candidate data is flagged, then deleted once its retention period ends."
+            "Replaces a shared spreadsheet and folders filed by hand: applicant tracking, hiring documents, automatic archiving. GDPR-compliant — candidate data is deleted once its retention period ends."
           ]
         },
         {
-          "titre": "Course and membership platform",
-          "sousTitre": "Hope Traders Academy · site and application",
-          "lien": "vip.hopetraders.fr",
+          "titre": "Three products for a training company",
+          "sousTitre": "Freelance · live",
+          "lien": "",
           "lignes": [
-            "Sign-up, subscription billing, content released in stages, messaging with the team, and an admin back office. Runs in the browser and *installs on a phone* like a native app."
-          ]
-        },
-        {
-          "titre": "Activity journal",
-          "sousTitre": "Hope Traders Academy · site and application",
-          "lien": [
-            "hopejournal.hopetraders.fr",
-            "journal.hopetraders.fr"
-          ],
-          "lignes": [
-            "Imports an account's history and turns it into statistics, charts and a calendar; notebook and PDF export. An assistant reads back through the entries and *surfaces what keeps recurring*."
-          ]
-        },
-        {
-          "titre": "Market analysis terminal",
-          "sousTitre": "Hope Traders Academy · site and application",
-          "lien": "confluenceterminal.hopetraders.fr",
-          "lignes": [
-            "Pulls together *five scattered public data sources* into a single read, across 67 tracked markets. Accounts, free trial, subscription, and alerts ahead of major releases."
+            "A course and membership platform (subscription, lessons released over time, installable on a phone), an activity journal that *surfaces what keeps recurring*, and a terminal pulling together *five scattered public sources*."
           ]
         }
       ]
@@ -197,7 +195,7 @@
           "lignes": [
             "*2023* — Bac+5, Software Engineering and Web Services.",
             "*2022* — Bac+4, Software Engineering and Web Services.",
-            "*2021* — Bachelor's level (Bac+3), Computer Engineering."
+            "*2021* — Bac+3, Computer Engineering."
           ]
         }
       ]
