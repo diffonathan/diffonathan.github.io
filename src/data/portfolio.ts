@@ -255,6 +255,72 @@ export const stackCategories: StackCategory[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Tasswiya',
+    tagline: 'Les délais du chèque sans provision, et la règle qui les arrête',
+    description:
+      'Un chèque revient impayé, et cinq délais se mettent à courir en même temps : la présentation au paiement, la pénalité bancaire, les trente jours de régularisation pénale, la faculté d’émettre, l’interdiction bancaire. Créanciers, débiteurs et avocats les comptent sur un carnet, et une date ratée renvoie tout le monde au pénal que la réforme de 2026 voulait justement éviter. Tasswiya tient ces horloges, dit laquelle court, et refuse une action quand une règle de droit s’y oppose — en nommant l’article et en citant le texte arabe, seul à faire foi. Le droit a été lu avant d’être codé : le Bulletin officiel a démenti trois affirmations du cahier des charges, et c’est le texte qui a gagné. Ceci n’est pas un conseil juridique — les données sont fictives, et l’avertissement est sur chaque écran.',
+    tech: ['PHP 8.3', 'Symfony 7.2', 'Symfony Workflow', 'Doctrine ORM', 'PostgreSQL 16', 'Twig', 'Docker', 'PHPUnit'],
+    // Pas encore en ligne : l'hébergement reste à ouvrir, et on ne publie pas
+    // une adresse qui répondrait 404. Le dépôt public n'existe pas davantage,
+    // d'où `codeUrl` vide plutôt qu'un lien vers un dépôt illisible.
+    demoUrl: '',
+    codeUrl: '',
+    // ⚠️ La couverture N'EST PAS tasswiya.jpg, et c'est un arbitrage mesuré,
+    // pas un oubli. La carte affiche l'image en `aspect-video … object-cover`
+    // (voir Projects.tsx) : tout ce qui dépasse du 16:9 central est rogné. En
+    // simulant ce rognage sur chaque candidate, on garde :
+    //   tasswiya.jpg        1840 × 3240 →  32 % de la hauteur
+    //   tasswiya-degres.jpg 1840 × 1690 →  61 % de la hauteur
+    //   tasswiya-avant.jpg  1840 × 1662 →  62 % de la hauteur
+    //   tasswiya-regle.jpg  1840 × 1022 →  99 % de la LARGEUR
+    // Sur tasswiya.jpg le compteur disparaît, et c'est la moitié de ce que
+    // l'image promet ; sur tasswiya-avant.jpg le rognage emporte à la fois le
+    // compteur « 1 jour restant » en haut et deux des quatre transitions
+    // rayées en bas — soit les deux choses que la capture sert à montrer.
+    // tasswiya-regle.jpg est à 0,555, c'est-à-dire déjà du 16:9 : elle passe
+    // entière, et elle porte l'argument unique du projet (ce que la loi ouvre,
+    // puis ce que ce logiciel autorise) en montrant au passage les deux traits
+    // de certitude. Les autres restent visibles en entier dans la visite
+    // guidée, où la modale ne contraint pas le rapport.
+    image: `${BASE}projects/tasswiya-regle.jpg`,
+    accentColor: 'accent',
+    privateSource: true,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/tasswiya-avant.jpg`,
+          titre: 'À vingt-neuf jours, aucune porte ne s’ouvre',
+          texte:
+            'Le tutoriel met l’horloge et le graphe d’états dans le même plan, pour qu’on puisse les lire d’un seul regard. À gauche, H3 affiche « 1 jour restant » et nomme son point de départ : la date de l’écédar, et rien d’autre. À droite, le dossier n’a pas bougé — et les quatre transitions qui sortent de son état sont rayées, chacune avec la règle qui la refuse, son verbatim arabe, son article et le renvoi au paragraphe du dossier de droit. Rien n’a été saisi, aucun bouton n’a été pressé.',
+        },
+        {
+          image: `${BASE}projects/tasswiya-apres.jpg`,
+          titre: 'À trente et un, une seule s’ouvre — et personne ne peut la pousser',
+          texte:
+            'Même cadre, au pixel : mêmes coordonnées, même largeur, même hauteur. Le seul fait nouveau est le passage du temps. L’horloge est maintenant dépassée d’un jour, le dossier passe de « écédar notifié » à « délai expiré », et une transition s’est ouverte dans le graphe : expirer le délai, marquée PAR LE TEMPS. C’est exactement celle qu’aucun utilisateur ne peut déclencher — elle appartient au calendrier, pas à l’interface. Un second graphe montre ce que cette expiration ouvre à son tour : engager la poursuite. Quatre transitions fermées, puis une seule ouverte : ce sont les deux seuls nombres que ces captures épinglent, et le script qui les produit échoue si l’un des deux change.',
+        },
+        {
+          image: `${BASE}projects/tasswiya-regle.jpg`,
+          titre: 'Ce que la loi ouvre, et ce que ce logiciel autorise',
+          texte:
+            'Le cahier des charges affirmait que la prorogation est limitée à une fois. Le texte officiel dit l’inverse : l’art. 325 al. 8 ouvre « لمدة مماثلة أو أكثر » — une durée égale ou supérieure — sans plafonner le nombre. Le produit applique bien un quota, mais il l’affiche en second, en trait pointillé, étiqueté CHOIX DE CE LOGICIEL, et jamais comme une règle de droit ; le script de capture refuse d’écrire l’image si ce choix passait avant la règle. Deux autres affirmations sont tombées de la même façon : les trente jours courent de l’écédar — une mise en demeure par officier de police judiciaire — et non du rejet du chèque ; et les « 2 % contre 25 % » comparaient une pénalité bancaire au plancher d’une amende pénale, qui n’arrive qu’après condamnation. Chaque règle du projet est écrite avec sa source et son degré.',
+        },
+        {
+          image: `${BASE}projects/tasswiya.jpg`,
+          titre: 'Cinq horloges, cinq points de départ',
+          texte:
+            'Un seul dossier, cinq comptes à rebours, et c’est tout le problème. La colonne « Part de » ne donne pas une étiquette mais le fait daté dont chaque horloge dérive : la date d’émission, l’injonction bancaire, l’écédar, l’échéance de la première horloge, l’incident de paiement. Comme les faits sont distincts, les échéances n’arrivent jamais ensemble — et un carnet les perd. Les durées lisibles ici sortent du jeu fictif et bougeront au prochain chargement des fixtures ; ce qui ne bougera pas, c’est que rien dans le code ne lit l’heure de la machine. L’unique porte d’entrée du présent est une horloge injectée, et la preuve est expérimentale : poussée de cent jours, tous les compteurs se déplacent d’exactement −100.',
+        },
+        {
+          image: `${BASE}projects/tasswiya-degres.jpg`,
+          titre: 'Le degré de certitude se lit sans couleur',
+          texte:
+            'Quatre degrés — établi, probable, incertain, choix de ce logiciel — et c’est le TRAIT qui les porte : plein, double, tireté, pointillé. Pas la teinte. D’abord parce que `border-style` est la seule propriété de la liste qu’un navigateur imprime toujours, donc la seule qui survive à une page imprimée ou photocopiée. Ensuite parce qu’un lecteur qui ne distingue pas deux couleurs doit pouvoir distinguer ce qui vient du Bulletin officiel de ce que nous avons décidé. La planche de charte montre la colonne en couleurs puis la même en niveaux de gris : la seconde est l’épreuve, pas l’illustration. Aucun écran du produit ne réunit les quatre degrés — seule cette planche le fait.',
+        },
+      ],
+    },
+  },
+  {
     name: 'Mizan',
     tagline: 'Répondre sur le Code du travail marocain, ou se taire',
     description:

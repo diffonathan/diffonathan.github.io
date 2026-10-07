@@ -159,6 +159,73 @@ export const stackCategories: StackCategory[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Tasswiya',
+    tagline: 'Bounced-cheque deadlines, and the rule that stops them',
+    description:
+      'A cheque bounces, and five deadlines start running at once: presentation for payment, the bank penalty, the thirty days to settle and avoid prosecution, the right to issue cheques at all, the banking ban. Creditors, debtors and lawyers track them in a notebook, and one missed date sends everyone back to the criminal courts that the 2026 reform was meant to spare them. Tasswiya keeps these clocks, says which one is running, and refuses an action when a rule of law stands in the way — naming the article and quoting the Arabic text, the only version with legal force. The law was read before any of it was coded: the official gazette contradicted three claims in the brief, and the text won. This is not legal advice — the data is fictional, and the warning sits on every screen.',
+    tech: ['PHP 8.3', 'Symfony 7.2', 'Symfony Workflow', 'Doctrine ORM', 'PostgreSQL 16', 'Twig', 'Docker', 'PHPUnit'],
+    // Not live yet: the hosting still has to be opened, and we do not publish
+    // an address that would answer 404. The public repository does not exist
+    // either, hence an empty `codeUrl` rather than a link to something
+    // nobody can read.
+    demoUrl: '',
+    codeUrl: '',
+    // ⚠️ The cover is NOT tasswiya.jpg, and that is a measured judgement call,
+    // not an oversight. The card renders the image as `aspect-video …
+    // object-cover` (see Projects.tsx): anything outside the central 16:9 is
+    // cropped away. Simulating that crop on each candidate, what survives is:
+    //   tasswiya.jpg        1840 × 3240 →  32% of the height
+    //   tasswiya-degres.jpg 1840 × 1690 →  61% of the height
+    //   tasswiya-avant.jpg  1840 × 1662 →  62% of the height
+    //   tasswiya-regle.jpg  1840 × 1022 →  99% of the WIDTH
+    // On tasswiya.jpg the counter disappears, and that is half of what the
+    // image promises; on tasswiya-avant.jpg the crop takes both the "1 day
+    // left" counter at the top and two of the four struck-through transitions
+    // at the bottom — the two things that capture exists to show.
+    // tasswiya-regle.jpg sits at 0.555, which is already 16:9: it goes through
+    // whole, and it carries the project's single argument (what the law opens,
+    // then what this software allows) while showing two of the certainty
+    // borders along the way. The others stay visible in full inside the guided
+    // tour, where the modal puts no constraint on the ratio.
+    image: `${BASE}projects/tasswiya-regle.jpg`,
+    accentColor: 'accent',
+    privateSource: true,
+    demo: {
+      etapes: [
+        {
+          image: `${BASE}projects/tasswiya-avant.jpg`,
+          titre: 'At twenty-nine days, no door opens',
+          texte:
+            'The tutorial puts the clock and the state graph in the same frame, so both can be read in one look. On the left, H3 reads “1 day left” and names where it starts from: the date of the écédar — the police summons that must precede prosecution — and nothing else. On the right, the case has not moved, and the four transitions leading out of its state are struck through, each with the rule that refuses it, its Arabic wording, its article and a pointer to the paragraph of the law write-up. Nothing has been entered, no button has been pressed.',
+        },
+        {
+          image: `${BASE}projects/tasswiya-apres.jpg`,
+          titre: 'At thirty-one, one opens — and nobody can push it',
+          texte:
+            'Same frame, to the pixel: same coordinates, same width, same height. The only new fact is the passing of time. The clock is now one day past its deadline, the case moves from “écédar served” to “deadline expired”, and one transition has opened in the graph: expire the deadline, marked BY TIME. It is precisely the one no user can trigger — it belongs to the calendar, not to the interface. A second graph shows what that expiry opens in turn: start the prosecution. Four closed transitions, then exactly one open: those are the only two numbers these captures pin down, and the script that produces them fails if either changes.',
+        },
+        {
+          image: `${BASE}projects/tasswiya-regle.jpg`,
+          titre: 'What the law opens, and what this software allows',
+          texte:
+            'The brief claimed the extension may only be granted once. The official text says the opposite: art. 325 §8 opens “لمدة مماثلة أو أكثر” — a period equal to or longer than the first — without capping how many times. The product does apply a quota, but it shows it second, in a dotted border, labelled THIS SOFTWARE’S CHOICE, and never as a rule of law; the capture script refuses to write the image if that choice came before the legal rule. Two other claims fell the same way: the thirty days run from the écédar — a formal notice served by a judicial police officer — and not from the cheque being refused; and the “2% against 25%” was comparing a bank penalty with the floor of a criminal fine, which only arrives after conviction. Every rule in the project is written down with its source and its degree of certainty.',
+        },
+        {
+          image: `${BASE}projects/tasswiya.jpg`,
+          titre: 'Five clocks, five different starting points',
+          texte:
+            'One case, five countdowns, and that is the whole problem. The “starts from” column does not give a label but the dated fact each clock derives from: the issue date, the bank injunction, the écédar, the deadline of the first clock, the payment incident. Because the facts are distinct, the deadlines never land together — and a notebook loses them. The durations readable here come from the fictional dataset and will move the next time the fixtures are loaded; what will not move is that nothing in the code reads the machine clock. The one way the present enters the system is an injected clock, and the proof is experimental: push it a hundred days and every counter shifts by exactly −100.',
+        },
+        {
+          image: `${BASE}projects/tasswiya-degres.jpg`,
+          titre: 'Degree of certainty, readable without colour',
+          texte:
+            'Four degrees — established, probable, uncertain, this software’s choice — and it is the BORDER that carries them: solid, double, dashed, dotted. Not the hue. First because `border-style` is the only property on that list a browser always prints, so the only one that survives a printed or photocopied page. Second because a reader who cannot tell two colours apart must still be able to tell what comes from the official gazette from what we decided ourselves. The design plate shows the column in colour and then the same column in greyscale: the second is the test, not the illustration. No screen in the product puts all four degrees side by side — only this plate does.',
+        },
+      ],
+    },
+  },
+  {
     name: 'Mizan',
     tagline: 'Answer on Moroccan labour law, or decline to answer',
     description:
