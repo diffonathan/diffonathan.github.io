@@ -130,7 +130,7 @@ export const identity = {
   telephoneAffiche: '+212 660 179 871',
   email: 'diffoprincer@gmail.com', // adresse PERSONNELLE — le portfolio ne
   // relève pas de MBO Services, l'adresse professionnelle n'y a pas sa place.
-  availabilityBadge: 'Disponible — freelance ou poste à distance',
+  availabilityBadge: 'Disponible — freelance ou salarié, sur site, hybride ou à distance',
   // Générés par `npm run cv` depuis src/data/cv.json et cv-en.json — ne jamais
   // éditer les PDF à la main, ils sont écrasés à chaque génération.
   cvUrl: `${BASE}cv.pdf`,
@@ -752,13 +752,16 @@ export const disponibilite = {
       detail: 'Mission au forfait ou en régie, de la conception à la mise en production.',
     },
     {
-      label: 'En entreprise, à distance',
-      detail:
-        'Ma préférence : poste entièrement équipé chez moi, disponible sur vos outils et vos rituels d’équipe.',
+      label: 'Sur site',
+      detail: 'Dans vos locaux, aux horaires de l’équipe — y compris pour les phases de cadrage et les mises en production.',
     },
     {
-      label: 'Sur site',
-      detail: 'Possible, en particulier pour les phases de cadrage et les points d’équipe.',
+      label: 'Hybride',
+      detail: 'Quelques jours sur site, le reste à distance, selon le rythme que votre équipe s’est donné.',
+    },
+    {
+      label: 'À distance',
+      detail: 'Poste entièrement équipé, disponible sur vos outils et vos rituels d’équipe.',
     },
   ] as Modalite[],
 }

@@ -45,7 +45,7 @@ export const identity = {
   telephone: '+212660179871',
   telephoneAffiche: '+212 660 179 871',
   email: 'diffoprincer@gmail.com',
-  availabilityBadge: 'Available — freelance or remote position',
+  availabilityBadge: 'Available — freelance or employed; on site, hybrid or remote',
   // Mirrored on purpose: in English the primary download is the English CV,
   // and the secondary link points back to the French one.
   cvUrl: `${BASE}cv-en.pdf`,
@@ -639,13 +639,16 @@ export const disponibilite = {
       detail: 'Fixed-price or time-and-materials engagements, from design through to production.',
     },
     {
-      label: 'Employed, remote',
-      detail:
-        'My preference: a fully equipped workstation at home, available on your tools and your team rituals.',
+      label: 'On site',
+      detail: 'At your offices, on your team’s hours — including scoping phases and production releases.',
     },
     {
-      label: 'On site',
-      detail: 'Possible, in particular for scoping phases and team meetings.',
+      label: 'Hybrid',
+      detail: 'A few days on site, the rest remote, to whatever rhythm your team has settled on.',
+    },
+    {
+      label: 'Remote',
+      detail: 'A fully equipped workstation, available on your tools and your team rituals.',
     },
   ] as Modalite[],
 }
